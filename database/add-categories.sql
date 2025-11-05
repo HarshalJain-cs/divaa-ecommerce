@@ -35,7 +35,7 @@ INSERT INTO categories (name, description, image_url, created_at) VALUES
   (
     'Anklets',
     'Delicate anklets for a subtle statement of style',
-    'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&auto=format&fit=crop&q=80',
     NOW()
   ),
   (
@@ -47,13 +47,13 @@ INSERT INTO categories (name, description, image_url, created_at) VALUES
   (
     'Pendants',
     'Charming pendants to add personality to any outfit',
-    'https://images.unsplash.com/photo-1611652022419-a9419f74343f?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=800&auto=format&fit=crop&q=80',
     NOW()
   ),
   (
     'Wedding Sets',
     'Complete bridal jewelry sets for your special day',
-    'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1460230520582-7d856e12f1d7?w=800&auto=format&fit=crop&q=80',
     NOW()
   )
 ON CONFLICT (name) DO UPDATE SET
