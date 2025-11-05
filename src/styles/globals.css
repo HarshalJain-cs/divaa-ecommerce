@@ -69,16 +69,16 @@
 
   /* Product Card */
   .product-card-wrapper {
-    @apply bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group;
+    @apply bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden;
   }
 
   .product-card-image {
-    @apply w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110;
+    @apply w-full aspect-square object-cover transition-transform duration-500;
   }
 
   /* Category Card */
   .category-card-container {
-    @apply relative overflow-hidden rounded-2xl cursor-pointer group h-80;
+    @apply relative overflow-hidden rounded-2xl cursor-pointer h-80;
   }
 
   .category-overlay {

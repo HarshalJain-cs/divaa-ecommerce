@@ -1,15 +1,18 @@
 /**
  * @page HomePage
- * @description Landing page with featured products
+ * @description Landing page with featured products and categories
  */
 import { Link } from 'react-router-dom';
 import { useFeaturedProducts } from '@/hooks/useProducts';
+import { useCategories } from '@/hooks/useCategories';
 import { useCart } from '@/contexts/CartContext';
 import ProductGrid from '@/components/product/ProductGrid';
+import CategoryCard from '@/components/product/CategoryCard';
 import Header from '@/components/ui/Header';
 
 const HomePage = () => {
   const { data: featuredProducts, isLoading } = useFeaturedProducts();
+  const { data: categories, isLoading: categoriesLoading } = useCategories();
   const { addToCart } = useCart();
 
   return (
@@ -74,30 +77,53 @@ const HomePage = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-serif font-bold text-brand-dark mb-4">
+      <section className="section-sm bg-gradient-to-b from-off-white to-light-gray">
+        <div className="container-custom">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-4">
               Shop by Category
             </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Explore our exquisite collection across various jewelry categories
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {['Rings', 'Necklaces', 'Earrings', 'Bracelets'].map((category) => (
+          {/* Loading State */}
+          {categoriesLoading && (
+            <div className="categories-grid">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="skeleton h-80 rounded-2xl" />
+              ))}
+            </div>
+          )}
+
+          {/* Categories Grid */}
+          {!categoriesLoading && categories && categories.length > 0 && (
+            <div className="categories-grid animate-fade-in-up">
+              {categories.slice(0, 8).map((category) => (
+                <CategoryCard key={category.id} category={category} />
+              ))}
+            </div>
+          )}
+
+          {/* View All Categories Link */}
+          {!categoriesLoading && categories && categories.length > 8 && (
+            <div className="text-center mt-12">
               <Link
-                key={category}
-                to={`/products?category=${category.toLowerCase()}`}
-                className="group relative bg-white rounded-lg shadow-md hover:shadow-xl transition-all overflow-hidden aspect-square"
+                to="/categories"
+                className="btn btn-rose-gold"
               >
-                <div className="absolute inset-0 bg-brand-gold opacity-0 group-hover:opacity-10 transition-opacity" />
-                <div className="flex items-center justify-center h-full">
-                  <h3 className="text-2xl font-semibold text-brand-dark">
-                    {category}
-                  </h3>
-                </div>
+                View All Categories
               </Link>
-            ))}
-          </div>
+            </div>
+          )}
+
+          {/* Empty State */}
+          {!categoriesLoading && (!categories || categories.length === 0) && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">No categories available at the moment.</p>
+            </div>
+          )}
         </div>
       </section>
 
