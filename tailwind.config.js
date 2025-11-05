@@ -51,7 +51,34 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Brand colors for jewelry theme
+        // Giva-Inspired Rose Gold Palette
+        'rose-gold': {
+          DEFAULT: '#E0BFB8',
+          light: '#ECC5C0',
+          dark: '#B76E79',
+          dust: '#DCA1A1',
+        },
+        'blush': {
+          DEFAULT: '#DE5D83',
+          light: '#FF8FA3',
+        },
+        'coral': {
+          rose: '#C37F7A',
+        },
+        'cream': '#FDFBD4',
+        'off-white': '#FAF9F6',
+        'light-gray': '#F3F3F3',
+        'medium-gray': '#CDCDCD',
+        'charcoal': '#4A4A4A',
+        'navy-custom': '#2C3E50',
+        'teal-custom': '#6EB7AC',
+        'mint-green': '#8A9A5B',
+        // Functional colors
+        'success': '#6DB787',
+        'error': '#E74C3C',
+        'warning': '#F39C12',
+        'info': '#3498DB',
+        // Legacy brand colors for backward compatibility
         brand: {
           gold: '#D4AF37',
           rose: '#B76E79',
@@ -76,10 +103,35 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fade-in": {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in-up": {
+          from: { opacity: "0", transform: "translateY(40px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-in-right": {
+          from: { opacity: "0", transform: "translateX(100%)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        "scale-in": {
+          from: { opacity: "0", transform: "scale(0.9)" },
+          to: { opacity: "1", transform: "scale(1)" },
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-1000px 0" },
+          "100%": { backgroundPosition: "1000px 0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.6s ease-out",
+        "fade-in-up": "fade-in-up 0.8s ease-out",
+        "slide-in-right": "slide-in-right 0.5s ease-out",
+        "scale-in": "scale-in 0.4s ease-out",
+        "shimmer": "shimmer 2s infinite",
       },
     },
   },

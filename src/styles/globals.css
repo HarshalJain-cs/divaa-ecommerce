@@ -1,70 +1,245 @@
+/* =============================================
+   DIVA Jewel Cart - Global Styles
+   Giva-Inspired Rose Gold Theme
+   ============================================= */
+
 /* Google Fonts Import - Must be first */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+
+/* Import our custom theme */
+@import './theme.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
-}
+/* =============================================
+   BASE LAYER
+   ============================================= */
 
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+    color: var(--charcoal);
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
 }
 
-/* Custom Utility Classes */
+/* =============================================
+   COMPONENTS LAYER
+   ============================================= */
+
+@layer components {
+  /* Button Styles */
+  .btn {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center justify-center gap-2;
+  }
+
+  .btn-rose-gold {
+    @apply bg-gradient-to-r from-[#E0BFB8] to-[#B76E79] text-white hover:shadow-lg hover:-translate-y-1 active:translate-y-0;
+  }
+
+  .btn-outline-rose {
+    @apply border-2 border-[#B76E79] text-[#B76E79] hover:bg-[#B76E79] hover:text-white;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-[#E0BFB8]/10 text-[#B76E79];
+  }
+
+  /* Product Card */
+  .product-card-wrapper {
+    @apply bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group;
+  }
+
+  .product-card-image {
+    @apply w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110;
+  }
+
+  /* Category Card */
+  .category-card-container {
+    @apply relative overflow-hidden rounded-2xl cursor-pointer group h-80;
+  }
+
+  .category-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 transition-opacity duration-300;
+  }
+
+  /* Input Styles */
+  .input-elegant {
+    @apply border border-gray-300 rounded-lg px-4 py-3 focus:border-[#B76E79] focus:ring-2 focus:ring-[#E0BFB8] transition-all outline-none;
+  }
+
+  .input-search {
+    @apply w-full px-4 py-3 pl-12 rounded-full border-2 border-gray-200 focus:border-[#B76E79] focus:ring-2 focus:ring-[#E0BFB8]/20 transition-all outline-none;
+  }
+
+  /* Section Spacing */
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-sm {
+    @apply py-12 md:py-16;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-rose {
+    @apply bg-[#E0BFB8] text-white;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-white rounded-xl shadow-md p-6 transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:shadow-xl hover:-translate-y-1;
+  }
+
+  /* Grid Layouts */
+  .products-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+
+  .categories-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    @apply relative min-h-[70vh] flex items-center justify-center text-white;
+  }
+
+  /* Text Styles */
+  .text-heading {
+    @apply font-serif font-bold;
+  }
+
+  .text-body {
+    @apply font-sans text-base leading-relaxed;
+  }
+
+  /* Link Styles */
+  .link-rose {
+    @apply text-[#B76E79] hover:text-[#DE5D83] underline-offset-4 hover:underline transition-colors;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-gray-200 my-8;
+  }
+}
+
+/* =============================================
+   UTILITIES LAYER
+   ============================================= */
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  /* Gradient Text */
+  .gradient-text-rose {
+    @apply bg-gradient-to-r from-[#B76E79] to-[#DE5D83] bg-clip-text text-transparent;
+  }
+
+  .gradient-text-gold {
+    @apply bg-gradient-to-r from-[#D4AF37] to-[#E0BFB8] bg-clip-text text-transparent;
+  }
+
+  /* Background Patterns */
+  .bg-dots {
+    background-image: radial-gradient(circle, #E0BFB8 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Smooth Scroll */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  /* Hide Scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Aspect Ratios */
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  .aspect-landscape {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* =============================================
+   PRINT STYLES
+   ============================================= */
+
+@media print {
+  .no-print {
+    display: none !important;
   }
 }
