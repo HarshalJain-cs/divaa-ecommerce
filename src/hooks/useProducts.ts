@@ -19,8 +19,8 @@ interface ProductFilters {
   maxPrice?: number;
   search?: string;
   featured?: boolean;
-  occasion?: string;
-  relation?: string;
+  occasion?: string | string[];
+  relation?: string | string[];
 }
 
 /**
@@ -76,11 +76,13 @@ async function fetchProducts(filters?: ProductFilters): Promise<Product[]> {
   }
 
   if (filters?.occasion) {
-    query = query.contains('occasions', [filters.occasion]);
+    const occasions = Array.isArray(filters.occasion) ? filters.occasion : [filters.occasion];
+    query = query.overlaps('occasions', occasions);
   }
 
   if (filters?.relation) {
-    query = query.contains('relations', [filters.relation]);
+    const relations = Array.isArray(filters.relation) ? filters.relation : [filters.relation];
+    query = query.overlaps('relations', relations);
   }
 
   const { data, error } = await query;

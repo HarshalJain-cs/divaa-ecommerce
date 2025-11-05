@@ -35,8 +35,9 @@ const ProductGrid = ({
   // Loading state
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-20">
+      <div className="flex flex-col items-center justify-center py-20">
         <Loader />
+        <p className="mt-4 text-gray-500">Loading products...</p>
       </div>
     );
   }
@@ -44,7 +45,7 @@ const ProductGrid = ({
   // Empty state
   if (!products || products.length === 0) {
     return (
-      <div className="text-center py-20">
+      <div className="text-center py-20 px-4">
         <div className="text-gray-400 mb-4">
           <svg
             className="w-24 h-24 mx-auto"
@@ -63,8 +64,11 @@ const ProductGrid = ({
         <h3 className="text-xl font-semibold text-gray-600 mb-2">
           No products found
         </h3>
-        <p className="text-gray-500">
-          Try adjusting your filters or search criteria
+        <p className="text-gray-500 mb-4">
+          No products are currently available in the database.
+        </p>
+        <p className="text-sm text-gray-400">
+          Please add products through the Admin Panel or check your database connection.
         </p>
       </div>
     );

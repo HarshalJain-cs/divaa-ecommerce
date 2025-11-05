@@ -51,38 +51,37 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Giva-Inspired Rose Gold Palette
-        'rose-gold': {
+        // Elegant Pink Palette (Feminine & Luxurious)
+        'primary-pink': {
           DEFAULT: '#E0BFB8',
-          light: '#ECC5C0',
-          dark: '#B76E79',
-          dust: '#DCA1A1',
+          light: '#F5E6E8',
+          dark: '#D4A5A5',
         },
-        'blush': {
+        'rose-pink': {
           DEFAULT: '#DE5D83',
           light: '#FF8FA3',
         },
-        'coral': {
-          rose: '#C37F7A',
+        'blush-pink': '#FFB6C1',
+        'silver': {
+          DEFAULT: '#D9D9D9',
+          dark: '#c1c1c1',
         },
+        'navy-blue': '#061e58',
         'cream': '#FDFBD4',
         'off-white': '#FAF9F6',
         'light-gray': '#F3F3F3',
         'medium-gray': '#CDCDCD',
-        'charcoal': '#4A4A4A',
-        'navy-custom': '#2C3E50',
-        'teal-custom': '#6EB7AC',
-        'mint-green': '#8A9A5B',
+        'charcoal': '#121212',
         // Functional colors
         'success': '#6DB787',
         'error': '#E74C3C',
         'warning': '#F39C12',
         'info': '#3498DB',
-        // Legacy brand colors for backward compatibility
+        // Legacy brand colors for backward compatibility (updated to Pink)
         brand: {
-          gold: '#D4AF37',
-          rose: '#B76E79',
-          dark: '#2C3E50',
+          gold: '#E0BFB8',
+          rose: '#DE5D83',
+          dark: '#D4A5A5',
         }
       },
       borderRadius: {
@@ -91,8 +90,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Lato', 'Inter', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
+        body: ['Lato', 'sans-serif'],
+        heading: ['Lato', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {
