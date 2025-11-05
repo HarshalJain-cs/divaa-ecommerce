@@ -204,7 +204,7 @@ const HomePage = () => {
             </div>
 
             <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-cream/50 to-white border border-rose-gold/20">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-teal-custom to-rose-gold flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-rose-gold-light to-rose-gold-dark flex items-center justify-center">
                 <Award className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-charcoal">25+ Years Legacy</h3>

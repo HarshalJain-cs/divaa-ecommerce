@@ -70,9 +70,6 @@ export default {
         'light-gray': '#F3F3F3',
         'medium-gray': '#CDCDCD',
         'charcoal': '#4A4A4A',
-        'navy-custom': '#2C3E50',
-        'teal-custom': '#6EB7AC',
-        'mint-green': '#8A9A5B',
         // Functional colors
         'success': '#6DB787',
         'error': '#E74C3C',
