@@ -124,7 +124,7 @@ const SignupForm: React.FC = () => {
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="bg-white rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-center text-brand-dark mb-2">
+        <h2 className="text-3xl font-bold text-center text-charcoal mb-2">
           Create Account
         </h2>
         <p className="text-center text-gray-600 mb-8">
@@ -236,20 +236,20 @@ const SignupForm: React.FC = () => {
               type="checkbox"
               id="terms"
               required
-              className="w-4 h-4 mt-1 text-brand-gold border-gray-300 rounded focus:ring-brand-gold"
+              className="w-4 h-4 mt-1 text-rose-gold-dark border-gray-300 rounded focus:ring-rose-gold-dark"
             />
             <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
               I agree to the{' '}
               <Link
                 to="/terms"
-                className="text-brand-gold hover:text-brand-rose"
+                className="text-rose-gold-dark hover:text-blush"
               >
                 Terms & Conditions
               </Link>{' '}
               and{' '}
               <Link
                 to="/privacy"
-                className="text-brand-gold hover:text-brand-rose"
+                className="text-rose-gold-dark hover:text-blush"
               >
                 Privacy Policy
               </Link>
@@ -260,7 +260,7 @@ const SignupForm: React.FC = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-brand-gold text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+            className="w-full bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
             {isLoading ? (
               <>
@@ -278,7 +278,7 @@ const SignupForm: React.FC = () => {
           Already have an account?{' '}
           <Link
             to="/login"
-            className="text-brand-gold font-semibold hover:text-brand-rose transition-colors"
+            className="text-rose-gold-dark font-semibold hover:text-blush transition-colors"
           >
             Sign in
           </Link>

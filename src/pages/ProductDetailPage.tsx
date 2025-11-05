@@ -32,7 +32,7 @@ const ProductDetailPage: React.FC = () => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Product not found</h2>
-          <Link to="/products" className="text-brand-gold hover:underline">
+          <Link to="/products" className="text-rose-gold-dark hover:underline">
             Back to Products
           </Link>
         </div>
@@ -59,11 +59,11 @@ const ProductDetailPage: React.FC = () => {
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Link to="/" className="hover:text-brand-gold">Home</Link>
+            <Link to="/" className="hover:text-rose-gold-dark">Home</Link>
             <span>/</span>
-            <Link to="/products" className="hover:text-brand-gold">Products</Link>
+            <Link to="/products" className="hover:text-rose-gold-dark">Products</Link>
             <span>/</span>
-            <span className="text-brand-dark">{product.name}</span>
+            <span className="text-charcoal">{product.name}</span>
           </div>
         </div>
       </div>
@@ -79,16 +79,16 @@ const ProductDetailPage: React.FC = () => {
 
             {/* Product Info */}
             <div>
-              <h1 className="text-4xl font-serif font-bold text-brand-dark mb-4">
+              <h1 className="text-4xl font-serif font-bold text-charcoal mb-4">
                 {product.name}
               </h1>
 
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl font-bold text-brand-dark">
+                <span className="text-4xl font-bold text-charcoal">
                   {formatPrice(product.price)}
                 </span>
                 {product.is_featured && (
-                  <span className="bg-brand-gold text-white text-sm font-semibold px-3 py-1 rounded-full">
+                  <span className="bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
                     Featured
                   </span>
                 )}
@@ -130,7 +130,7 @@ const ProductDetailPage: React.FC = () => {
                 <button
                   onClick={() => addToCart(product)}
                   disabled={product.stock_quantity === 0}
-                  className="flex-1 bg-brand-gold text-white py-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Add to Cart
@@ -139,8 +139,8 @@ const ProductDetailPage: React.FC = () => {
                   onClick={handleWishlistClick}
                   className={`border-2 p-4 rounded-lg transition-all ${
                     inWishlist
-                      ? 'bg-brand-rose border-brand-rose text-white hover:bg-opacity-90'
-                      : 'bg-white border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white'
+                      ? 'bg-blush border-blush text-white hover:bg-opacity-90'
+                      : 'bg-white border-rose-gold-dark text-rose-gold-dark hover:bg-rose-gold-dark hover:text-white'
                   }`}
                   aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
                 >

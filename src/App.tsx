@@ -102,7 +102,7 @@ function App() {
                     <p className="text-xl text-gray-600 mb-8">Page not found</p>
                     <a
                       href="/"
-                      className="bg-brand-gold text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all"
+                      className="bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all"
                     >
                       Go Home
                     </a>

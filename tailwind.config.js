@@ -51,38 +51,30 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Elegant Pink Palette (Feminine & Luxurious)
-        'primary-pink': {
+        // Giva-Inspired Rose Gold Palette
+        'rose-gold': {
           DEFAULT: '#E0BFB8',
-          light: '#F5E6E8',
-          dark: '#D4A5A5',
+          light: '#ECC5C0',
+          dark: '#B76E79',
+          dust: '#DCA1A1',
         },
-        'rose-pink': {
+        'blush': {
           DEFAULT: '#DE5D83',
           light: '#FF8FA3',
         },
-        'blush-pink': '#FFB6C1',
-        'silver': {
-          DEFAULT: '#D9D9D9',
-          dark: '#c1c1c1',
+        'coral': {
+          rose: '#C37F7A',
         },
-        'navy-blue': '#061e58',
         'cream': '#FDFBD4',
         'off-white': '#FAF9F6',
         'light-gray': '#F3F3F3',
         'medium-gray': '#CDCDCD',
-        'charcoal': '#121212',
+        'charcoal': '#4A4A4A',
         // Functional colors
         'success': '#6DB787',
         'error': '#E74C3C',
         'warning': '#F39C12',
         'info': '#3498DB',
-        // Legacy brand colors for backward compatibility (updated to Pink)
-        brand: {
-          gold: '#E0BFB8',
-          rose: '#DE5D83',
-          dark: '#D4A5A5',
-        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -90,10 +82,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Lato', 'Inter', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
-        body: ['Lato', 'sans-serif'],
-        heading: ['Lato', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {

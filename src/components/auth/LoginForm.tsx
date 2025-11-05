@@ -89,7 +89,7 @@ const LoginForm: React.FC = () => {
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="bg-white rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-center text-brand-dark mb-2">
+        <h2 className="text-3xl font-bold text-center text-charcoal mb-2">
           Welcome Back
         </h2>
         <p className="text-center text-gray-600 mb-8">
@@ -151,7 +151,7 @@ const LoginForm: React.FC = () => {
               <input
                 type="checkbox"
                 id="remember"
-                className="w-4 h-4 text-brand-gold border-gray-300 rounded focus:ring-brand-gold"
+                className="w-4 h-4 text-rose-gold-dark border-gray-300 rounded focus:ring-rose-gold-dark"
               />
               <label htmlFor="remember" className="ml-2 text-sm text-gray-600">
                 Remember me
@@ -159,7 +159,7 @@ const LoginForm: React.FC = () => {
             </div>
             <Link
               to="/forgot-password"
-              className="text-sm text-brand-gold hover:text-brand-rose transition-colors"
+              className="text-sm text-rose-gold-dark hover:text-blush transition-colors"
             >
               Forgot password?
             </Link>
@@ -169,7 +169,7 @@ const LoginForm: React.FC = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-brand-gold text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+            className="w-full bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
             {isLoading ? (
               <>
@@ -187,7 +187,7 @@ const LoginForm: React.FC = () => {
           Don't have an account?{' '}
           <Link
             to="/signup"
-            className="text-brand-gold font-semibold hover:text-brand-rose transition-colors"
+            className="text-rose-gold-dark font-semibold hover:text-blush transition-colors"
           >
             Sign up
           </Link>

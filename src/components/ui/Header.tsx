@@ -4,11 +4,10 @@
  */
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Heart, User, Menu, X, LogOut, ChevronDown } from 'lucide-react';
+import { ShoppingCart, Heart, User, Menu, X, LogOut } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { useAuth } from '@/hooks/useAuth';
-import { RELATIONS, OCCASIONS } from '@/constants/collections';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -17,8 +16,6 @@ export default function Header() {
   const { user, profile, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [relationMenuOpen, setRelationMenuOpen] = useState(false);
-  const [occasionMenuOpen, setOccasionMenuOpen] = useState(false);
 
   const handleSignOut = async () => {
     await signOut();
@@ -31,116 +28,38 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 shadow-md bg-[#FFB6C1]">
+    <header className="sticky top-0 z-50 bg-rose-gold/5 shadow-lg shadow-rose-gold/20 backdrop-blur-sm">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with Background Circle */}
           <Link
             to="/"
-            className="text-2xl font-bold text-white hover:text-white/90 transition-colors tracking-wide"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity group"
             onClick={closeMobileMenu}
           >
-            DIVA Jewels
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-gold/30 to-rose-gold-dark/30 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
+              <span className="text-xl font-black font-serif text-rose-gold-dark">D</span>
+            </div>
+            <span className="text-2xl font-black font-serif text-rose-gold-dark tracking-tight">DIVA</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className="text-white hover:text-white/80 transition-colors font-medium"
+              className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium"
             >
               Home
             </Link>
             <Link
               to="/products"
-              className="text-white hover:text-white/80 transition-colors font-medium"
+              className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium"
             >
               Products
             </Link>
-
-            {/* Shop by Relation Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => {
-                  setRelationMenuOpen(!relationMenuOpen);
-                  setOccasionMenuOpen(false);
-                }}
-                className="flex items-center space-x-1 text-white hover:text-white/80 transition-colors font-medium"
-              >
-                <span>Shop by Relation</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-
-              {relationMenuOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-10"
-                    onClick={() => setRelationMenuOpen(false)}
-                  />
-                  <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-20 border border-gray-100">
-                    <div className="px-4 py-2 border-b border-gray-100">
-                      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-                        Shop by Relation
-                      </span>
-                    </div>
-                    {RELATIONS.map((relation) => (
-                      <Link
-                        key={relation.id}
-                        to={relation.path}
-                        className="block px-4 py-2.5 text-gray-700 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 hover:text-rose-pink transition-all font-medium"
-                        onClick={() => setRelationMenuOpen(false)}
-                      >
-                        {relation.label}
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* Shop by Occasion Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => {
-                  setOccasionMenuOpen(!occasionMenuOpen);
-                  setRelationMenuOpen(false);
-                }}
-                className="flex items-center space-x-1 text-white hover:text-white/80 transition-colors font-medium"
-              >
-                <span>Shop by Occasion</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-
-              {occasionMenuOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-10"
-                    onClick={() => setOccasionMenuOpen(false)}
-                  />
-                  <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-20 border border-gray-100">
-                    <div className="px-4 py-2 border-b border-gray-100">
-                      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-                        Shop by Occasion
-                      </span>
-                    </div>
-                    {OCCASIONS.map((occasion) => (
-                      <Link
-                        key={occasion.id}
-                        to={occasion.path}
-                        className="block px-4 py-2.5 text-gray-700 hover:bg-gradient-to-r hover:from-pink-50 hover:to-rose-50 hover:text-rose-pink transition-all font-medium"
-                        onClick={() => setOccasionMenuOpen(false)}
-                      >
-                        {occasion.label}
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-
             <Link
               to="/admin"
-              className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white rounded-md hover:bg-white/30 transition-all font-medium text-sm border border-white/30"
+              className="px-3 py-1 bg-charcoal text-white rounded-md hover:bg-rose-gold-dark transition-all font-medium text-sm"
             >
               Admin Panel
             </Link>
@@ -151,12 +70,12 @@ export default function Header() {
             {/* Wishlist Icon */}
             <Link
               to="/wishlist"
-              className="relative p-2 text-white hover:text-white/80 transition-colors"
+              className="relative p-2 text-gray-700 hover:text-blush transition-colors"
               aria-label="Wishlist"
             >
               <Heart className="w-6 h-6" />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#DE5D83] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-blush text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {wishlistCount > 99 ? '99+' : wishlistCount}
                 </span>
               )}
@@ -165,12 +84,12 @@ export default function Header() {
             {/* Cart Icon */}
             <Link
               to="/cart"
-              className="relative p-2 text-white hover:text-white/80 transition-colors"
+              className="relative p-2 text-gray-700 hover:text-rose-gold-dark transition-colors"
               aria-label="Shopping Cart"
             >
               <ShoppingCart className="w-6 h-6" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#DE5D83] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-rose-gold-dark text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {cartCount > 99 ? '99+' : cartCount}
                 </span>
               )}
@@ -182,7 +101,7 @@ export default function Header() {
                 <>
                   <button
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="flex items-center space-x-2 p-2 text-white hover:text-white/80 transition-colors"
+                    className="flex items-center space-x-2 p-2 text-gray-700 hover:text-rose-gold-dark transition-colors"
                     aria-label="User Menu"
                   >
                     <User className="w-6 h-6" />
@@ -233,13 +152,13 @@ export default function Header() {
                 <div className="flex items-center space-x-2">
                   <Link
                     to="/login"
-                    className="px-4 py-2 text-white hover:text-white/80 transition-colors font-medium"
+                    className="px-4 py-2 text-gray-700 hover:text-rose-gold-dark transition-colors font-medium"
                   >
                     Login
                   </Link>
                   <Link
                     to="/signup"
-                    className="px-4 py-2 bg-white text-[#FFB6C1] rounded-lg hover:bg-white/90 transition-all font-medium shadow-md"
+                    className="px-4 py-2 bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white rounded-lg hover:shadow-lg transition-all font-medium"
                   >
                     Sign Up
                   </Link>
@@ -250,7 +169,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-white hover:text-white/80 transition-colors"
+              className="md:hidden p-2 text-gray-700 hover:text-rose-gold-dark transition-colors"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? (
@@ -264,78 +183,43 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-white/30 pt-4">
+          <div className="md:hidden mt-4 pb-4 border-t pt-4">
             <div className="flex flex-col space-y-3">
               <Link
                 to="/"
-                className="text-white hover:text-white/80 transition-colors font-medium py-2"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                 onClick={closeMobileMenu}
               >
                 Home
               </Link>
               <Link
                 to="/products"
-                className="text-white hover:text-white/80 transition-colors font-medium py-2"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                 onClick={closeMobileMenu}
               >
                 Products
               </Link>
-
-              {/* Shop by Relation - Mobile */}
-              <div className="py-2">
-                <div className="text-white font-semibold mb-2 text-sm">Shop by Relation</div>
-                <div className="flex flex-col space-y-2 ml-3">
-                  {RELATIONS.map((relation) => (
-                    <Link
-                      key={relation.id}
-                      to={relation.path}
-                      className="text-white/90 hover:text-white transition-colors text-sm py-1"
-                      onClick={closeMobileMenu}
-                    >
-                      {relation.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Shop by Occasion - Mobile */}
-              <div className="py-2">
-                <div className="text-white font-semibold mb-2 text-sm">Shop by Occasion</div>
-                <div className="flex flex-col space-y-2 ml-3">
-                  {OCCASIONS.map((occasion) => (
-                    <Link
-                      key={occasion.id}
-                      to={occasion.path}
-                      className="text-white/90 hover:text-white transition-colors text-sm py-1"
-                      onClick={closeMobileMenu}
-                    >
-                      {occasion.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
               <Link
                 to="/admin"
-                className="px-3 py-2 bg-white/20 backdrop-blur-sm text-white rounded-md hover:bg-white/30 transition-all font-medium text-center border border-white/30"
+                className="px-3 py-2 bg-charcoal text-white rounded-md hover:bg-rose-gold-dark transition-all font-medium text-center"
                 onClick={closeMobileMenu}
               >
                 Admin Panel
               </Link>
               <Link
                 to="/wishlist"
-                className="text-white hover:text-white/80 transition-colors font-medium py-2 flex items-center space-x-2"
+                className="text-gray-700 hover:text-blush transition-colors font-medium py-2 flex items-center space-x-2"
                 onClick={closeMobileMenu}
               >
                 <Heart className="w-5 h-5" />
                 <span>Wishlist {wishlistCount > 0 && `(${wishlistCount})`}</span>
               </Link>
-              <hr className="border-white/30" />
+              <hr />
               {user ? (
                 <>
                   <Link
                     to="/profile"
-                    className="text-white hover:text-white/80 transition-colors font-medium py-2"
+                    className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                     onClick={closeMobileMenu}
                   >
                     My Profile
@@ -343,7 +227,7 @@ export default function Header() {
                   {profile?.role === 'admin' && (
                     <Link
                       to="/admin"
-                      className="text-white hover:text-white/80 transition-colors font-medium py-2"
+                      className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                       onClick={closeMobileMenu}
                     >
                       Admin Dashboard
@@ -354,7 +238,7 @@ export default function Header() {
                       handleSignOut();
                       closeMobileMenu();
                     }}
-                    className="text-left text-red-200 hover:text-red-100 transition-colors font-medium py-2 flex items-center space-x-2"
+                    className="text-left text-red-600 hover:text-red-700 transition-colors font-medium py-2 flex items-center space-x-2"
                   >
                     <LogOut className="w-4 h-4" />
                     <span>Sign Out</span>
@@ -364,14 +248,14 @@ export default function Header() {
                 <>
                   <Link
                     to="/login"
-                    className="text-white hover:text-white/80 transition-colors font-medium py-2"
+                    className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                     onClick={closeMobileMenu}
                   >
                     Login
                   </Link>
                   <Link
                     to="/signup"
-                    className="inline-block px-4 py-2 bg-white text-[#FFB6C1] rounded-lg hover:bg-white/90 transition-all font-medium text-center shadow-md"
+                    className="inline-block px-4 py-2 bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white rounded-lg hover:shadow-lg transition-all font-medium text-center"
                     onClick={closeMobileMenu}
                   >
                     Sign Up
