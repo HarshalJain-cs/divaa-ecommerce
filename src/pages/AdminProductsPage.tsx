@@ -2,7 +2,7 @@
  * @page AdminProductsPage
  * @description Admin page to manage all products
  */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Edit, Trash2, Plus, Search } from 'lucide-react';
 import Header from '@/components/ui/Header';

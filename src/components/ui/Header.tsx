@@ -2,7 +2,7 @@
  * @component Header
  * @description Main navigation header with cart icon and user menu
  */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Heart, User, Menu, X, LogOut } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';

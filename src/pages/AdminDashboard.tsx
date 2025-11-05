@@ -2,7 +2,6 @@
  * @page AdminDashboard
  * @description Admin dashboard for managing products
  */
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Package, ShoppingCart, Users, Settings, Plus } from 'lucide-react';
 import Header from '@/components/ui/Header';
