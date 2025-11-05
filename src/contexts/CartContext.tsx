@@ -2,7 +2,7 @@
  * @component CartContext
  * @description Shopping cart context provider with localStorage persistence
  */
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Product } from '@/types/database.types';
 import { toast } from 'sonner';
 

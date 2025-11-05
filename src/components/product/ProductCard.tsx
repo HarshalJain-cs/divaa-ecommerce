@@ -11,7 +11,7 @@
  * <ProductCard product={product} onAddToCart={handleAddToCart} />
  * ```
  */
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, ShoppingCart } from 'lucide-react';
 import { Product } from '@/types/database.types';
@@ -24,11 +24,11 @@ interface ProductCardProps {
   onAddToCart?: (product: Product) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const inWishlist = isInWishlist(product.id);
 
-  const handleWishlistClick = (e: React.MouseEvent) => {
+  const handleWishlistClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     toggleWishlist(product);
   };
@@ -127,4 +127,4 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

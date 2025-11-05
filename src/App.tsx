@@ -2,28 +2,31 @@
  * @component App
  * @description Main application component with routing and providers
  */
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 import { CartProvider } from '@/contexts/CartContext';
 import { WishlistProvider } from '@/contexts/WishlistContext';
 
-// Pages
-import HomePage from '@/pages/HomePage';
-import ProductsPage from '@/pages/ProductsPage';
-import ProductDetailPage from '@/pages/ProductDetailPage';
-import CartPage from '@/pages/CartPage';
-import WishlistPage from '@/pages/WishlistPage';
-import LoginPage from '@/pages/LoginPage';
-import SignupPage from '@/pages/SignupPage';
-import ProfilePage from '@/pages/ProfilePage';
-import AdminDashboard from '@/pages/AdminDashboard';
-import AdminProductsPage from '@/pages/AdminProductsPage';
-import AdminProductFormPage from '@/pages/AdminProductFormPage';
-
-// Components
+// Eagerly loaded components
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import BackToTopButton from '@/components/ui/BackToTopButton';
+import Loader from '@/components/ui/Loader';
+
+// Lazy loaded pages for better code splitting
+const HomePage = lazy(() => import('@/pages/HomePage'));
+const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
+const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
+const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
+const CartPage = lazy(() => import('@/pages/CartPage'));
+const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
+const LoginPage = lazy(() => import('@/pages/LoginPage'));
+const SignupPage = lazy(() => import('@/pages/SignupPage'));
+const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
+const AdminDashboard = lazy(() => import('@/pages/AdminDashboard'));
+const AdminProductsPage = lazy(() => import('@/pages/AdminProductsPage'));
+const AdminProductFormPage = lazy(() => import('@/pages/AdminProductFormPage'));
 
 // Create QueryClient instance
 const queryClient = new QueryClient({
@@ -43,11 +46,17 @@ function App() {
         <WishlistProvider>
           <BrowserRouter>
             <div className="min-h-screen bg-gray-50">
+              <Suspense fallback={
+                <div className="flex items-center justify-center min-h-screen">
+                  <Loader />
+                </div>
+              }>
               <Routes>
               {/* Public Routes */}
               <Route path="/" element={<HomePage />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/products/:id" element={<ProductDetailPage />} />
+              <Route path="/categories" element={<CategoriesPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/login" element={<LoginPage />} />
@@ -100,6 +109,7 @@ function App() {
               }
             />
           </Routes>
+              </Suspense>
 
           {/* Back to Top Button */}
           <BackToTopButton />

@@ -2,7 +2,6 @@
  * @component WishlistPage
  * @description User's wishlist/favorites page
  */
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, ShoppingCart, Trash2, ArrowLeft } from 'lucide-react';
 import { useWishlist } from '@/contexts/WishlistContext';

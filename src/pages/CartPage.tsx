@@ -2,7 +2,6 @@
  * @component CartPage
  * @description Shopping cart page with items list and checkout
  */
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Trash2, Plus, Minus, ArrowLeft } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';

@@ -16,7 +16,7 @@
  * />
  * ```
  */
-import React from 'react';
+import { memo } from 'react';
 import { Product } from '@/types/database.types';
 import ProductCard from './ProductCard';
 import Loader from '@/components/ui/Loader';
@@ -27,11 +27,11 @@ interface ProductGridProps {
   onAddToCart?: (product: Product) => void;
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({
+const ProductGrid = ({
   products,
   isLoading,
   onAddToCart,
-}) => {
+}: ProductGridProps) => {
   // Loading state
   if (isLoading) {
     return (
@@ -84,4 +84,4 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   );
 };
 
-export default ProductGrid;
+export default memo(ProductGrid);
