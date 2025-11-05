@@ -6,6 +6,28 @@ A professional, full-featured e-commerce platform for selling jewelry online, bu
 ![React](https://img.shields.io/badge/React-18.3.0-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.0-blue)
 
+---
+
+## 🚨 **IMPORTANT: Database Setup Required**
+
+**Before using the admin panel or viewing products, you MUST run the database setup scripts!**
+
+### Quick Fix for Common Issues:
+
+1. **"Row-level security policy" error when adding products** ❌
+2. **Product images not loading** 🖼️
+
+### ✅ Solution:
+
+**See [DATABASE_SETUP.md](./DATABASE_SETUP.md) for complete instructions.**
+
+**Quick Steps:**
+1. Open your Supabase Dashboard → SQL Editor
+2. Run the scripts from `DATABASE_SETUP.md`
+3. Refresh your site - everything will work! ✨
+
+---
+
 ## Features
 
 ### Customer Features
