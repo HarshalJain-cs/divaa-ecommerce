@@ -195,8 +195,8 @@
     @apply bg-gradient-to-r from-[#B76E79] to-[#DE5D83] bg-clip-text text-transparent;
   }
 
-  .gradient-text-gold {
-    @apply bg-gradient-to-r from-[#D4AF37] to-[#E0BFB8] bg-clip-text text-transparent;
+  .gradient-text-blush {
+    @apply bg-gradient-to-r from-[#E0BFB8] to-[#B76E79] bg-clip-text text-transparent;
   }
 
   /* Background Patterns */
