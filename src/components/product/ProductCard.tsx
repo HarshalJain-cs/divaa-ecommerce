@@ -48,7 +48,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
         {/* Badges */}
         <div className="absolute top-2 left-2 flex flex-col gap-2">
           {product.is_featured && (
-            <span className="bg-brand-gold text-white text-xs font-semibold px-3 py-1 rounded-full">
+            <span className="bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
               Featured
             </span>
           )}
@@ -70,8 +70,8 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
             onClick={handleWishlistClick}
             className={`bg-white p-2 rounded-full shadow-lg transition-colors ${
               inWishlist
-                ? 'text-brand-rose hover:bg-brand-rose hover:text-white'
-                : 'hover:bg-brand-rose hover:text-white'
+                ? 'text-blush hover:bg-blush hover:text-white'
+                : 'hover:bg-blush hover:text-white'
             }`}
             aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
           >
@@ -91,7 +91,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
 
         {/* Product Name */}
         <Link to={`/products/${product.id}`}>
-          <h3 className="font-semibold text-gray-800 hover:text-brand-gold transition-colors line-clamp-2 mb-2">
+          <h3 className="font-semibold text-gray-800 hover:text-rose-gold-dark transition-colors line-clamp-2 mb-2">
             {product.name}
           </h3>
         </Link>
@@ -109,14 +109,14 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
 
         {/* Price & Add to Cart */}
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-brand-dark">
+          <span className="text-xl font-bold text-charcoal">
             {formatPrice(product.price)}
           </span>
 
           <button
             onClick={() => onAddToCart?.(product)}
             disabled={product.stock_quantity === 0}
-            className="bg-brand-gold text-white p-2 rounded-lg hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white p-2 rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Add to cart"
           >
             <ShoppingCart className="w-5 h-5" />

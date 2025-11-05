@@ -34,29 +34,29 @@ export default function Header() {
           {/* Logo */}
           <Link
             to="/"
-            className="text-2xl font-bold text-brand-gold hover:text-brand-rose transition-colors"
+            className="text-2xl font-bold font-serif text-rose-gold-dark hover:text-blush transition-colors"
             onClick={closeMobileMenu}
           >
-            DIVA Jewels
+            DIVA
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className="text-gray-700 hover:text-brand-gold transition-colors font-medium"
+              className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium"
             >
               Home
             </Link>
             <Link
               to="/products"
-              className="text-gray-700 hover:text-brand-gold transition-colors font-medium"
+              className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium"
             >
               Products
             </Link>
             <Link
               to="/admin"
-              className="px-3 py-1 bg-brand-dark text-white rounded-md hover:bg-opacity-90 transition-all font-medium text-sm"
+              className="px-3 py-1 bg-charcoal text-white rounded-md hover:bg-rose-gold-dark transition-all font-medium text-sm"
             >
               Admin Panel
             </Link>
@@ -67,12 +67,12 @@ export default function Header() {
             {/* Wishlist Icon */}
             <Link
               to="/wishlist"
-              className="relative p-2 text-gray-700 hover:text-brand-rose transition-colors"
+              className="relative p-2 text-gray-700 hover:text-blush transition-colors"
               aria-label="Wishlist"
             >
               <Heart className="w-6 h-6" />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-brand-rose text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-blush text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {wishlistCount > 99 ? '99+' : wishlistCount}
                 </span>
               )}
@@ -81,12 +81,12 @@ export default function Header() {
             {/* Cart Icon */}
             <Link
               to="/cart"
-              className="relative p-2 text-gray-700 hover:text-brand-gold transition-colors"
+              className="relative p-2 text-gray-700 hover:text-rose-gold-dark transition-colors"
               aria-label="Shopping Cart"
             >
               <ShoppingCart className="w-6 h-6" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-brand-rose text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-rose-gold-dark text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                   {cartCount > 99 ? '99+' : cartCount}
                 </span>
               )}
@@ -98,7 +98,7 @@ export default function Header() {
                 <>
                   <button
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="flex items-center space-x-2 p-2 text-gray-700 hover:text-brand-gold transition-colors"
+                    className="flex items-center space-x-2 p-2 text-gray-700 hover:text-rose-gold-dark transition-colors"
                     aria-label="User Menu"
                   >
                     <User className="w-6 h-6" />
@@ -149,13 +149,13 @@ export default function Header() {
                 <div className="flex items-center space-x-2">
                   <Link
                     to="/login"
-                    className="px-4 py-2 text-gray-700 hover:text-brand-gold transition-colors font-medium"
+                    className="px-4 py-2 text-gray-700 hover:text-rose-gold-dark transition-colors font-medium"
                   >
                     Login
                   </Link>
                   <Link
                     to="/signup"
-                    className="px-4 py-2 bg-brand-gold text-white rounded-lg hover:bg-opacity-90 transition-all font-medium"
+                    className="px-4 py-2 bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white rounded-lg hover:shadow-lg transition-all font-medium"
                   >
                     Sign Up
                   </Link>
@@ -166,7 +166,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-700 hover:text-brand-gold transition-colors"
+              className="md:hidden p-2 text-gray-700 hover:text-rose-gold-dark transition-colors"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? (
@@ -184,28 +184,28 @@ export default function Header() {
             <div className="flex flex-col space-y-3">
               <Link
                 to="/"
-                className="text-gray-700 hover:text-brand-gold transition-colors font-medium py-2"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                 onClick={closeMobileMenu}
               >
                 Home
               </Link>
               <Link
                 to="/products"
-                className="text-gray-700 hover:text-brand-gold transition-colors font-medium py-2"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                 onClick={closeMobileMenu}
               >
                 Products
               </Link>
               <Link
                 to="/admin"
-                className="px-3 py-2 bg-brand-dark text-white rounded-md hover:bg-opacity-90 transition-all font-medium text-center"
+                className="px-3 py-2 bg-charcoal text-white rounded-md hover:bg-rose-gold-dark transition-all font-medium text-center"
                 onClick={closeMobileMenu}
               >
                 Admin Panel
               </Link>
               <Link
                 to="/wishlist"
-                className="text-gray-700 hover:text-brand-rose transition-colors font-medium py-2 flex items-center space-x-2"
+                className="text-gray-700 hover:text-blush transition-colors font-medium py-2 flex items-center space-x-2"
                 onClick={closeMobileMenu}
               >
                 <Heart className="w-5 h-5" />
@@ -216,7 +216,7 @@ export default function Header() {
                 <>
                   <Link
                     to="/profile"
-                    className="text-gray-700 hover:text-brand-gold transition-colors font-medium py-2"
+                    className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                     onClick={closeMobileMenu}
                   >
                     My Profile
@@ -224,7 +224,7 @@ export default function Header() {
                   {profile?.role === 'admin' && (
                     <Link
                       to="/admin"
-                      className="text-gray-700 hover:text-brand-gold transition-colors font-medium py-2"
+                      className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                       onClick={closeMobileMenu}
                     >
                       Admin Dashboard
@@ -245,14 +245,14 @@ export default function Header() {
                 <>
                   <Link
                     to="/login"
-                    className="text-gray-700 hover:text-brand-gold transition-colors font-medium py-2"
+                    className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                     onClick={closeMobileMenu}
                   >
                     Login
                   </Link>
                   <Link
                     to="/signup"
-                    className="inline-block px-4 py-2 bg-brand-gold text-white rounded-lg hover:bg-opacity-90 transition-all font-medium text-center"
+                    className="inline-block px-4 py-2 bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white rounded-lg hover:shadow-lg transition-all font-medium text-center"
                     onClick={closeMobileMenu}
                   >
                     Sign Up
