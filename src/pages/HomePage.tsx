@@ -2,15 +2,13 @@
  * @page HomePage
  * @description Landing page with featured products
  */
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useFeaturedProducts } from '@/hooks/useProducts';
 import { useCart } from '@/contexts/CartContext';
 import ProductGrid from '@/components/product/ProductGrid';
-import Loader from '@/components/ui/Loader';
 import Header from '@/components/ui/Header';
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const { data: featuredProducts, isLoading } = useFeaturedProducts();
   const { addToCart } = useCart();
 

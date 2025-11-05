@@ -2,7 +2,7 @@
  * @component WishlistContext
  * @description Wishlist/favorites context provider with Supabase sync and localStorage fallback
  */
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Product } from '@/types/database.types';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/hooks/useAuth';
