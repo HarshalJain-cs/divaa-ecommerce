@@ -78,12 +78,6 @@ export default {
         'error': '#E74C3C',
         'warning': '#F39C12',
         'info': '#3498DB',
-        // Legacy brand colors for backward compatibility
-        brand: {
-          gold: '#D4AF37',
-          rose: '#B76E79',
-          dark: '#2C3E50',
-        }
       },
       borderRadius: {
         lg: "var(--radius)",
