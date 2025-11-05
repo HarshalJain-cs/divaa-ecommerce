@@ -20,11 +20,6 @@
   --light-gray: #F3F3F3;
   --medium-gray: #CDCDCD;
   --charcoal: #4A4A4A;
-  --navy: #2C3E50;
-
-  /* ========== Complementary Colors ========== */
-  --teal: #6EB7AC;
-  --mint-green: #8A9A5B;
 
   /* ========== Functional Colors ========== */
   --success: #6DB787;
@@ -186,8 +181,8 @@ body {
   background-clip: text;
 }
 
-.text-gradient-gold {
-  background: linear-gradient(135deg, #D4AF37, var(--rose-gold));
+.text-gradient-rose {
+  background: linear-gradient(135deg, var(--rose-gold), var(--rose-gold-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -353,7 +348,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: var(--teal);
+  background: linear-gradient(135deg, var(--rose-gold), var(--rose-gold-dark));
   color: white;
   border-radius: 24px;
   font-size: 14px;
