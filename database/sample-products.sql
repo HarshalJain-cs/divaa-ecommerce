@@ -18,7 +18,7 @@ SELECT
   ARRAY['engagement', 'anniversary'],
   ARRAY['wife', 'girlfriend'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Rings' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -34,7 +34,7 @@ SELECT
   ARRAY['wedding', 'anniversary'],
   ARRAY['wife'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Rings' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -50,7 +50,7 @@ SELECT
   ARRAY['engagement', 'birthday'],
   ARRAY['girlfriend', 'wife'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Rings' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -66,7 +66,7 @@ SELECT
   ARRAY['birthday', 'christmas'],
   ARRAY['mother', 'sister'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Rings' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -82,7 +82,7 @@ SELECT
   ARRAY['mothers-day', 'birthday'],
   ARRAY['mother', 'friend'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Rings' LIMIT 1;
 
 -- ============= NECKLACES (5 Products) =============
@@ -100,7 +100,7 @@ SELECT
   ARRAY['anniversary', 'valentines'],
   ARRAY['wife'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Necklaces' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -116,7 +116,7 @@ SELECT
   ARRAY['valentines', 'birthday'],
   ARRAY['girlfriend', 'daughter'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Necklaces' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -132,7 +132,7 @@ SELECT
   ARRAY['wedding', 'mothers-day'],
   ARRAY['mother', 'wife'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Necklaces' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -148,7 +148,7 @@ SELECT
   ARRAY['anniversary', 'christmas'],
   ARRAY['wife', 'mother'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Necklaces' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -164,7 +164,7 @@ SELECT
   ARRAY['birthday', 'valentines'],
   ARRAY['friend', 'sister'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Necklaces' LIMIT 1;
 
 -- ============= EARRINGS (5 Products) =============
@@ -182,7 +182,7 @@ SELECT
   ARRAY['birthday', 'christmas'],
   ARRAY['wife', 'girlfriend'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Earrings' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -198,7 +198,7 @@ SELECT
   ARRAY['anniversary', 'valentines'],
   ARRAY['wife', 'mother'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Earrings' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -214,7 +214,7 @@ SELECT
   ARRAY['mothers-day', 'birthday'],
   ARRAY['mother', 'daughter'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Earrings' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -230,7 +230,7 @@ SELECT
   ARRAY['wedding', 'anniversary'],
   ARRAY['wife'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Earrings' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -246,7 +246,7 @@ SELECT
   ARRAY['birthday'],
   ARRAY['sister', 'friend'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Earrings' LIMIT 1;
 
 -- ============= BRACELETS (5 Products) =============
@@ -264,7 +264,7 @@ SELECT
   ARRAY['anniversary', 'valentines'],
   ARRAY['wife'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Bracelets' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -280,7 +280,7 @@ SELECT
   ARRAY['birthday', 'christmas'],
   ARRAY['daughter', 'sister'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Bracelets' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -296,7 +296,7 @@ SELECT
   ARRAY['wedding', 'anniversary'],
   ARRAY['wife', 'mother'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Bracelets' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -312,7 +312,7 @@ SELECT
   ARRAY['mothers-day', 'wedding'],
   ARRAY['mother'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Bracelets' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -328,7 +328,7 @@ SELECT
   ARRAY['birthday', 'valentines'],
   ARRAY['girlfriend', 'wife'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Bracelets' LIMIT 1;
 
 -- ============= SETS (5 Products) =============
@@ -346,7 +346,7 @@ SELECT
   ARRAY['wedding', 'engagement'],
   ARRAY['wife'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Sets' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -362,7 +362,7 @@ SELECT
   ARRAY['mothers-day', 'wedding'],
   ARRAY['mother', 'wife'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Sets' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -378,7 +378,7 @@ SELECT
   ARRAY['anniversary', 'valentines'],
   ARRAY['wife'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Sets' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -394,7 +394,7 @@ SELECT
   ARRAY['birthday', 'christmas'],
   ARRAY['daughter', 'sister'],
   false,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Sets' LIMIT 1;
 
 INSERT INTO products (name, description, price, category_id, gender, stock_quantity, metal_type, stone_type, occasions, relations, is_featured, image_url)
@@ -410,5 +410,5 @@ SELECT
   ARRAY['anniversary', 'engagement'],
   ARRAY['wife', 'girlfriend'],
   true,
-  '/assets/images/products/placeholder.jpg'
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800'
 FROM categories WHERE name = 'Sets' LIMIT 1;

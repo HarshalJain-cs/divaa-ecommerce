@@ -54,6 +54,12 @@ export default function Header() {
             >
               Products
             </Link>
+            <Link
+              to="/admin"
+              className="px-3 py-1 bg-brand-dark text-white rounded-md hover:bg-opacity-90 transition-all font-medium text-sm"
+            >
+              Admin Panel
+            </Link>
           </div>
 
           {/* Right Side Icons */}
@@ -189,6 +195,13 @@ export default function Header() {
                 onClick={closeMobileMenu}
               >
                 Products
+              </Link>
+              <Link
+                to="/admin"
+                className="px-3 py-2 bg-brand-dark text-white rounded-md hover:bg-opacity-90 transition-all font-medium text-center"
+                onClick={closeMobileMenu}
+              >
+                Admin Panel
               </Link>
               <Link
                 to="/wishlist"
