@@ -7,10 +7,10 @@ import StyledAuthForm from '@/components/auth/StyledAuthForm';
 
 const LoginPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-dark to-gray-800 flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-cream via-off-white to-rose-gold/10 flex items-center justify-center py-12 px-4">
       <div className="w-full flex flex-col items-center">
         <Link to="/" className="flex justify-center mb-8">
-          <h1 className="text-4xl font-serif font-bold text-white">
+          <h1 className="text-4xl font-serif font-bold text-rose-gold-dark">
             DIVA Jewel Cart
           </h1>
         </Link>
@@ -18,16 +18,16 @@ const LoginPage = () => {
         <StyledAuthForm mode="login" />
 
         <div className="mt-6 text-center">
-          <p className="text-gray-300">
+          <p className="text-gray-600">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-brand-gold hover:underline font-semibold">
+            <Link to="/signup" className="text-rose-gold-dark hover:underline font-semibold">
               Sign up
             </Link>
           </p>
         </div>
 
         <div className="mt-4 text-center">
-          <Link to="/" className="text-gray-400 hover:text-white text-sm">
+          <Link to="/" className="text-gray-500 hover:text-rose-gold-dark text-sm">
             ← Back to home
           </Link>
         </div>

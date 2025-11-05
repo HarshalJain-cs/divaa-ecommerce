@@ -31,7 +31,7 @@ export default function CartPage() {
               </p>
               <Link
                 to="/products"
-                className="inline-flex items-center space-x-2 bg-brand-gold text-white px-8 py-3 rounded-lg hover:bg-opacity-90 transition-all font-medium"
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all font-medium"
               >
                 <ShoppingBag className="w-5 h-5" />
                 <span>Browse Products</span>
@@ -58,7 +58,7 @@ export default function CartPage() {
             </div>
             <button
               onClick={() => navigate(-1)}
-              className="flex items-center space-x-2 text-gray-600 hover:text-brand-gold transition-colors"
+              className="flex items-center space-x-2 text-gray-600 hover:text-rose-gold-dark transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Continue Shopping</span>
@@ -90,7 +90,7 @@ export default function CartPage() {
                     <div>
                       <Link
                         to={`/products/${item.product.id}`}
-                        className="text-lg font-semibold text-gray-800 hover:text-brand-gold transition-colors"
+                        className="text-lg font-semibold text-gray-800 hover:text-rose-gold-dark transition-colors"
                       >
                         {item.product.name}
                       </Link>
@@ -101,7 +101,7 @@ export default function CartPage() {
                         {item.product.stone_type && (
                           <p>Stone: {item.product.stone_type}</p>
                         )}
-                        <p className="text-lg font-bold text-brand-gold mt-2">
+                        <p className="text-lg font-bold text-charcoal mt-2">
                           {formatPrice(item.product.price)}
                         </p>
                       </div>
@@ -198,7 +198,7 @@ export default function CartPage() {
                   <hr />
                   <div className="flex justify-between text-lg font-bold text-gray-800">
                     <span>Total</span>
-                    <span className="text-brand-gold">{formatPrice(cartTotal)}</span>
+                    <span className="text-rose-gold-dark">{formatPrice(cartTotal)}</span>
                   </div>
                 </div>
 
@@ -208,14 +208,14 @@ export default function CartPage() {
                     // TODO: Navigate to checkout when implemented
                     alert('Checkout coming soon!');
                   }}
-                  className="w-full bg-brand-gold text-white py-3 rounded-lg hover:bg-opacity-90 transition-all font-medium mb-4"
+                  className="w-full bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white py-3 rounded-lg hover:shadow-lg transition-all font-medium mb-4"
                 >
                   Proceed to Checkout
                 </button>
 
                 <Link
                   to="/products"
-                  className="block text-center text-brand-gold hover:text-brand-rose transition-colors font-medium"
+                  className="block text-center text-rose-gold-dark hover:text-blush transition-colors font-medium"
                 >
                   Continue Shopping
                 </Link>

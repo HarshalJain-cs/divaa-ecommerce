@@ -48,7 +48,7 @@ export default function WishlistPage() {
               </p>
               <Link
                 to="/products"
-                className="inline-flex items-center space-x-2 bg-brand-gold text-white px-8 py-3 rounded-lg hover:bg-opacity-90 transition-all font-medium"
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all font-medium"
               >
                 <ShoppingCart className="w-5 h-5" />
                 <span>Browse Products</span>
@@ -77,7 +77,7 @@ export default function WishlistPage() {
             </div>
             <Link
               to="/products"
-              className="flex items-center space-x-2 text-gray-600 hover:text-brand-gold transition-colors"
+              className="flex items-center space-x-2 text-gray-600 hover:text-rose-gold-dark transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Continue Shopping</span>
@@ -104,7 +104,7 @@ export default function WishlistPage() {
                   {/* Badges */}
                   <div className="absolute top-2 left-2 flex flex-col gap-2">
                     {product.is_featured && (
-                      <span className="bg-brand-gold text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      <span className="bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
                         Featured
                       </span>
                     )}
@@ -139,7 +139,7 @@ export default function WishlistPage() {
 
                   {/* Product Name */}
                   <Link to={`/products/${product.id}`}>
-                    <h3 className="font-semibold text-gray-800 hover:text-brand-gold transition-colors line-clamp-2 mb-2">
+                    <h3 className="font-semibold text-gray-800 hover:text-rose-gold-dark transition-colors line-clamp-2 mb-2">
                       {product.name}
                     </h3>
                   </Link>
@@ -158,7 +158,7 @@ export default function WishlistPage() {
                   )}
 
                   {/* Price */}
-                  <p className="text-xl font-bold text-brand-dark mb-3">
+                  <p className="text-xl font-bold text-charcoal mb-3">
                     {formatPrice(product.price)}
                   </p>
 
@@ -167,7 +167,7 @@ export default function WishlistPage() {
                     <button
                       onClick={() => handleAddToCart(product)}
                       disabled={product.stock_quantity === 0}
-                      className="flex-1 bg-brand-gold text-white py-2 px-4 rounded-lg hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm font-medium"
+                      className="flex-1 bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white py-2 px-4 rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm font-medium"
                     >
                       <ShoppingCart className="w-4 h-4" />
                       Add to Cart
@@ -192,17 +192,17 @@ export default function WishlistPage() {
             </h2>
             <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-600">
               <div>
-                <Heart className="w-8 h-8 text-brand-gold mb-2" />
+                <Heart className="w-8 h-8 text-rose-gold-dark mb-2" />
                 <h3 className="font-semibold text-gray-800 mb-1">Save Favorites</h3>
                 <p>Keep track of items you love for future purchase</p>
               </div>
               <div>
-                <ShoppingCart className="w-8 h-8 text-brand-gold mb-2" />
+                <ShoppingCart className="w-8 h-8 text-rose-gold-dark mb-2" />
                 <h3 className="font-semibold text-gray-800 mb-1">Easy Shopping</h3>
                 <p>Quickly add wishlist items to your cart when ready</p>
               </div>
               <div>
-                <svg className="w-8 h-8 text-brand-gold mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-rose-gold-dark mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
                 <h3 className="font-semibold text-gray-800 mb-1">Always Available</h3>

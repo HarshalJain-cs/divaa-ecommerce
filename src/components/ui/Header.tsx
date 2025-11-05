@@ -28,16 +28,19 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className="sticky top-0 z-50 bg-rose-gold/5 shadow-lg shadow-rose-gold/20 backdrop-blur-sm">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with Background Circle */}
           <Link
             to="/"
-            className="text-2xl font-bold font-serif text-rose-gold-dark hover:text-blush transition-colors"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity group"
             onClick={closeMobileMenu}
           >
-            DIVA
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-gold/30 to-rose-gold-dark/30 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
+              <span className="text-xl font-black font-serif text-rose-gold-dark">D</span>
+            </div>
+            <span className="text-2xl font-black font-serif text-rose-gold-dark tracking-tight">DIVA</span>
           </Link>
 
           {/* Desktop Navigation */}
