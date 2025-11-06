@@ -1,61 +1,62 @@
 /**
  * @component CategoryGrid
  * @description Display product categories in a grid layout
- * Fetches categories from Supabase database
  */
 import { Link } from 'react-router-dom';
-import { useCategories } from '@/hooks/useCategories';
 
-/**
- * Convert category name to URL-friendly slug
- */
-const getCategorySlug = (name: string): string => {
-  return name.toLowerCase().replace(/\s+/g, '-');
-};
+const categories = [
+  {
+    id: 1,
+    name: 'Anklets',
+    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/A063M_1.webp',
+    itemCount: 24,
+    slug: 'anklets',
+  },
+  {
+    id: 2,
+    name: 'Rings',
+    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/andy-holmes-bRnzmMF7GCM-unsplash.jpg',
+    itemCount: 125,
+    slug: 'rings',
+  },
+  {
+    id: 3,
+    name: 'Necklaces',
+    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/eric-fung-Z0GZrpwcc5Y-unsplash.jpg',
+    itemCount: 89,
+    slug: 'necklaces',
+  },
+  {
+    id: 4,
+    name: 'Sets',
+    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/images%20(2).jpeg',
+    itemCount: 42,
+    slug: 'sets',
+  },
+  {
+    id: 5,
+    name: 'Bracelets',
+    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/mansi-shah-C-XcZckjKQM-unsplash.jpg',
+    itemCount: 67,
+    slug: 'bracelets',
+  },
+  {
+    id: 6,
+    name: 'Earrings',
+    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/parisa-safaei--_12be3InkQ-unsplash.jpg',
+    itemCount: 156,
+    slug: 'earrings',
+  },
+  {
+    id: 7,
+    name: 'Nosepins',
+    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/shopping.webp',
+    itemCount: 18,
+    slug: 'nosepins',
+  },
+];
 
 export default function CategoryGrid() {
-  const { data: categories, isLoading, error } = useCategories();
-
-  if (isLoading) {
-    return (
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Shop by Category
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Explore our curated collections of fine jewelry
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-            {[...Array(6)].map((_, index) => (
-              <div
-                key={index}
-                className="aspect-square rounded-lg bg-gray-200 animate-pulse"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <p className="text-red-600">Error loading categories. Please try again later.</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!categories || categories.length === 0) {
-    return null;
-  }
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -72,13 +73,13 @@ export default function CategoryGrid() {
           {categories.map((category) => (
               <Link
                   key={category.id}
-                  to={`/products?category=${getCategorySlug(category.name)}`}
+                  to={`/products?category=${category.slug}`}
                   className="category-card group relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
                 >
                   {/* Category Image with Zoom Effect */}
                   <div className="aspect-square overflow-hidden relative">
                     <img
-                      src={category.image_url || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=600&fit=crop'}
+                      src={category.image}
                       alt={category.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                       loading="lazy"
@@ -102,15 +103,13 @@ export default function CategoryGrid() {
                       >
                         {category.name}
                       </h3>
-                      {category.description && (
-                        <p
-                          className="text-xs md:text-sm text-white/90
-                            drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]
-                            opacity-80 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2"
-                        >
-                          {category.description}
-                        </p>
-                      )}
+                      <p
+                        className="text-xs md:text-sm text-white/90
+                          drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]
+                          opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                      >
+                        {category.itemCount} Items
+                      </p>
                     </div>
 
                     {/* Decorative shine effect on hover */}

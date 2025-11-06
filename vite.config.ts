@@ -13,12 +13,13 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    host: '0.0.0.0',
-    strictPort: true,
+    host: true,
+    strictPort: false,
     open: true,
     cors: true,
     hmr: {
-      host: 'localhost'
+      host: 'localhost',
+      port: 5173
     }
   },
   build: {
