@@ -28,10 +28,12 @@ interface ProductFilters {
  * @description Fetch products with optional filters
  */
 async function fetchProducts(filters?: ProductFilters): Promise<Product[]> {
+  // Only select fields we need for the grid view initially
   let query = supabase
     .from('products')
-    .select('*')
-    .order('created_at', { ascending: false });
+    .select('id, name, price, image_url, stock_quantity, is_featured, category_id')
+    .order('created_at', { ascending: false })
+    .limit(20); // Paginate results
 
   // Apply filters
   if (filters?.category) {
@@ -117,6 +119,9 @@ export function useProducts(filters?: ProductFilters) {
     queryKey: ['products', filters],
     queryFn: () => fetchProducts(filters),
     staleTime: 5 * 60 * 1000, // 5 minutes
+    cacheTime: 10 * 60 * 1000, // 10 minutes
+    keepPreviousData: true, // Show previous data while fetching new data
+    refetchOnWindowFocus: false, // Don't refetch when window regains focus
   });
 }
 
