@@ -1,6 +1,6 @@
 /**
  * @page HomePage
- * @description Landing page with featured products and categories - Giva-inspired design
+ * @description Landing page with featured products and categories - DIVA rose-gold design
  */
 import { Link } from 'react-router-dom';
 import { Sparkles, Shield, TruckIcon, RotateCcw, Award, Heart } from 'lucide-react';
@@ -10,6 +10,11 @@ import { useCart } from '@/contexts/CartContext';
 import ProductGrid from '@/components/product/ProductGrid';
 import CategoryCard from '@/components/product/CategoryCard';
 import Header from '@/components/ui/Header';
+import CustomerStories from '@/components/sections/CustomerStories';
+import ShopByOccasion from '@/components/sections/ShopByOccasion';
+import GiftingGuide from '@/components/sections/GiftingGuide';
+import ProductCarousel from '@/components/sections/ProductCarousel';
+import ShopByRecipient from '@/components/sections/ShopByRecipient';
 
 const HomePage = () => {
   const { data: featuredProducts, isLoading } = useFeaturedProducts();
@@ -121,6 +126,21 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Product Carousel - Trending Now */}
+      {featuredProducts && featuredProducts.length > 0 && (
+        <ProductCarousel
+          products={featuredProducts.map(product => ({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            imageUrl: product.image_url || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop',
+            category: product.categories?.name
+          }))}
+          title="Trending Now"
+          subtitle="Discover our most popular pieces"
+        />
+      )}
+
       {/* Categories Section */}
       <section className="section-sm bg-gradient-to-b from-off-white to-light-gray">
         <div className="container-custom">
@@ -172,6 +192,9 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Shop by Occasion */}
+      <ShopByOccasion />
+
       {/* Why Choose Us */}
       <section className="py-20 bg-white">
         <div className="container-custom">
@@ -215,6 +238,15 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Gifting Guide */}
+      <GiftingGuide />
+
+      {/* Shop by Recipient */}
+      <ShopByRecipient />
+
+      {/* Customer Stories */}
+      <CustomerStories />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-rose-gold-dark via-blush to-rose-gold text-white relative overflow-hidden">
