@@ -18,6 +18,7 @@ import { Product } from '@/types/database.types';
 import { formatPrice } from '@/lib/utils';
 import ProductImage from '@/components/images/ProductImage';
 import { useWishlist } from '@/contexts/WishlistContext';
+import { useCallback } from 'react';
 
 interface ProductCardProps {
   product: Product;
@@ -28,10 +29,14 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const inWishlist = isInWishlist(product.id);
 
-  const handleWishlistClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleWishlistClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     toggleWishlist(product);
-  };
+  }, [product, toggleWishlist]);
+
+  const handleAddToCart = useCallback(() => {
+    onAddToCart?.(product);
+  }, [product, onAddToCart]);
 
   return (
     <div className="group relative bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
@@ -114,7 +119,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           </span>
 
           <button
-            onClick={() => onAddToCart?.(product)}
+            onClick={handleAddToCart}
             disabled={product.stock_quantity === 0}
             className="bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white p-2 rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Add to cart"

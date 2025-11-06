@@ -17,7 +17,7 @@
  * />
  * ```
  */
-import React, { useState } from 'react';
+import { useState, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 interface ProductImageProps {
@@ -27,7 +27,7 @@ interface ProductImageProps {
   sizes?: string;
 }
 
-const ProductImage: React.FC<ProductImageProps> = ({
+const ProductImage = memo<ProductImageProps>(({
   src,
   alt,
   className,
@@ -36,8 +36,8 @@ const ProductImage: React.FC<ProductImageProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  // Use online placeholder service as fallback
-  const placeholderImage = 'https://placehold.co/400x400/D4AF37/FFFFFF?text=DIVA+Jewel';
+  // Use local placeholder to avoid network requests
+  const placeholderImage = '/assets/images/products/placeholder.jpg';
 
   return (
     <div className="relative overflow-hidden">
@@ -57,6 +57,8 @@ const ProductImage: React.FC<ProductImageProps> = ({
         )}
         sizes={sizes}
         loading="lazy"
+        decoding="async"
+        fetchPriority="high"
         onLoad={() => setIsLoading(false)}
         onError={() => {
           setHasError(true);
@@ -65,6 +67,8 @@ const ProductImage: React.FC<ProductImageProps> = ({
       />
     </div>
   );
-};
+});
+
+ProductImage.displayName = 'ProductImage';
 
 export default ProductImage;

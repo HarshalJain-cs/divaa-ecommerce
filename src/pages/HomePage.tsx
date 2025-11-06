@@ -25,30 +25,46 @@ const HomePage = () => {
     <>
       <Header />
       <div className="min-h-screen bg-white">
-      {/* Hero Section - Giva Style */}
-      <section className="relative bg-gradient-to-br from-cream via-white to-rose-gold/10 overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
+      {/* Hero Section with Video Background */}
+      <section className="relative overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/videos/7308098-hd_1920_1080_24fps.mp4" type="video/mp4" />
+          </video>
+          {/* Overlay gradient for better text visibility */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-transparent"></div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute inset-0 opacity-5 z-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-rose-gold rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-blush rounded-full blur-3xl"></div>
         </div>
 
         <div className="container-custom py-20 md:py-32 relative">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center relative z-20">
             <div className="mb-6 animate-fade-in">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md text-sm font-medium text-rose-gold-dark">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-rose-gold-dark">
                 <Sparkles className="w-4 h-4" />
                 Trusted Since 1998
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-charcoal animate-fade-in-up">
+            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] animate-fade-in-up">
               Timeless Elegance,
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-gold-dark via-blush to-rose-gold">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-gold-light via-white to-rose-gold drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
                 Crafted for You
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed animate-fade-in-up drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" style={{animationDelay: '0.2s'}}>
               Discover handcrafted jewelry in Silver, Gold & Lab-Grown Diamonds
             </p>
 

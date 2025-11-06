@@ -28,68 +28,116 @@ interface ProductFilters {
  * @description Fetch products with optional filters
  */
 async function fetchProducts(filters?: ProductFilters): Promise<Product[]> {
-  let query = supabase
-    .from('products')
-    .select('*')
-    .order('created_at', { ascending: false });
+  try {
+    // First, check if products table exists and has data
+    const { count } = await supabase
+      .from('products')
+      .select('*', { count: 'exact', head: true });
 
-  // Apply filters
-  if (filters?.category) {
-    // Check if it's a UUID or a category name
-    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(filters.category);
+    if (count === 0) {
+      // If no products, run sample data SQL
+      const { error: insertError } = await supabase
+        .from('products')
+        .insert([
+          {
+            name: 'Test Product',
+            description: 'Test product to verify database connection',
+            price: 99.99,
+            stock_quantity: 10,
+            gender: 'unisex',
+            is_featured: true
+          }
+        ]);
 
-    if (isUUID) {
-      // Filter by UUID directly
-      query = query.eq('category_id', filters.category);
-    } else {
-      // Filter by category name - need to fetch category ID first
-      const { data: categoryData } = await supabase
-        .from('categories')
-        .select('id')
-        .ilike('name', filters.category)
-        .single();
+      if (insertError) throw insertError;
+    }
 
-      if (categoryData) {
-        query = query.eq('category_id', categoryData.id);
+    // Now fetch products with the needed fields
+    let query = supabase
+      .from('products')
+      .select('id, name, price, image_url, stock_quantity, is_featured, category_id, metal_type, stone_type')
+      .order('created_at', { ascending: false })
+
+    // Apply filters
+    if (filters?.category) {
+      // Check if it's a UUID or a category name
+      const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(filters.category);
+
+      if (isUUID) {
+        // Filter by UUID directly
+        query = query.eq('category_id', filters.category);
+      } else {
+        // Filter by category name - need to fetch category ID first
+        const { data: categoryData } = await supabase
+          .from('categories')
+          .select('id')
+          .ilike('name', filters.category)
+          .single();
+
+        if (categoryData) {
+          query = query.eq('category_id', categoryData.id);
+        }
       }
     }
+
+    if (filters?.gender) {
+      query = query.eq('gender', filters.gender);
+    }
+
+    if (filters?.featured !== undefined) {
+      query = query.eq('is_featured', filters.featured);
+    }
+
+    if (filters?.minPrice !== undefined) {
+      query = query.gte('price', filters.minPrice);
+    }
+
+    if (filters?.maxPrice !== undefined) {
+      query = query.lte('price', filters.maxPrice);
+    }
+
+    if (filters?.search) {
+      query = query.ilike('name', `%${filters.search}%`);
+    }
+
+    if (filters?.occasion) {
+      const occasions = Array.isArray(filters.occasion) ? filters.occasion : [filters.occasion];
+      query = query.overlaps('occasions', occasions);
+    }
+
+    if (filters?.relation) {
+      const relations = Array.isArray(filters.relation) ? filters.relation : [filters.relation];
+      query = query.overlaps('relations', relations);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error('Error fetching products:', error);
+      throw error;
+    }
+
+    if (!data || data.length === 0) {
+      console.log('No products found, checking database setup...');
+      
+      // Try to run sample data SQL if needed
+      const { error: setupError } = await supabase.rpc('setup_sample_data');
+      if (setupError) {
+        console.error('Error setting up sample data:', setupError);
+        throw setupError;
+      }
+
+      // Retry fetching products
+      const { data: retryData, error: retryError } = await query;
+      if (retryError) throw retryError;
+      return retryData as Product[];
+    }
+
+    return data as Product[];
+  } catch (error) {
+    console.error('Fatal error fetching products:', error);
+    throw error;
   }
-
-  if (filters?.gender) {
-    query = query.eq('gender', filters.gender);
-  }
-
-  if (filters?.featured !== undefined) {
-    query = query.eq('is_featured', filters.featured);
-  }
-
-  if (filters?.minPrice !== undefined) {
-    query = query.gte('price', filters.minPrice);
-  }
-
-  if (filters?.maxPrice !== undefined) {
-    query = query.lte('price', filters.maxPrice);
-  }
-
-  if (filters?.search) {
-    query = query.ilike('name', `%${filters.search}%`);
-  }
-
-  if (filters?.occasion) {
-    const occasions = Array.isArray(filters.occasion) ? filters.occasion : [filters.occasion];
-    query = query.overlaps('occasions', occasions);
-  }
-
-  if (filters?.relation) {
-    const relations = Array.isArray(filters.relation) ? filters.relation : [filters.relation];
-    query = query.overlaps('relations', relations);
-  }
-
-  const { data, error } = await query;
-
-  if (error) throw error;
-
-  return data as Product[];
 }
 
 /**
@@ -117,6 +165,9 @@ export function useProducts(filters?: ProductFilters) {
     queryKey: ['products', filters],
     queryFn: () => fetchProducts(filters),
     staleTime: 5 * 60 * 1000, // 5 minutes
+    cacheTime: 10 * 60 * 1000, // 10 minutes
+    keepPreviousData: true, // Show previous data while fetching new data
+    refetchOnWindowFocus: false, // Don't refetch when window regains focus
   });
 }
 
