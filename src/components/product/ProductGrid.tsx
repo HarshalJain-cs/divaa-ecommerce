@@ -19,7 +19,6 @@
 import { memo } from 'react';
 import { Product } from '@/types/database.types';
 import ProductCard from './ProductCard';
-import Loader from '@/components/ui/Loader';
 
 interface ProductGridProps {
   products?: Product[];

@@ -11,6 +11,24 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,
+    port: 3000,
+    strictPort: false,
+    host: true,
+    open: true,
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['flowbite', 'flowbite-react', 'styled-components']
+        }
+      }
+    }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom']
+  }
 })
