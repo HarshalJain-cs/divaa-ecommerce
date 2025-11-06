@@ -44,7 +44,7 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
       <Link to={`/products/${product.id}`} className="block relative overflow-hidden">
         <div className="aspect-square">
           <ProductImage
-            src={product.image_url || '/assets/images/products/placeholder.jpg'}
+            src={product.image_url || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop&q=80'}
             alt={product.name}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
           />
@@ -87,12 +87,12 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
 
       {/* Product Info */}
       <div className="p-4">
-        {/* Category - temporarily hidden */}
-        {/* {product.categories && (
+        {/* Category */}
+        {product.categories && (
           <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">
             {product.categories.name}
           </p>
-        )} */}
+        )}
 
         {/* Product Name */}
         <Link to={`/products/${product.id}`}>
