@@ -11,37 +11,37 @@ INSERT INTO categories (name, description, image_url, created_at) VALUES
   (
     'Rings',
     'Elegant rings for every occasion - from daily wear to special celebrations',
-    'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&auto=format&fit=crop&q=80',
+    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/andy-holmes-bRnzmMF7GCM-unsplash.jpg',
     NOW()
   ),
   (
     'Earrings',
     'Stunning earrings to complement your style and personality',
-    'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&auto=format&fit=crop&q=80',
+    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/parisa-safaei--_12be3InkQ-unsplash.jpg',
     NOW()
   ),
   (
     'Bracelets',
     'Beautiful bracelets and bangles for a touch of elegance',
-    'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&auto=format&fit=crop&q=80',
+    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/mansi-shah-C-XcZckjKQM-unsplash.jpg',
     NOW()
   ),
   (
     'Necklaces',
     'Exquisite necklaces to enhance your natural beauty',
-    'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&auto=format&fit=crop&q=80',
+    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/eric-fung-Z0GZrpwcc5Y-unsplash.jpg',
     NOW()
   ),
   (
     'Anklets',
     'Delicate anklets for a subtle statement of style',
-    'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&auto=format&fit=crop&q=80',
+    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/A063M_1.webp',
     NOW()
   ),
   (
     'Nose Pins',
     'Traditional and modern nose pins for timeless beauty',
-    'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&auto=format&fit=crop&q=80',
+    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/shopping.webp',
     NOW()
   ),
   (
@@ -53,7 +53,7 @@ INSERT INTO categories (name, description, image_url, created_at) VALUES
   (
     'Wedding Sets',
     'Complete bridal jewelry sets for your special day',
-    'https://images.unsplash.com/photo-1460230520582-7d856e12f1d7?w=800&auto=format&fit=crop&q=80',
+    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/images%20(2).jpeg',
     NOW()
   )
 ON CONFLICT (name) DO UPDATE SET
