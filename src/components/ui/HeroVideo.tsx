@@ -23,7 +23,7 @@ export default function HeroVideo() {
         .then(() => {
           setIsPlaying(true);
         })
-        .catch((error) => {
+        .catch((error: unknown) => {
           console.warn('Video autoplay was prevented:', error);
           // Retry playback on user interaction
           const handleUserInteraction = () => {
