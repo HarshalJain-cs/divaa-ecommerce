@@ -52,10 +52,18 @@ async function fetchProducts(filters?: ProductFilters): Promise<Product[]> {
       if (insertError) throw insertError;
     }
 
-    // Now fetch products with the needed fields
+    // Now fetch products with all needed fields including categories
     let query = supabase
       .from('products')
-      .select('id, name, price, image_url, stock_quantity, is_featured, category_id, metal_type, stone_type')
+      .select(`
+        *,
+        categories:category_id (
+          id,
+          name,
+          description,
+          image_url
+        )
+      `)
       .order('created_at', { ascending: false })
 
     // Apply filters
@@ -165,8 +173,7 @@ export function useProducts(filters?: ProductFilters) {
     queryKey: ['products', filters],
     queryFn: () => fetchProducts(filters),
     staleTime: 5 * 60 * 1000, // 5 minutes
-    cacheTime: 10 * 60 * 1000, // 10 minutes
-    keepPreviousData: true, // Show previous data while fetching new data
+    gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime in v4)
     refetchOnWindowFocus: false, // Don't refetch when window regains focus
   });
 }

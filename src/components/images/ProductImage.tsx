@@ -36,8 +36,8 @@ const ProductImage = memo<ProductImageProps>(({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  // Use local placeholder to avoid network requests
-  const placeholderImage = '/assets/images/products/placeholder.jpg';
+  // Use Unsplash placeholder for missing images
+  const placeholderImage = 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop&q=80';
 
   return (
     <div className="relative overflow-hidden">
