@@ -39,9 +39,14 @@ UPDATE categories
 SET image_url = 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/shopping.webp'
 WHERE name = 'Nose Pins';
 
+-- Update Pendants category image
+UPDATE categories
+SET image_url = 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/50D2P2NYYAA32_1.jpg'
+WHERE name = 'Pendants';
+
 -- Verify the updates
 SELECT name, image_url FROM categories
-WHERE name IN ('Anklets', 'Rings', 'Necklaces', 'Wedding Sets', 'Bracelets', 'Earrings', 'Nose Pins')
+WHERE name IN ('Anklets', 'Rings', 'Necklaces', 'Wedding Sets', 'Bracelets', 'Earrings', 'Nose Pins', 'Pendants')
 ORDER BY name;
 
 -- =============================================

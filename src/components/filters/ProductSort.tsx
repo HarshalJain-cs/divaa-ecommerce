@@ -20,8 +20,6 @@ export default function ProductSort({
   selectedValue,
   onChange,
 }: ProductSortProps) {
-  const selectedOption = options.find((opt) => opt.value === selectedValue);
-
   return (
     <div className="relative inline-block">
       <label htmlFor="sort-select" className="sr-only">

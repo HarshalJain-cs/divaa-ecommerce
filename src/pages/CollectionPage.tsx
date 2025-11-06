@@ -15,7 +15,6 @@ const CollectionPage = () => {
 
   // Determine if this is a relation or occasion collection
   const isRelation = RELATIONS.some((r) => r.id === collectionId);
-  const isOccasion = OCCASIONS.some((o) => o.id === collectionId);
 
   // Get collection details
   const collection = isRelation

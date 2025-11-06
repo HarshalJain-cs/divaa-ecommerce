@@ -4,7 +4,6 @@
  */
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
 import { CartProvider } from '@/contexts/CartContext';
 import { WishlistProvider } from '@/contexts/WishlistContext';
@@ -29,30 +28,18 @@ const AdminDashboard = lazy(() => import('@/pages/AdminDashboard'));
 const AdminProductsPage = lazy(() => import('@/pages/AdminProductsPage'));
 const AdminProductFormPage = lazy(() => import('@/pages/AdminProductFormPage'));
 
-// Create QueryClient instance
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 1,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-    },
-  },
-});
-
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <WishlistProvider>
-          <BrowserRouter>
-            <div className="min-h-screen bg-gray-50">
-              <Suspense fallback={
-                <div className="flex items-center justify-center min-h-screen">
-                  <Loader />
-                </div>
-              }>
-              <Routes>
+    <CartProvider>
+      <WishlistProvider>
+        <BrowserRouter>
+          <div className="min-h-screen bg-gray-50">
+            <Suspense fallback={
+              <div className="flex items-center justify-center min-h-screen">
+                <Loader />
+              </div>
+            }>
+            <Routes>
               {/* Public Routes */}
               <Route path="/" element={<HomePage />} />
               <Route path="/products" element={<ProductsPage />} />
@@ -122,7 +109,6 @@ function App() {
           </BrowserRouter>
         </WishlistProvider>
       </CartProvider>
-    </QueryClientProvider>
   );
 }
 
