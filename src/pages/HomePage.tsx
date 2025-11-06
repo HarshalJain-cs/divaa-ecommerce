@@ -41,7 +41,7 @@ const HomePage = () => {
           {/* Overlay gradient for better text visibility */}
           <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-transparent"></div>
         </div>
-        
+
         {/* Decorative elements */}
         <div className="absolute inset-0 opacity-5 z-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-rose-gold rounded-full blur-3xl"></div>
@@ -112,52 +112,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="py-20 bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <p className="text-rose-gold-dark font-semibold mb-2 tracking-wide uppercase text-sm">Bestsellers</p>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-4">
-              Handpicked for You
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Explore our curated collection of timeless pieces loved by thousands
-            </p>
-          </div>
-
-          <ProductGrid
-            products={featuredProducts}
-            isLoading={isLoading}
-            onAddToCart={addToCart}
-          />
-
-          <div className="text-center mt-12">
-            <Link
-              to="/products"
-              className="btn btn-rose-gold px-10 py-4"
-            >
-              View All Products
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Product Carousel - Trending Now */}
-      {featuredProducts && featuredProducts.length > 0 && (
-        <ProductCarousel
-          products={featuredProducts.map(product => ({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            imageUrl: product.image_url || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop',
-            category: product.categories?.name
-          }))}
-          title="Trending Now"
-          subtitle="Discover our most popular pieces"
-        />
-      )}
-
-      {/* Categories Section */}
+      {/* Categories Section - Shop by Category */}
       <section className="section-sm bg-gradient-to-b from-off-white to-light-gray">
         <div className="container-custom">
           <div className="text-center mb-12 animate-fade-in">
@@ -210,6 +165,51 @@ const HomePage = () => {
 
       {/* Shop by Occasion */}
       <ShopByOccasion />
+
+      {/* Product Carousel - Bestseller Products */}
+      {featuredProducts && featuredProducts.length > 0 && (
+        <ProductCarousel
+          products={featuredProducts.map(product => ({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            imageUrl: product.image_url || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop',
+            category: product.categories?.name
+          }))}
+          title="Bestseller Products"
+          subtitle="Discover our most popular pieces"
+        />
+      )}
+
+      {/* Featured Products */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <p className="text-rose-gold-dark font-semibold mb-2 tracking-wide uppercase text-sm">Bestsellers</p>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-4">
+              Handpicked for You
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Explore our curated collection of timeless pieces loved by thousands
+            </p>
+          </div>
+
+          <ProductGrid
+            products={featuredProducts}
+            isLoading={isLoading}
+            onAddToCart={addToCart}
+          />
+
+          <div className="text-center mt-12">
+            <Link
+              to="/products"
+              className="btn btn-rose-gold px-10 py-4"
+            >
+              View All Products
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Why Choose Us */}
       <section className="py-20 bg-white">
@@ -301,7 +301,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Footer - Giva Style */}
+      {/* Footer - DIVA Style */}
       <footer className="bg-charcoal text-white py-16">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
