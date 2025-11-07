@@ -15,6 +15,7 @@ import { Product } from '@/types/database.types';
 interface ProductFilters {
   category?: string;
   gender?: 'men' | 'women' | 'unisex';
+  metal_type?: string;
   minPrice?: number;
   maxPrice?: number;
   search?: string;
@@ -90,6 +91,10 @@ async function fetchProducts(filters?: ProductFilters): Promise<Product[]> {
 
     if (filters?.gender) {
       query = query.eq('gender', filters.gender);
+    }
+
+    if (filters?.metal_type) {
+      query = query.eq('metal_type', filters.metal_type);
     }
 
     if (filters?.featured !== undefined) {

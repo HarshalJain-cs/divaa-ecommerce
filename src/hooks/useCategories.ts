@@ -16,6 +16,9 @@ export interface Category {
   name: string;
   description?: string;
   image_url?: string;
+  display_order?: number;
+  metal_type?: string;
+  gender?: string;
   created_at?: string;
   updated_at?: string;
 }

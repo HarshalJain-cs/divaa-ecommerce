@@ -15,6 +15,7 @@ import ShopByOccasion from '@/components/sections/ShopByOccasion';
 import GiftingGuide from '@/components/sections/GiftingGuide';
 import ProductCarousel from '@/components/sections/ProductCarousel';
 import ShopByRecipient from '@/components/sections/ShopByRecipient';
+import GlassToggle from '@/components/ui/GlassToggle';
 
 const HomePage = () => {
   const { data: featuredProducts, isLoading } = useFeaturedProducts();
@@ -68,18 +69,23 @@ const HomePage = () => {
               Discover handcrafted jewelry in Silver, Gold & Lab-Grown Diamonds
             </p>
 
+            {/* Glass Toggle for Gold/Silver */}
+            <div className="mb-10 animate-fade-in-up" style={{animationDelay: '0.25s'}}>
+              <GlassToggle defaultSelection="silver" mode="navigation" />
+            </div>
+
             <div className="flex gap-4 justify-center flex-wrap animate-fade-in-up" style={{animationDelay: '0.3s'}}>
               <Link
-                to="/products"
-                className="btn btn-rose-gold text-lg px-10 py-4 shadow-lg hover:shadow-xl"
+                to="/collections/gold"
+                className="btn bg-gradient-to-r from-amber-600 to-yellow-600 text-white hover:shadow-xl text-lg px-10 py-4 shadow-lg"
               >
-                Shop Collection
+                ✨ Shop Gold Jewelry
               </Link>
               <Link
-                to="/categories"
-                className="btn btn-outline-rose text-lg px-10 py-4"
+                to="/collections/silver"
+                className="btn bg-gradient-to-r from-slate-600 to-gray-600 text-white hover:shadow-xl text-lg px-10 py-4 shadow-lg"
               >
-                Explore Categories
+                💎 Shop Silver Jewelry
               </Link>
             </div>
           </div>

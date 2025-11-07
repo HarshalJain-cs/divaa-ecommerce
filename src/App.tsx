@@ -19,6 +19,9 @@ const ProductsPage = lazy(() => import('@/pages/ProductsPage'));
 const ProductDetailPage = lazy(() => import('@/pages/ProductDetailPage'));
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const CollectionPage = lazy(() => import('@/pages/CollectionPage'));
+const GoldCollectionPage = lazy(() => import('@/pages/GoldCollectionPage'));
+const SilverCollectionPage = lazy(() => import('@/pages/SilverCollectionPage'));
+const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
@@ -45,7 +48,15 @@ function App() {
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/products/:id" element={<ProductDetailPage />} />
               <Route path="/categories" element={<CategoriesPage />} />
+
+              {/* Collection Routes - Material-Specific */}
+              <Route path="/collections/gold" element={<GoldCollectionPage />} />
+              <Route path="/collections/silver" element={<SilverCollectionPage />} />
               <Route path="/collections/:collectionId" element={<CollectionPage />} />
+
+              {/* Category Routes - Material & Type Specific */}
+              <Route path="/categories/:categorySlug" element={<CategoryPage />} />
+
               <Route path="/cart" element={<CartPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/login" element={<LoginPage />} />
