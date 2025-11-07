@@ -102,14 +102,24 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           </h3>
         </Link>
 
-        {/* Metal & Stone */}
-        <div className="flex gap-2 text-xs text-gray-600 mb-3">
+        {/* Metal Badge & Stone */}
+        <div className="flex gap-2 items-center mb-3">
           {product.metal_type && (
-            <span className="capitalize">{product.metal_type}</span>
+            <span className={`
+              inline-flex items-center px-2 py-1 rounded-md text-xs font-semibold
+              ${product.metal_type === 'gold' ? 'bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-900 border border-amber-300' : ''}
+              ${product.metal_type === 'silver' ? 'bg-gradient-to-r from-slate-100 to-gray-100 text-slate-900 border border-slate-300' : ''}
+              ${product.metal_type === 'rose-gold' ? 'bg-gradient-to-r from-rose-100 to-pink-100 text-rose-900 border border-rose-300' : ''}
+              ${product.metal_type === 'white-gold' ? 'bg-gradient-to-r from-gray-50 to-slate-50 text-gray-900 border border-gray-300' : ''}
+              ${product.metal_type === 'platinum' ? 'bg-gradient-to-r from-blue-50 to-gray-50 text-blue-900 border border-blue-200' : ''}
+            `}>
+              {product.metal_type === 'gold' && '✨ '}
+              {product.metal_type === 'silver' && '💎 '}
+              <span className="capitalize">{product.metal_type.replace('-', ' ')}</span>
+            </span>
           )}
-          {product.metal_type && product.stone_type && <span>•</span>}
           {product.stone_type && (
-            <span className="capitalize">{product.stone_type}</span>
+            <span className="text-xs text-gray-600 capitalize">{product.stone_type}</span>
           )}
         </div>
 

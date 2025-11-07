@@ -1,21 +1,55 @@
 /**
- * @component Header
- * @description Main navigation header with cart icon and user menu
+ * @component HeaderNew
+ * @description Enhanced header with Collections dropdown and category sub-menus
  */
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Heart, User, Menu, X, LogOut } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { ShoppingCart, Heart, User, Menu, X, LogOut, ChevronDown } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { useAuth } from '@/hooks/useAuth';
 
-export default function Header() {
+const categories = [
+  'Rings',
+  'Earrings',
+  'Necklaces',
+  'Bracelets',
+  'Pendants',
+  'Anklets',
+  'Nosepins',
+  'Sets',
+  'Chains',
+  'Bangles',
+  'Mangalsutra',
+];
+
+const menCategories = [
+  'Rings',
+  'Bracelets',
+  'Chains',
+  'Pendants',
+  'Earrings',
+  'Kadas',
+];
+
+export default function HeaderNew() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { cartCount } = useCart();
   const { wishlistCount } = useWishlist();
   const { user, profile, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [collectionsOpen, setCollectionsOpen] = useState(false);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+
+  const collectionsRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Check if we're on a collection page
+  const isOnGoldPage = location.pathname.includes('/gold');
+  const isOnSilverPage = location.pathname.includes('/silver');
+  const isOnCollectionPage = isOnGoldPage || isOnSilverPage;
 
   const handleSignOut = async () => {
     await signOut();
@@ -27,11 +61,34 @@ export default function Header() {
     setMobileMenuOpen(false);
   };
 
+  // Handle mouse enter/leave for dropdown
+  const handleCollectionsEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setCollectionsOpen(true);
+  };
+
+  const handleCollectionsLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setCollectionsOpen(false);
+      setHoveredCategory(null);
+    }, 200);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 bg-rose-gold/5 shadow-lg shadow-rose-gold/20 backdrop-blur-sm">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo with Background Circle */}
+          {/* Logo */}
           <Link
             to="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity group"
@@ -51,12 +108,166 @@ export default function Header() {
             >
               Home
             </Link>
+
             <Link
               to="/products"
               className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium"
             >
               Products
             </Link>
+
+            {/* Collections Dropdown */}
+            {!isOnCollectionPage && (
+              <div
+                className="relative"
+                ref={collectionsRef}
+                onMouseEnter={handleCollectionsEnter}
+                onMouseLeave={handleCollectionsLeave}
+              >
+                <button
+                  className="flex items-center gap-1 text-gray-700 hover:text-rose-gold-dark transition-colors font-medium"
+                >
+                  Collections
+                  <ChevronDown className={`w-4 h-4 transition-transform ${collectionsOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Dropdown Menu */}
+                {collectionsOpen && (
+                  <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-2 z-50 border border-gray-100">
+                    {/* Gold & Silver Collections */}
+                    <Link
+                      to="/collections/gold"
+                      className="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-900 transition-colors font-medium"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="text-amber-500">✨</span>
+                        Gold Collection
+                      </span>
+                    </Link>
+
+                    <Link
+                      to="/collections/silver"
+                      className="block px-4 py-2 text-gray-700 hover:bg-slate-50 hover:text-slate-900 transition-colors font-medium"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="text-slate-500">💎</span>
+                        Silver Collection
+                      </span>
+                    </Link>
+
+                    <hr className="my-2" />
+
+                    {/* Categories with Hover Sub-menu */}
+                    <div className="relative">
+                      <div
+                        className="px-4 py-2 text-gray-600 text-sm font-semibold cursor-default hover:bg-gray-50"
+                        onMouseEnter={() => setHoveredCategory('women')}
+                      >
+                        <span className="flex items-center justify-between">
+                          Browse by Category
+                          <ChevronDown className="w-4 h-4 -rotate-90" />
+                        </span>
+                      </div>
+
+                      {/* Category Sub-menu */}
+                      {hoveredCategory === 'women' && (
+                        <div
+                          className="absolute left-full top-0 ml-1 w-64 bg-white rounded-lg shadow-xl py-2 z-50 border border-gray-100 max-h-96 overflow-y-auto"
+                          onMouseEnter={() => setHoveredCategory('women')}
+                          onMouseLeave={() => setHoveredCategory(null)}
+                        >
+                          <div className="px-3 py-2 text-xs font-bold text-gray-500 uppercase tracking-wide">
+                            Women's Jewelry
+                          </div>
+                          {categories.map((category) => (
+                            <div key={category} className="group relative">
+                              <div className="px-4 py-2 text-gray-700 hover:bg-gray-50 font-medium flex items-center justify-between cursor-pointer">
+                                {category}
+                                <ChevronDown className="w-4 h-4 -rotate-90 opacity-50" />
+                              </div>
+
+                              {/* Metal Type Sub-sub-menu */}
+                              <div className="hidden group-hover:block absolute left-full top-0 ml-1 w-40 bg-white rounded-lg shadow-xl py-1 z-50 border border-gray-100">
+                                <Link
+                                  to={`/categories/gold-${category.toLowerCase()}`}
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-900 transition-colors"
+                                >
+                                  <span className="flex items-center gap-2">
+                                    <span className="text-amber-500">✨</span>
+                                    Gold {category}
+                                  </span>
+                                </Link>
+                                <Link
+                                  to={`/categories/silver-${category.toLowerCase()}`}
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                                >
+                                  <span className="flex items-center gap-2">
+                                    <span className="text-slate-500">💎</span>
+                                    Silver {category}
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          ))}
+
+                          <hr className="my-2" />
+
+                          <div className="px-3 py-2 text-xs font-bold text-gray-500 uppercase tracking-wide">
+                            Men's Jewelry
+                          </div>
+                          {menCategories.map((category) => (
+                            <div key={`men-${category}`} className="group relative">
+                              <div className="px-4 py-2 text-gray-700 hover:bg-gray-50 font-medium flex items-center justify-between cursor-pointer">
+                                Men's {category}
+                                <ChevronDown className="w-4 h-4 -rotate-90 opacity-50" />
+                              </div>
+
+                              {/* Metal Type Sub-sub-menu */}
+                              <div className="hidden group-hover:block absolute left-full top-0 ml-1 w-48 bg-white rounded-lg shadow-xl py-1 z-50 border border-gray-100">
+                                <Link
+                                  to={`/categories/men-gold-${category.toLowerCase()}`}
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-900 transition-colors"
+                                >
+                                  <span className="flex items-center gap-2">
+                                    <span className="text-amber-500">✨</span>
+                                    Men's Gold {category}
+                                  </span>
+                                </Link>
+                                <Link
+                                  to={`/categories/men-silver-${category.toLowerCase()}`}
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                                >
+                                  <span className="flex items-center gap-2">
+                                    <span className="text-slate-500">💎</span>
+                                    Men's Silver {category}
+                                  </span>
+                                </Link>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Context-Aware Navigation when on Collection Pages */}
+            {isOnCollectionPage && (
+              <div className="flex items-center gap-6">
+                {categories.slice(0, 6).map((category) => (
+                  <Link
+                    key={category}
+                    to={`/categories/${isOnGoldPage ? 'gold' : 'silver'}-${category.toLowerCase()}`}
+                    className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium text-sm"
+                  >
+                    {category}
+                  </Link>
+                ))}
+              </div>
+            )}
+
             <Link
               to="/admin"
               className="px-3 py-1 bg-charcoal text-white rounded-md hover:bg-rose-gold-dark transition-all font-medium text-sm"
@@ -198,6 +409,20 @@ export default function Header() {
                 onClick={closeMobileMenu}
               >
                 Products
+              </Link>
+              <Link
+                to="/collections/gold"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
+                onClick={closeMobileMenu}
+              >
+                ✨ Gold Collection
+              </Link>
+              <Link
+                to="/collections/silver"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
+                onClick={closeMobileMenu}
+              >
+                💎 Silver Collection
               </Link>
               <Link
                 to="/admin"
