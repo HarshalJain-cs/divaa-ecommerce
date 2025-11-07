@@ -28,6 +28,8 @@ export interface Category {
   description?: string
   image_url?: string
   display_order: number
+  metal_type?: string
+  gender?: string
   created_at: string
 }
 

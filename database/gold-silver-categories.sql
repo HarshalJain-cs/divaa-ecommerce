@@ -6,7 +6,22 @@
 -- This will create all material-specific categories for Gold and Silver jewelry
 -- ============================================
 
--- First, let's clean up existing categories if needed (OPTIONAL - comment out if you want to keep existing data)
+-- STEP 1: Add new columns to categories table if they don't exist
+-- ============================================
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns
+                   WHERE table_name = 'categories' AND column_name = 'metal_type') THEN
+        ALTER TABLE categories ADD COLUMN metal_type TEXT;
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns
+                   WHERE table_name = 'categories' AND column_name = 'gender') THEN
+        ALTER TABLE categories ADD COLUMN gender TEXT CHECK (gender IN ('men', 'women', 'unisex'));
+    END IF;
+END $$;
+
+-- STEP 2: Clean up existing categories if needed (OPTIONAL - comment out if you want to keep existing data)
 -- DELETE FROM categories;
 
 -- ============================================
