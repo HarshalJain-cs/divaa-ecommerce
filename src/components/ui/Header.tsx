@@ -21,6 +21,8 @@ const categories = [
   'Chains',
   'Bangles',
   'Mangalsutra',
+  'Coins',
+  'Toe Rings',
 ];
 
 const menCategories = [
@@ -30,6 +32,21 @@ const menCategories = [
   'Pendants',
   'Earrings',
   'Kadas',
+];
+
+// Karat-based categories
+const karatCategories = [
+  { name: '9 Karat', karat: '9K' },
+  { name: '14 Karat', karat: '14K' },
+  { name: '18 Karat', karat: '18K' },
+  { name: '22 Karat', karat: '22K' },
+  { name: '24 Karat', karat: '24K' },
+];
+
+// Special collections
+const specialCollections = [
+  { name: 'Diamond Jewellery', icon: '💎' },
+  { name: 'Gemstone Jewellery', icon: '💠' },
 ];
 
 export default function HeaderNew() {
@@ -121,6 +138,13 @@ export default function HeaderNew() {
               className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium flex items-center gap-1"
             >
               💍 Wedding
+            </Link>
+
+            <Link
+              to="/digital-gold"
+              className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium flex items-center gap-1"
+            >
+              🪙 Digital Gold
             </Link>
 
             {/* Collections Dropdown */}
@@ -262,6 +286,44 @@ export default function HeaderNew() {
                                 </Link>
                               </div>
                             </div>
+                          ))}
+
+                          <hr className="my-2" />
+
+                          {/* Shop by Karat */}
+                          <div className="px-3 py-2 text-xs font-bold text-gray-500 uppercase tracking-wide">
+                            Shop by Karat
+                          </div>
+                          {karatCategories.map((karat) => (
+                            <Link
+                              key={karat.karat}
+                              to={`/collections/${karat.karat.toLowerCase()}`}
+                              className="block px-4 py-2 text-gray-700 hover:bg-amber-50 font-medium transition-colors"
+                            >
+                              <span className="flex items-center gap-2">
+                                <span className="text-amber-500">✨</span>
+                                {karat.name} Gold
+                              </span>
+                            </Link>
+                          ))}
+
+                          <hr className="my-2" />
+
+                          {/* Special Collections */}
+                          <div className="px-3 py-2 text-xs font-bold text-gray-500 uppercase tracking-wide">
+                            Special Collections
+                          </div>
+                          {specialCollections.map((collection) => (
+                            <Link
+                              key={collection.name}
+                              to={`/collections/${collection.name.toLowerCase().replace(/ /g, '-')}`}
+                              className="block px-4 py-2 text-gray-700 hover:bg-purple-50 font-medium transition-colors"
+                            >
+                              <span className="flex items-center gap-2">
+                                <span>{collection.icon}</span>
+                                {collection.name}
+                              </span>
+                            </Link>
                           ))}
                         </div>
                       )}
@@ -427,6 +489,20 @@ export default function HeaderNew() {
                 onClick={closeMobileMenu}
               >
                 Products
+              </Link>
+              <Link
+                to="/wedding"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
+                onClick={closeMobileMenu}
+              >
+                💍 Wedding
+              </Link>
+              <Link
+                to="/digital-gold"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
+                onClick={closeMobileMenu}
+              >
+                🪙 Digital Gold
               </Link>
               <Link
                 to="/collections/gold"
