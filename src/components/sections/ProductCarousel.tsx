@@ -108,11 +108,11 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
               <Link
                 key={product.id}
                 to={`/products/${product.id}`}
-                className="flex-shrink-0 w-[200px] bg-white rounded-xl overflow-hidden shadow-md hover:-translate-y-3 hover:shadow-xl transition-all duration-300 group"
+                className="flex-shrink-0 w-[180px] bg-white rounded-xl overflow-hidden shadow-md hover:-translate-y-3 hover:shadow-xl transition-all duration-300 group"
                 draggable={false}
               >
                 {/* Product Image */}
-                <div className="relative overflow-hidden h-[200px]">
+                <div className="relative overflow-hidden h-[180px]">
                   <img
                     src={product.imageUrl}
                     alt={product.name}

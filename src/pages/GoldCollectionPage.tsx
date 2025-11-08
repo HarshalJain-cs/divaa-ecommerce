@@ -66,10 +66,10 @@ const GoldCollectionPage = () => {
               playsInline
               className="w-full h-full object-cover"
             >
-              <source src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/videos/WhatsApp%20Video%202025-11-08%20at%2012.36.07_350411d2.mp4" type="video/mp4" />
+              <source src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/videos/9328448-uhd_4096_2160_25fps.mp4" type="video/mp4" />
             </video>
-            {/* Overlay gradient for better text visibility */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-transparent"></div>
+            {/* Light overlay for better text visibility without blurring video */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-transparent"></div>
           </div>
 
           {/* Mute Button - Bottom Right */}

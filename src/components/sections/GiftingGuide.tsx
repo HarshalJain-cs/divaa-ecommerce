@@ -70,7 +70,7 @@ const GiftingGuide: React.FC = () => {
               className="group bg-gradient-to-br from-light-gray to-cream rounded-3xl overflow-hidden text-center hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 cursor-pointer"
             >
               {/* Image Container */}
-              <div className="relative overflow-hidden h-[350px]">
+              <div className="relative overflow-hidden h-[280px]">
                 <img
                   src={recipient.imageUrl}
                   alt={`Gifts for ${recipient.name}`}

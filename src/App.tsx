@@ -21,10 +21,14 @@ const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const CollectionPage = lazy(() => import('@/pages/CollectionPage'));
 const GoldCollectionPage = lazy(() => import('@/pages/GoldCollectionPage'));
 const SilverCollectionPage = lazy(() => import('@/pages/SilverCollectionPage'));
+const DiamondCollectionPage = lazy(() => import('@/pages/DiamondCollectionPage'));
 const OccasionsPage = lazy(() => import('@/pages/OccasionsPage'));
 const FestivalsPage = lazy(() => import('@/pages/FestivalsPage'));
 const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
+const CheckoutPage = lazy(() => import('@/pages/CheckoutPage'));
+const WeddingPage = lazy(() => import('@/pages/WeddingPage'));
+const DigitalGoldPage = lazy(() => import('@/pages/DigitalGoldPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const SignupPage = lazy(() => import('@/pages/SignupPage'));
@@ -54,16 +58,22 @@ function App() {
               {/* Collection Routes - Material-Specific */}
               <Route path="/collections/gold" element={<GoldCollectionPage />} />
               <Route path="/collections/silver" element={<SilverCollectionPage />} />
+              <Route path="/collections/diamond" element={<DiamondCollectionPage />} />
               <Route path="/collections/:collectionId" element={<CollectionPage />} />
 
               {/* Occasion & Festival Routes */}
               <Route path="/occasions" element={<OccasionsPage />} />
               <Route path="/festivals" element={<FestivalsPage />} />
+              <Route path="/wedding" element={<WeddingPage />} />
+
+              {/* Digital Gold Route */}
+              <Route path="/digital-gold" element={<DigitalGoldPage />} />
 
               {/* Category Routes - Material & Type Specific */}
               <Route path="/categories/:categorySlug" element={<CategoryPage />} />
 
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
