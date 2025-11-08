@@ -2,8 +2,9 @@
  * @page SilverCollectionPage
  * @description Silver jewelry collection page with hero section and filtered products
  */
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Gem, Shield, Heart } from 'lucide-react';
+import { Gem, Shield, Heart, Volume2, VolumeX } from 'lucide-react';
 import { useProducts } from '@/hooks/useProducts';
 import { useCart } from '@/contexts/CartContext';
 import ProductGrid from '@/components/product/ProductGrid';
@@ -13,6 +14,15 @@ import GlassToggle from '@/components/ui/GlassToggle';
 const SilverCollectionPage = () => {
   const { data: products, isLoading } = useProducts({ metal_type: 'silver' });
   const { addToCart } = useCart();
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <>
@@ -20,11 +30,34 @@ const SilverCollectionPage = () => {
       <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-gray-50/30">
         {/* Hero Section - Silver Theme */}
         <section className="relative overflow-hidden bg-gradient-to-br from-slate-100 via-gray-50 to-slate-50">
-          {/* Decorative Elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-20 left-10 w-96 h-96 bg-slate-400 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-10 w-80 h-80 bg-gray-300 rounded-full blur-3xl"></div>
+          {/* Video Background */}
+          <div className="absolute inset-0 z-0">
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/videos/WhatsApp%20Video%202025-11-08%20at%2012.36.14_0524b867.mp4" type="video/mp4" />
+            </video>
+            {/* Overlay gradient for better text visibility */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-transparent"></div>
           </div>
+
+          {/* Mute Button - Bottom Right */}
+          <button
+            onClick={toggleMute}
+            className="absolute bottom-6 right-6 z-20 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+            aria-label={isMuted ? 'Unmute' : 'Mute'}
+          >
+            {isMuted ? (
+              <VolumeX className="w-5 h-5 text-slate-700" />
+            ) : (
+              <Volume2 className="w-5 h-5 text-slate-700" />
+            )}
+          </button>
 
           <div className="container-custom py-16 md:py-24 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
@@ -35,22 +68,22 @@ const SilverCollectionPage = () => {
 
               {/* Badge */}
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-slate-500/20 to-gray-500/20 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-slate-900">
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-slate-900">
                   <Gem className="w-4 h-4 text-slate-600" />
                   925 Sterling Silver Collection
                 </span>
               </div>
 
               {/* Heading */}
-              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-slate-900 animate-fade-in-up">
+              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] animate-fade-in-up">
                 Elegant
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-slate-600 via-gray-400 to-slate-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-white to-slate-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
                   Silver Jewelry
                 </span>
               </h1>
 
               {/* Description */}
-              <p className="text-xl md:text-2xl text-slate-700/80 mb-10 leading-relaxed animate-fade-in-up max-w-3xl mx-auto" style={{animationDelay: '0.2s'}}>
+              <p className="text-xl md:text-2xl text-white/95 mb-10 leading-relaxed animate-fade-in-up max-w-3xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" style={{animationDelay: '0.2s'}}>
                 Explore our stunning collection of 925 sterling silver jewelry.
                 Affordable luxury with timeless designs that complement your everyday style.
               </p>
