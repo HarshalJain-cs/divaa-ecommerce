@@ -65,11 +65,12 @@ const SilverCollectionPage = () => {
               muted
               playsInline
               className="w-full h-full object-cover"
+              style={{ filter: 'brightness(1.1) contrast(1.05)' }}
             >
               <source src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/videos/4974758-uhd_4096_2160_25fps.mp4" type="video/mp4" />
             </video>
-            {/* Light overlay for better text visibility without blurring video */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-transparent"></div>
+            {/* Subtle overlay for text contrast without dimming video quality */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/15 via-transparent to-transparent"></div>
           </div>
 
           {/* Mute Button - Bottom Right */}
@@ -101,15 +102,15 @@ const SilverCollectionPage = () => {
               </div>
 
               {/* Heading */}
-              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] animate-fade-in-up">
+              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-white animate-fade-in-up" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3)' }}>
                 Elegant
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-white to-slate-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-white to-slate-200" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.5)' }}>
                   Silver Jewelry
                 </span>
               </h1>
 
               {/* Description */}
-              <p className="text-xl md:text-2xl text-white/95 mb-10 leading-relaxed animate-fade-in-up max-w-3xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" style={{animationDelay: '0.2s'}}>
+              <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed animate-fade-in-up max-w-3xl mx-auto font-medium" style={{ animationDelay: '0.2s', textShadow: '0 3px 8px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.4), 0 0 15px rgba(0,0,0,0.3)' }}>
                 Explore our stunning collection of 925 sterling silver jewelry.
                 Affordable luxury with timeless designs that complement your everyday style.
               </p>
