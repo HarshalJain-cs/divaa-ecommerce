@@ -25,14 +25,36 @@ export const RELATIONS: CollectionItem[] = [
 
 /**
  * Shop by Occasion Categories
- * Based on Giva.co's occasion filters
+ * Based on DIVA's occasion filters
  */
 export const OCCASIONS: CollectionItem[] = [
-  { id: 'wedding', label: 'Wedding', path: '/collections/wedding' },
-  { id: 'birthday', label: 'Birthday', path: '/collections/birthday' },
-  { id: 'anniversary', label: 'Anniversary', path: '/collections/anniversary' },
-  { id: 'just-because', label: 'Just Because', path: '/collections/just-because' },
-  { id: 'say-thanks', label: 'Say Thanks', path: '/collections/say-thanks' },
+  { id: 'engagement', label: 'Engagement', path: '/occasions/engagement' },
+  { id: 'birthday', label: 'Birthday', path: '/occasions/birthday' },
+  { id: 'wedding', label: 'Wedding', path: '/occasions/wedding' },
+  { id: 'anniversary', label: 'Anniversary', path: '/occasions/anniversary' },
+  { id: 'baby-shower', label: 'Baby Shower', path: '/occasions/baby-shower' },
+  { id: 'baby-naming', label: 'Baby Naming', path: '/occasions/baby-naming' },
+  { id: 'griha-pravesh', label: 'Griha Pravesh', path: '/occasions/griha-pravesh' },
+];
+
+/**
+ * Shop by Festival Categories
+ * Based on DIVA's festival filters
+ */
+export const FESTIVALS: CollectionItem[] = [
+  { id: 'diwali', label: 'Diwali', path: '/festivals/diwali' },
+  { id: 'akshaya-tritiya', label: 'Akshaya Tritiya', path: '/festivals/akshaya-tritiya' },
+  { id: 'raksha-bandhan', label: 'Raksha Bandhan', path: '/festivals/raksha-bandhan' },
+  { id: 'valentine-day', label: 'Valentine Day', path: '/festivals/valentine-day' },
+  { id: 'mothers-day', label: 'Mothers Day', path: '/festivals/mothers-day' },
+  { id: 'fathers-day', label: 'Fathers Day', path: '/festivals/fathers-day' },
+  { id: 'friendship-day', label: 'Friendship Day', path: '/festivals/friendship-day' },
+  { id: 'karwa-chauth', label: 'Karwa Chauth', path: '/festivals/karwa-chauth' },
+  { id: 'bhaidooj', label: 'Bhaidooj', path: '/festivals/bhaidooj' },
+  { id: 'eid', label: 'Eid', path: '/festivals/eid' },
+  { id: 'navratri', label: 'Navratri', path: '/festivals/navratri' },
+  { id: 'durga-puja', label: 'Durga Puja', path: '/festivals/durga-puja' },
+  { id: 'christmas', label: 'Christmas', path: '/festivals/christmas' },
 ];
 
 /**

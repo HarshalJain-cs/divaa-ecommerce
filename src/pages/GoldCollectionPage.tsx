@@ -2,17 +2,53 @@
  * @page GoldCollectionPage
  * @description Gold jewelry collection page with hero section and filtered products
  */
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Crown, Sparkles, Award } from 'lucide-react';
+import { Crown, Sparkles, Award, Volume2, VolumeX } from 'lucide-react';
 import { useProducts } from '@/hooks/useProducts';
 import { useCart } from '@/contexts/CartContext';
 import ProductGrid from '@/components/product/ProductGrid';
 import Header from '@/components/ui/Header';
 import GlassToggle from '@/components/ui/GlassToggle';
+import BannerSlideshow from '@/components/ui/BannerSlideshow';
 
 const GoldCollectionPage = () => {
   const { data: products, isLoading } = useProducts({ metal_type: 'gold' });
   const { addToCart } = useCart();
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  // Banner data for slideshow
+  const goldBanners = [
+    {
+      id: 1,
+      title: '0% Making Charge',
+      description: 'On all gold jewelry',
+      gradient: 'bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600',
+      icon: '✨'
+    },
+    {
+      id: 2,
+      title: 'New Arrivals',
+      description: 'Exclusive gold collections',
+      gradient: 'bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600',
+      icon: '🆕'
+    },
+    {
+      id: 3,
+      title: 'Free Shipping',
+      description: '& 30 Days Return',
+      gradient: 'bg-gradient-to-r from-amber-700 via-yellow-600 to-amber-700',
+      icon: '🚚'
+    }
+  ];
 
   return (
     <>
@@ -20,11 +56,34 @@ const GoldCollectionPage = () => {
       <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-amber-50/30">
         {/* Hero Section - Gold Theme */}
         <section className="relative overflow-hidden bg-gradient-to-br from-amber-100 via-yellow-50 to-amber-50">
-          {/* Decorative Elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-20 left-10 w-96 h-96 bg-amber-400 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-10 w-80 h-80 bg-yellow-300 rounded-full blur-3xl"></div>
+          {/* Video Background */}
+          <div className="absolute inset-0 z-0">
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/videos/WhatsApp%20Video%202025-11-08%20at%2012.36.07_350411d2.mp4" type="video/mp4" />
+            </video>
+            {/* Overlay gradient for better text visibility */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-transparent"></div>
           </div>
+
+          {/* Mute Button - Bottom Right */}
+          <button
+            onClick={toggleMute}
+            className="absolute bottom-6 right-6 z-20 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+            aria-label={isMuted ? 'Unmute' : 'Mute'}
+          >
+            {isMuted ? (
+              <VolumeX className="w-5 h-5 text-amber-700" />
+            ) : (
+              <Volume2 className="w-5 h-5 text-amber-700" />
+            )}
+          </button>
 
           <div className="container-custom py-16 md:py-24 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
@@ -35,22 +94,22 @@ const GoldCollectionPage = () => {
 
               {/* Badge */}
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-amber-900">
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-amber-900">
                   <Crown className="w-4 h-4 text-amber-600" />
                   Premium Gold Collection
                 </span>
               </div>
 
               {/* Heading */}
-              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-amber-900 animate-fade-in-up">
+              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] animate-fade-in-up">
                 Radiant
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
                   Gold Jewelry
                 </span>
               </h1>
 
               {/* Description */}
-              <p className="text-xl md:text-2xl text-amber-800/80 mb-10 leading-relaxed animate-fade-in-up max-w-3xl mx-auto" style={{animationDelay: '0.2s'}}>
+              <p className="text-xl md:text-2xl text-white/95 mb-10 leading-relaxed animate-fade-in-up max-w-3xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" style={{animationDelay: '0.2s'}}>
                 Discover our exquisite collection of 14K & 18K gold jewelry.
                 From timeless classics to contemporary designs, find pieces that celebrate life's precious moments.
               </p>
@@ -118,6 +177,13 @@ const GoldCollectionPage = () => {
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Banner Slideshow */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <BannerSlideshow banners={goldBanners} autoPlayInterval={2000} theme="gold" />
           </div>
         </section>
 

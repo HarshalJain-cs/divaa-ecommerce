@@ -12,6 +12,7 @@ import CategoryCard from '@/components/product/CategoryCard';
 import Header from '@/components/ui/Header';
 import CustomerStories from '@/components/sections/CustomerStories';
 import ShopByOccasion from '@/components/sections/ShopByOccasion';
+import ShopByFestival from '@/components/sections/ShopByFestival';
 import GiftingGuide from '@/components/sections/GiftingGuide';
 import ProductCarousel from '@/components/sections/ProductCarousel';
 import ShopByRecipient from '@/components/sections/ShopByRecipient';
@@ -171,6 +172,9 @@ const HomePage = () => {
 
       {/* Shop by Occasion */}
       <ShopByOccasion />
+
+      {/* Shop by Festival */}
+      <ShopByFestival />
 
       {/* Product Carousel - Bestseller Products */}
       {featuredProducts && featuredProducts.length > 0 && (
@@ -333,22 +337,34 @@ const HomePage = () => {
             </div>
 
             <div>
-              <h4 className="font-bold mb-4 text-white">Shop</h4>
+              <h4 className="font-bold mb-4 text-white">Shop by Occasion</h4>
               <ul className="space-y-3">
-                <li><Link to="/products" className="text-gray-400 hover:text-rose-gold-light transition-colors">All Products</Link></li>
-                <li><Link to="/categories" className="text-gray-400 hover:text-rose-gold-light transition-colors">Categories</Link></li>
-                <li><Link to="/products?featured=true" className="text-gray-400 hover:text-rose-gold-light transition-colors">Bestsellers</Link></li>
-                <li><Link to="/products?new=true" className="text-gray-400 hover:text-rose-gold-light transition-colors">New Arrivals</Link></li>
+                <li><Link to="/occasions/engagement" className="text-gray-400 hover:text-rose-gold-light transition-colors">Engagement</Link></li>
+                <li><Link to="/occasions/birthday" className="text-gray-400 hover:text-rose-gold-light transition-colors">Birthday</Link></li>
+                <li><Link to="/occasions/wedding" className="text-gray-400 hover:text-rose-gold-light transition-colors">Wedding</Link></li>
+                <li><Link to="/occasions/anniversary" className="text-gray-400 hover:text-rose-gold-light transition-colors">Anniversary</Link></li>
+                <li><Link to="/occasions/baby-shower" className="text-gray-400 hover:text-rose-gold-light transition-colors">Baby Shower</Link></li>
+                <li><Link to="/occasions/baby-naming" className="text-gray-400 hover:text-rose-gold-light transition-colors">Baby Naming</Link></li>
+                <li><Link to="/occasions/griha-pravesh" className="text-gray-400 hover:text-rose-gold-light transition-colors">Griha Pravesh</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold mb-4 text-white">Customer Care</h4>
+              <h4 className="font-bold mb-4 text-white">Shop by Festival</h4>
               <ul className="space-y-3">
-                <li><Link to="/about" className="text-gray-400 hover:text-rose-gold-light transition-colors">About Us</Link></li>
-                <li><Link to="/shipping" className="text-gray-400 hover:text-rose-gold-light transition-colors">Shipping & Returns</Link></li>
-                <li><Link to="/faq" className="text-gray-400 hover:text-rose-gold-light transition-colors">FAQ</Link></li>
-                <li><a href="mailto:saj.query@gmail.com" className="text-gray-400 hover:text-rose-gold-light transition-colors">Contact Us</a></li>
+                <li><Link to="/festivals/diwali" className="text-gray-400 hover:text-rose-gold-light transition-colors">Diwali</Link></li>
+                <li><Link to="/festivals/akshaya-tritiya" className="text-gray-400 hover:text-rose-gold-light transition-colors">Akshaya Tritiya</Link></li>
+                <li><Link to="/festivals/raksha-bandhan" className="text-gray-400 hover:text-rose-gold-light transition-colors">Raksha Bandhan</Link></li>
+                <li><Link to="/festivals/valentine-day" className="text-gray-400 hover:text-rose-gold-light transition-colors">Valentine Day</Link></li>
+                <li><Link to="/festivals/mothers-day" className="text-gray-400 hover:text-rose-gold-light transition-colors">Mothers Day</Link></li>
+                <li><Link to="/festivals/fathers-day" className="text-gray-400 hover:text-rose-gold-light transition-colors">Fathers Day</Link></li>
+                <li><Link to="/festivals/friendship-day" className="text-gray-400 hover:text-rose-gold-light transition-colors">Friendship Day</Link></li>
+                <li><Link to="/festivals/karwa-chauth" className="text-gray-400 hover:text-rose-gold-light transition-colors">Karwa Chauth</Link></li>
+                <li><Link to="/festivals/bhaidooj" className="text-gray-400 hover:text-rose-gold-light transition-colors">Bhaidooj</Link></li>
+                <li><Link to="/festivals/eid" className="text-gray-400 hover:text-rose-gold-light transition-colors">Eid</Link></li>
+                <li><Link to="/festivals/navratri" className="text-gray-400 hover:text-rose-gold-light transition-colors">Navratri</Link></li>
+                <li><Link to="/festivals/durga-puja" className="text-gray-400 hover:text-rose-gold-light transition-colors">Durga Puja</Link></li>
+                <li><Link to="/festivals/christmas" className="text-gray-400 hover:text-rose-gold-light transition-colors">Christmas</Link></li>
               </ul>
             </div>
 
