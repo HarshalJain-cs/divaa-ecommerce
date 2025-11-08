@@ -18,6 +18,9 @@ import ProductCarousel from '@/components/sections/ProductCarousel';
 import ShopByRecipient from '@/components/sections/ShopByRecipient';
 import GlassToggle from '@/components/ui/GlassToggle';
 import GoldPriceWidget from '@/components/ui/GoldPriceWidget';
+import OfferBanner from '@/components/sections/OfferBanner';
+import VideoCallScheduler from '@/components/sections/VideoCallScheduler';
+import CaratLaneExpressions from '@/components/sections/CaratLaneExpressions';
 
 const HomePage = () => {
   const { data: featuredProducts, isLoading } = useFeaturedProducts();
@@ -186,6 +189,9 @@ const HomePage = () => {
       {/* Shop by Festival */}
       <ShopByFestival />
 
+      {/* Offer Banner */}
+      <OfferBanner />
+
       {/* Product Carousel - Bestseller Products */}
       {featuredProducts && featuredProducts.length > 0 && (
         <ProductCarousel
@@ -278,11 +284,17 @@ const HomePage = () => {
       {/* Gifting Guide */}
       <GiftingGuide />
 
+      {/* Video Call Scheduler */}
+      <VideoCallScheduler />
+
       {/* Shop by Recipient */}
       <ShopByRecipient />
 
       {/* Customer Stories */}
       <CustomerStories />
+
+      {/* CaratLane Expressions - Share Your Story */}
+      <CaratLaneExpressions />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-rose-gold-dark via-blush to-rose-gold text-white relative overflow-hidden">
