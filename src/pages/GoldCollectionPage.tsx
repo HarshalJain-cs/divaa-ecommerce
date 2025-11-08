@@ -65,11 +65,12 @@ const GoldCollectionPage = () => {
               muted
               playsInline
               className="w-full h-full object-cover"
+              style={{ filter: 'brightness(1.1) contrast(1.05)' }}
             >
               <source src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/videos/WhatsApp%20Video%202025-11-08%20at%2012.36.07_350411d2.mp4" type="video/mp4" />
             </video>
-            {/* Overlay gradient for better text visibility */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-transparent"></div>
+            {/* Subtle overlay for text contrast without dimming video quality */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/15 via-transparent to-transparent"></div>
           </div>
 
           {/* Mute Button - Bottom Right */}
@@ -101,15 +102,15 @@ const GoldCollectionPage = () => {
               </div>
 
               {/* Heading */}
-              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] animate-fade-in-up">
+              <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-white animate-fade-in-up" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3)' }}>
                 Radiant
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.5)' }}>
                   Gold Jewelry
                 </span>
               </h1>
 
               {/* Description */}
-              <p className="text-xl md:text-2xl text-white/95 mb-10 leading-relaxed animate-fade-in-up max-w-3xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" style={{animationDelay: '0.2s'}}>
+              <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed animate-fade-in-up max-w-3xl mx-auto font-medium" style={{ animationDelay: '0.2s', textShadow: '0 3px 8px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.4), 0 0 15px rgba(0,0,0,0.3)' }}>
                 Discover our exquisite collection of 14K & 18K gold jewelry.
                 From timeless classics to contemporary designs, find pieces that celebrate life's precious moments.
               </p>
