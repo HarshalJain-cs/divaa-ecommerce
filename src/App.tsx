@@ -21,6 +21,8 @@ const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const CollectionPage = lazy(() => import('@/pages/CollectionPage'));
 const GoldCollectionPage = lazy(() => import('@/pages/GoldCollectionPage'));
 const SilverCollectionPage = lazy(() => import('@/pages/SilverCollectionPage'));
+const OccasionsPage = lazy(() => import('@/pages/OccasionsPage'));
+const FestivalsPage = lazy(() => import('@/pages/FestivalsPage'));
 const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
@@ -53,6 +55,10 @@ function App() {
               <Route path="/collections/gold" element={<GoldCollectionPage />} />
               <Route path="/collections/silver" element={<SilverCollectionPage />} />
               <Route path="/collections/:collectionId" element={<CollectionPage />} />
+
+              {/* Occasion & Festival Routes */}
+              <Route path="/occasions" element={<OccasionsPage />} />
+              <Route path="/festivals" element={<FestivalsPage />} />
 
               {/* Category Routes - Material & Type Specific */}
               <Route path="/categories/:categorySlug" element={<CategoryPage />} />
