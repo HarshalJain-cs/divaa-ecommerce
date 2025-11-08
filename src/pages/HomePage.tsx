@@ -12,6 +12,7 @@ import CategoryCard from '@/components/product/CategoryCard';
 import Header from '@/components/ui/Header';
 import CustomerStories from '@/components/sections/CustomerStories';
 import ShopByOccasion from '@/components/sections/ShopByOccasion';
+import ShopByFestival from '@/components/sections/ShopByFestival';
 import GiftingGuide from '@/components/sections/GiftingGuide';
 import ProductCarousel from '@/components/sections/ProductCarousel';
 import ShopByRecipient from '@/components/sections/ShopByRecipient';
@@ -171,6 +172,9 @@ const HomePage = () => {
 
       {/* Shop by Occasion */}
       <ShopByOccasion />
+
+      {/* Shop by Festival */}
+      <ShopByFestival />
 
       {/* Product Carousel - Bestseller Products */}
       {featuredProducts && featuredProducts.length > 0 && (
