@@ -10,6 +10,7 @@ import { useCart } from '@/contexts/CartContext';
 import ProductGrid from '@/components/product/ProductGrid';
 import Header from '@/components/ui/Header';
 import GlassToggle from '@/components/ui/GlassToggle';
+import BannerSlideshow from '@/components/ui/BannerSlideshow';
 
 const SilverCollectionPage = () => {
   const { data: products, isLoading } = useProducts({ metal_type: 'silver' });
@@ -23,6 +24,31 @@ const SilverCollectionPage = () => {
       setIsMuted(!isMuted);
     }
   };
+
+  // Banner data for slideshow
+  const silverBanners = [
+    {
+      id: 1,
+      title: '0% Making Charge',
+      description: 'On all silver jewelry',
+      gradient: 'bg-gradient-to-r from-slate-600 via-gray-500 to-slate-600',
+      icon: '✨'
+    },
+    {
+      id: 2,
+      title: 'New Arrivals',
+      description: 'Fresh designs every week',
+      gradient: 'bg-gradient-to-r from-gray-700 via-slate-600 to-gray-700',
+      icon: '🆕'
+    },
+    {
+      id: 3,
+      title: 'Free Shipping',
+      description: '& 30 Days Return',
+      gradient: 'bg-gradient-to-r from-slate-700 via-gray-600 to-slate-700',
+      icon: '🚚'
+    }
+  ];
 
   return (
     <>
@@ -151,6 +177,13 @@ const SilverCollectionPage = () => {
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Banner Slideshow */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <BannerSlideshow banners={silverBanners} autoPlayInterval={2000} theme="silver" />
           </div>
         </section>
 
