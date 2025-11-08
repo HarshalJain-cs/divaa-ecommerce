@@ -25,6 +25,8 @@ const OccasionsPage = lazy(() => import('@/pages/OccasionsPage'));
 const FestivalsPage = lazy(() => import('@/pages/FestivalsPage'));
 const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
+const CheckoutPage = lazy(() => import('@/pages/CheckoutPage'));
+const WeddingPage = lazy(() => import('@/pages/WeddingPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const SignupPage = lazy(() => import('@/pages/SignupPage'));
@@ -59,11 +61,13 @@ function App() {
               {/* Occasion & Festival Routes */}
               <Route path="/occasions" element={<OccasionsPage />} />
               <Route path="/festivals" element={<FestivalsPage />} />
+              <Route path="/wedding" element={<WeddingPage />} />
 
               {/* Category Routes - Material & Type Specific */}
               <Route path="/categories/:categorySlug" element={<CategoryPage />} />
 
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />

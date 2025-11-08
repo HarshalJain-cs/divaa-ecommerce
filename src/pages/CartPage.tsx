@@ -204,10 +204,7 @@ export default function CartPage() {
 
                 {/* Checkout Button */}
                 <button
-                  onClick={() => {
-                    // TODO: Navigate to checkout when implemented
-                    alert('Checkout coming soon!');
-                  }}
+                  onClick={() => navigate('/checkout')}
                   className="w-full bg-gradient-to-r from-rose-gold to-rose-gold-dark text-white py-3 rounded-lg hover:shadow-lg transition-all font-medium mb-4"
                 >
                   Proceed to Checkout

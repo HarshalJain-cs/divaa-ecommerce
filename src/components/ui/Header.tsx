@@ -116,6 +116,13 @@ export default function HeaderNew() {
               Products
             </Link>
 
+            <Link
+              to="/wedding"
+              className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium flex items-center gap-1"
+            >
+              💍 Wedding
+            </Link>
+
             {/* Collections Dropdown */}
             {!isOnCollectionPage && (
               <div
