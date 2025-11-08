@@ -162,6 +162,17 @@ export default function HeaderNew() {
                       </span>
                     </Link>
 
+                    <Link
+                      to="/collections/diamond"
+                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-900 transition-colors font-medium"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="text-purple-500">💠</span>
+                        Diamond Collection
+                        <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">Soon</span>
+                      </span>
+                    </Link>
+
                     <hr className="my-2" />
 
                     {/* Categories with Hover Sub-menu */}

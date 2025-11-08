@@ -21,6 +21,7 @@ const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const CollectionPage = lazy(() => import('@/pages/CollectionPage'));
 const GoldCollectionPage = lazy(() => import('@/pages/GoldCollectionPage'));
 const SilverCollectionPage = lazy(() => import('@/pages/SilverCollectionPage'));
+const DiamondCollectionPage = lazy(() => import('@/pages/DiamondCollectionPage'));
 const OccasionsPage = lazy(() => import('@/pages/OccasionsPage'));
 const FestivalsPage = lazy(() => import('@/pages/FestivalsPage'));
 const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
@@ -56,6 +57,7 @@ function App() {
               {/* Collection Routes - Material-Specific */}
               <Route path="/collections/gold" element={<GoldCollectionPage />} />
               <Route path="/collections/silver" element={<SilverCollectionPage />} />
+              <Route path="/collections/diamond" element={<DiamondCollectionPage />} />
               <Route path="/collections/:collectionId" element={<CollectionPage />} />
 
               {/* Occasion & Festival Routes */}
