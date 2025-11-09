@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function StyleGrid() {
   return (
     <section className="py-12 bg-gradient-to-br from-off-white to-cream">

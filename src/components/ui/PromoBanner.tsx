@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const PROMO_MESSAGES = [
   'Flat 5% Cashback',

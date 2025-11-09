@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Package, ShoppingCart, Users, Settings, Plus } from 'lucide-react';
 import Header from '@/components/ui/Header';
 import { useProducts } from '@/hooks/useProducts';
-import CallbackRequestsView from '@/components/admin/CallbackRequestsView';
+import CallbackRequestsView from './components/CallbackRequestsView';
 
 export default function AdminDashboard() {
   const { data: products } = useProducts();

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function InstallmentBanner() {
   return (
     <div className="w-full rounded-2xl shadow-xl hover:shadow-2xl transition-shadow overflow-hidden bg-gradient-to-br from-pink-100 via-purple-100 to-pink-200">
