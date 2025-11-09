@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Package, ShoppingCart, Users, Settings, Plus } from 'lucide-react';
 import Header from '@/components/ui/Header';
 import { useProducts } from '@/hooks/useProducts';
+import CallbackRequestsView from '@/components/admin/CallbackRequestsView';
 
 export default function AdminDashboard() {
   const { data: products } = useProducts();
@@ -146,6 +147,11 @@ export default function AdminDashboard() {
                 </tbody>
               </table>
             </div>
+          </div>
+
+          {/* Callback Requests Section */}
+          <div className="mt-8">
+            <CallbackRequestsView />
           </div>
         </div>
       </div>

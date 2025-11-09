@@ -8,6 +8,7 @@ import { ShoppingCart, Heart, User, Menu, X, LogOut, ChevronDown } from 'lucide-
 import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { useAuth } from '@/hooks/useAuth';
+import GoldPriceWidget from './GoldPriceWidget';
 
 const categories = [
   'Rings',
@@ -358,6 +359,11 @@ export default function HeaderNew() {
 
           {/* Right Side Icons */}
           <div className="flex items-center space-x-4">
+            {/* Gold Price Widget */}
+            <div className="hidden lg:block">
+              <GoldPriceWidget />
+            </div>
+
             {/* Wishlist Icon */}
             <Link
               to="/wishlist"

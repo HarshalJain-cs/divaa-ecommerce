@@ -90,14 +90,6 @@ const WeddingPage = () => {
               <p className="text-2xl md:text-3xl text-white/95 mb-4 drop-shadow-lg">
                 Curated Wedding Jewelry Collection
               </p>
-              <div className="inline-block px-8 py-4 bg-white/90 backdrop-blur-sm rounded-xl shadow-xl">
-                <p className="text-3xl font-bold" style={{ color: '#D5B038' }}>
-                  🎊 COMING SOON 🎊
-                </p>
-                <p className="text-sm text-gray-600 mt-2">
-                  Launching our exclusive bridal collection
-                </p>
-              </div>
             </div>
           </div>
         </section>
@@ -120,7 +112,7 @@ const WeddingPage = () => {
                     <div
                       key={collection.id}
                       className="min-w-full relative"
-                      style={{ height: '600px' }}
+                      style={{ height: '350px' }}
                     >
                       {/* Main Image */}
                       <div className="absolute inset-0">
@@ -251,12 +243,13 @@ const WeddingPage = () => {
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Book a personalized consultation with our wedding jewelry experts
             </p>
-            <button
-              className="px-10 py-4 bg-white rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
+            <Link
+              to="/coming-soon"
+              className="inline-block px-10 py-4 bg-white rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
               style={{ color: '#1F2B8F' }}
             >
               Book Consultation
-            </button>
+            </Link>
             <p className="text-white/75 text-sm mt-4">
               Coming soon with our wedding collection launch
             </p>

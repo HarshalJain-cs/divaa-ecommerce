@@ -36,6 +36,7 @@ const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
 const AdminDashboard = lazy(() => import('@/pages/AdminDashboard'));
 const AdminProductsPage = lazy(() => import('@/pages/AdminProductsPage'));
 const AdminProductFormPage = lazy(() => import('@/pages/AdminProductFormPage'));
+const ComingSoonPage = lazy(() => import('@/pages/ComingSoonPage'));
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+              <Route path="/coming-soon" element={<ComingSoonPage />} />
 
             {/* Protected Routes */}
             <Route

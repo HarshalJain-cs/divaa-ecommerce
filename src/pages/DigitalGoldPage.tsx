@@ -3,26 +3,59 @@
  * @description Comprehensive Digital Gold page with Buy/Sell/Exchange/FAQ sections
  */
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { TrendingUp, Shield, Award, Gift, ArrowRight, Phone } from 'lucide-react';
+import { toast } from 'sonner';
+import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/hooks/useAuth';
 import Header from '@/components/ui/Header';
 
 type Section = 'buy' | 'gift' | 'gift-claim' | 'sell' | 'faqs' | 'redeem' | 'know-more';
 
 const DigitalGoldPage = () => {
+  const { user } = useAuth();
   const [activeSection, setActiveSection] = useState<Section>('buy');
   const [activeFaqCategory, setActiveFaqCategory] = useState<string | null>(null);
   const [mobileNumber, setMobileNumber] = useState('');
+  const [isSubmittingCallback, setIsSubmittingCallback] = useState(false);
 
   const toggleFaq = (category: string) => {
     setActiveFaqCategory(activeFaqCategory === category ? null : category);
   };
 
-  const handleRequestCallback = () => {
-    if (mobileNumber.length === 10) {
-      alert(`Callback requested for ${mobileNumber}`);
+  const handleRequestCallback = async () => {
+    // Validate phone number
+    if (mobileNumber.length !== 10) {
+      toast.error('Please enter a valid 10-digit mobile number');
+      return;
+    }
+
+    setIsSubmittingCallback(true);
+
+    try {
+      // Insert callback request into Supabase
+      const { error } = await supabase
+        .from('callback_requests')
+        .insert({
+          phone_number: mobileNumber,
+          user_id: user?.id || null,
+          status: 'pending',
+        });
+
+      if (error) {
+        console.error('Error submitting callback request:', error);
+        toast.error('Failed to submit callback request. Please try again.');
+        return;
+      }
+
+      // Success
+      toast.success('Callback request submitted! We will call you back within 5 minutes.');
       setMobileNumber('');
-    } else {
-      alert('Please enter a valid 10-digit mobile number');
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      toast.error('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmittingCallback(false);
     }
   };
 
@@ -45,54 +78,42 @@ const DigitalGoldPage = () => {
 
               {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center gap-8">
-                <button
-                  onClick={() => setActiveSection('buy')}
-                  className={`font-medium transition-colors ${
-                    activeSection === 'buy' ? 'text-amber-600 border-b-2 border-amber-600' : 'text-gray-700 hover:text-amber-600'
-                  }`}
+                <Link
+                  to="/coming-soon"
+                  className="font-medium transition-colors text-gray-700 hover:text-amber-600"
                 >
                   Buy Gold
-                </button>
-                <button
-                  onClick={() => setActiveSection('gift')}
-                  className={`font-medium transition-colors ${
-                    activeSection === 'gift' ? 'text-amber-600 border-b-2 border-amber-600' : 'text-gray-700 hover:text-amber-600'
-                  }`}
+                </Link>
+                <Link
+                  to="/coming-soon"
+                  className="font-medium transition-colors text-amber-600 border-b-2 border-amber-600"
                 >
                   Gift Card
-                </button>
-                <button
-                  onClick={() => setActiveSection('gift-claim')}
-                  className={`font-medium transition-colors ${
-                    activeSection === 'gift-claim' ? 'text-amber-600 border-b-2 border-amber-600' : 'text-gray-700 hover:text-amber-600'
-                  }`}
+                </Link>
+                <Link
+                  to="/coming-soon"
+                  className="font-medium transition-colors text-gray-700 hover:text-amber-600"
                 >
                   Gift Card Claim
-                </button>
-                <button
-                  onClick={() => setActiveSection('sell')}
-                  className={`font-medium transition-colors ${
-                    activeSection === 'sell' ? 'text-amber-600 border-b-2 border-amber-600' : 'text-gray-700 hover:text-amber-600'
-                  }`}
+                </Link>
+                <Link
+                  to="/coming-soon"
+                  className="font-medium transition-colors text-gray-700 hover:text-amber-600"
                 >
                   Sell Gold
-                </button>
-                <button
-                  onClick={() => setActiveSection('faqs')}
-                  className={`font-medium transition-colors ${
-                    activeSection === 'faqs' ? 'text-amber-600 border-b-2 border-amber-600' : 'text-gray-700 hover:text-amber-600'
-                  }`}
+                </Link>
+                <Link
+                  to="/coming-soon"
+                  className="font-medium transition-colors text-gray-700 hover:text-amber-600"
                 >
                   FAQs
-                </button>
-                <button
-                  onClick={() => setActiveSection('redeem')}
-                  className={`font-medium transition-colors ${
-                    activeSection === 'redeem' ? 'text-amber-600 border-b-2 border-amber-600' : 'text-gray-700 hover:text-amber-600'
-                  }`}
+                </Link>
+                <Link
+                  to="/coming-soon"
+                  className="font-medium transition-colors text-gray-700 hover:text-amber-600"
                 >
                   Exchange / Redeem
-                </button>
+                </Link>
               </nav>
             </div>
           </div>
@@ -104,7 +125,7 @@ const DigitalGoldPage = () => {
             {/* Hero Banner */}
             <div className="relative overflow-hidden">
               <img
-                src="https://cdn.caratlane.com/media/static/images/V4/2024/CL/10_OCT/Banner/Egold/1/E_Gold_desktop_1132x466.jpg"
+                src="https://placehold.co/1132x466/d4af37/ffffff?text=Digital+Gold+Banner+%28Coming+Soon%29"
                 alt="Digital Gold Banner"
                 className="w-full h-auto object-cover"
               />
@@ -118,15 +139,18 @@ const DigitalGoldPage = () => {
                       Invest in Pure 24K Gold Online - 100% Safe & Trustworthy
                     </p>
                     <div className="flex gap-4">
-                      <button className="px-8 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-white rounded-lg hover:shadow-xl transition-all font-semibold">
+                      <Link
+                        to="/coming-soon"
+                        className="px-8 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-white rounded-lg hover:shadow-xl transition-all font-semibold"
+                      >
                         Buy Now
-                      </button>
-                      <button
-                        onClick={() => setActiveSection('know-more')}
+                      </Link>
+                      <Link
+                        to="/coming-soon"
                         className="px-8 py-3 bg-white/20 backdrop-blur-sm text-white rounded-lg hover:bg-white/30 transition-all font-semibold"
                       >
                         Learn More
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -262,9 +286,12 @@ const DigitalGoldPage = () => {
               <div className="bg-gradient-to-br from-amber-100 to-yellow-100 p-8 rounded-2xl text-center">
                 <h3 className="text-2xl font-bold mb-2">Visit Vault</h3>
                 <p className="text-gray-700 mb-4">Check your gold Balance</p>
-                <button className="px-8 py-3 bg-white text-amber-900 rounded-lg hover:shadow-lg transition-all font-semibold">
+                <Link
+                  to={user ? '/coming-soon' : '/login'}
+                  className="inline-block px-8 py-3 bg-white text-amber-900 rounded-lg hover:shadow-lg transition-all font-semibold"
+                >
                   Login to view
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -292,9 +319,10 @@ const DigitalGoldPage = () => {
                     </div>
                     <button
                       onClick={handleRequestCallback}
-                      className="px-6 py-3 bg-white text-amber-900 rounded-lg hover:shadow-lg transition-all font-semibold whitespace-nowrap"
+                      disabled={isSubmittingCallback}
+                      className="px-6 py-3 bg-white text-amber-900 rounded-lg hover:shadow-lg transition-all font-semibold whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Request Call Back
+                      {isSubmittingCallback ? 'Submitting...' : 'Request Call Back'}
                     </button>
                   </div>
                 </div>

@@ -51,56 +51,56 @@ const GoldPriceWidget = () => {
   const priceDigits = formatPrice(currentPrice.price);
 
   return (
-    <div className="gold-price-container relative inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl shadow-lg border-2 border-amber-200 hover:shadow-xl transition-all duration-300">
+    <div className="gold-price-container relative inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-lg shadow-md border border-amber-200 hover:shadow-lg transition-all duration-300">
       {/* Gold Price Label */}
-      <span className="text-sm font-bold text-amber-900 tracking-wide">
-        GOLD PRICE
+      <span className="text-xs font-bold text-amber-900 tracking-wide">
+        GOLD
       </span>
 
       {/* Karat Display with Rotation Animation */}
       <div className="relative">
-        <div className="gold-circle w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center shadow-md overflow-hidden">
-          <div className="carat-wrapper overflow-hidden h-8">
+        <div className="gold-circle w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center shadow-md relative">
+          <div className="carat-wrapper overflow-hidden h-5 flex items-center justify-center">
             <div
               className="carat-track flex flex-col items-center transition-transform duration-600 ease-in-out"
               style={{
-                transform: `translateY(-${currentKarat * 32}px)`,
+                transform: `translateY(-${currentKarat * 20}px)`,
               }}
             >
               {goldPrices.map((item) => (
                 <div
                   key={item.karat}
-                  className="digit h-8 flex items-center justify-center text-white font-bold text-xl"
+                  className="digit h-5 flex items-center justify-center text-white font-bold text-sm"
                 >
                   {item.karat}
                 </div>
               ))}
             </div>
           </div>
-          <span className="gold-karattext absolute bottom-1 right-1 text-white text-xs font-bold">
+          <span className="absolute bottom-0 right-0.5 text-white text-[10px] font-bold z-10 drop-shadow-md">
             K
           </span>
         </div>
       </div>
 
       {/* Rupee Symbol */}
-      <span className="text-2xl font-bold text-amber-900">₹</span>
+      <span className="text-lg font-bold text-amber-900">₹</span>
 
       {/* Animated Price Display */}
-      <div className="goldsoverflow relative h-8 flex items-center">
+      <div className="goldsoverflow relative h-5 flex items-center">
         <div className="gold-value flex items-center gap-0.5">
           {priceDigits.map((char, index) => {
             if (char === ',') {
               return (
-                <span key={`comma-${index}`} className="comma text-2xl font-bold text-amber-900">
+                <span key={`comma-${index}`} className="comma text-lg font-bold text-amber-900">
                   ,
                 </span>
               );
             }
             return (
-              <div key={index} className="digit-wrapper overflow-hidden h-8 w-4">
+              <div key={index} className="digit-wrapper overflow-hidden h-5 w-3">
                 <div
-                  className="digit h-8 flex items-center justify-center text-2xl font-bold text-amber-900 transition-transform duration-300"
+                  className="digit h-5 flex items-center justify-center text-lg font-bold text-amber-900 transition-transform duration-300"
                   style={{ transform: 'translateY(0px)' }}
                 >
                   {char}
@@ -112,32 +112,25 @@ const GoldPriceWidget = () => {
       </div>
 
       {/* Per Gram Indicator */}
-      <span className="text-xs text-amber-700 font-medium ml-1">/gram</span>
+      <span className="text-[10px] text-amber-700 font-medium">/g</span>
 
       {/* Refresh Button */}
       <button
         onClick={handleRefresh}
         disabled={isRefreshing}
-        className="ml-2 p-2 bg-amber-100 hover:bg-amber-200 rounded-full transition-colors disabled:opacity-50"
+        className="p-1 bg-amber-100 hover:bg-amber-200 rounded-full transition-colors disabled:opacity-50"
         aria-label="Refresh prices"
         title="Refresh gold prices"
       >
         <RefreshCw
-          className={`w-4 h-4 text-amber-700 ${isRefreshing ? 'animate-spin' : ''}`}
+          className={`w-3 h-3 text-amber-700 ${isRefreshing ? 'animate-spin' : ''}`}
         />
       </button>
 
       {/* Trend Indicator */}
-      <div className="flex items-center gap-1 ml-1">
-        <TrendingUp className="w-4 h-4 text-green-600" />
-        <span className="text-xs text-green-600 font-semibold">+0.5%</span>
-      </div>
-
-      {/* Last Updated */}
-      <div className="absolute -bottom-6 left-0 right-0 text-center">
-        <span className="text-xs text-gray-500">
-          Updated: {lastUpdated.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
-        </span>
+      <div className="flex items-center gap-0.5">
+        <TrendingUp className="w-3 h-3 text-green-600" />
+        <span className="text-[10px] text-green-600 font-semibold">+0.5%</span>
       </div>
     </div>
   );
