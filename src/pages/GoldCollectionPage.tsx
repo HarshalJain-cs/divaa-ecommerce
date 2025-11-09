@@ -181,7 +181,7 @@ const GoldCollectionPage = () => {
         </section>
 
         {/* Banner Slideshow */}
-        <section className="py-12 bg-white">
+        <section className="py-12" style={{ backgroundColor: '#d1bb9a' }}>
           <div className="container-custom">
             <BannerSlideshow banners={goldBanners} autoPlayInterval={2000} theme="gold" />
           </div>
