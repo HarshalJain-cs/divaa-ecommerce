@@ -9,6 +9,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { useAuth } from '@/hooks/useAuth';
 import GoldPriceWidget from './GoldPriceWidget';
+import { CurrencyToggle } from './CurrencyToggle';
 
 const categories = [
   'Rings',
@@ -139,13 +140,6 @@ export default function HeaderNew() {
               className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium flex items-center gap-1"
             >
               💍 Wedding
-            </Link>
-
-            <Link
-              to="/digital-gold"
-              className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium flex items-center gap-1"
-            >
-              🪙 Digital Gold
             </Link>
 
             {/* Collections Dropdown */}
@@ -348,13 +342,6 @@ export default function HeaderNew() {
                 ))}
               </div>
             )}
-
-            <Link
-              to="/admin"
-              className="px-3 py-1 bg-charcoal text-white rounded-md hover:bg-rose-gold-dark transition-all font-medium text-sm"
-            >
-              Admin Panel
-            </Link>
           </div>
 
           {/* Right Side Icons */}
@@ -377,6 +364,9 @@ export default function HeaderNew() {
                 </span>
               )}
             </Link>
+
+            {/* Currency Toggle */}
+            <CurrencyToggle />
 
             {/* Cart Icon */}
             <Link
@@ -504,13 +494,6 @@ export default function HeaderNew() {
                 💍 Wedding
               </Link>
               <Link
-                to="/digital-gold"
-                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
-                onClick={closeMobileMenu}
-              >
-                🪙 Digital Gold
-              </Link>
-              <Link
                 to="/collections/gold"
                 className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                 onClick={closeMobileMenu}
@@ -523,13 +506,6 @@ export default function HeaderNew() {
                 onClick={closeMobileMenu}
               >
                 💎 Silver Collection
-              </Link>
-              <Link
-                to="/admin"
-                className="px-3 py-2 bg-charcoal text-white rounded-md hover:bg-rose-gold-dark transition-all font-medium text-center"
-                onClick={closeMobileMenu}
-              >
-                Admin Panel
               </Link>
               <Link
                 to="/wishlist"

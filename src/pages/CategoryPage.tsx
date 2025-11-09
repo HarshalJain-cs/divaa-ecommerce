@@ -19,7 +19,7 @@ const CategoryPage = () => {
   // E.g., "gold-rings" → metal: "gold", category: "rings"
   // E.g., "men-gold-bracelets" → metal: "gold", category: "bracelets", gender: "men"
 
-  const parseSlug = (slug: string) => {
+  const parseSlug = (slug: string): { metal: string | null; category: string | null; gender: 'men' | 'women' } => {
     if (!slug) return { metal: null, category: null, gender: 'women' };
 
     const parts = slug.toLowerCase().split('-');
@@ -27,14 +27,14 @@ const CategoryPage = () => {
     // Check if it starts with "men"
     if (parts[0] === 'men' || parts[0] === "men's") {
       return {
-        gender: 'men',
+        gender: 'men' as const,
         metal: parts[1], // "gold" or "silver"
         category: parts.slice(2).join(' '), // "rings", "bracelets", etc.
       };
     }
 
     return {
-      gender: 'women',
+      gender: 'women' as const,
       metal: parts[0], // "gold" or "silver"
       category: parts.slice(1).join(' '), // "rings", "earrings", etc.
     };
@@ -60,7 +60,7 @@ const CategoryPage = () => {
   const { data: products, isLoading } = useProducts({
     category: matchedCategory?.id,
     metal_type: metal || undefined,
-    gender: gender || undefined,
+    gender: gender,
   });
 
   // Determine theme colors based on metal type

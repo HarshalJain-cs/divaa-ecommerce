@@ -4,6 +4,7 @@
  */
 import { useState, useEffect } from 'react';
 import { TrendingUp, RefreshCw } from 'lucide-react';
+import { useCurrency } from '../../contexts/CurrencyContext';
 
 interface GoldPrice {
   karat: number;
@@ -11,18 +12,17 @@ interface GoldPrice {
 }
 
 const GoldPriceWidget = () => {
+  const { currency, convertPrice } = useCurrency();
   const [currentKarat, setCurrentKarat] = useState(0); // Index for rotating display
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState(new Date());
 
-  // Gold prices per gram (these would come from an API in production)
-  // Using realistic prices for India (in Rupees per gram)
+  // Gold prices per gram in USD (these would come from an API in production)
   const goldPrices: GoldPrice[] = [
-    { karat: 9, price: 4250 },
-    { karat: 14, price: 6580 },
-    { karat: 18, price: 8450 },
-    { karat: 22, price: 10320 },
-    { karat: 24, price: 11250 },
+    { karat: 9, price: 48.30 },   // ~4250 INR / 88
+    { karat: 14, price: 74.77 },  // ~6580 INR / 88
+    { karat: 18, price: 96.02 },  // ~8450 INR / 88
+    { karat: 22, price: 117.27 }, // ~10320 INR / 88
+    { karat: 24, price: 127.84 }, // ~11250 INR / 88
   ];
 
   // Auto-rotate through karats
@@ -38,69 +38,70 @@ const GoldPriceWidget = () => {
     setIsRefreshing(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
-    setLastUpdated(new Date());
     setIsRefreshing(false);
   };
 
   // Format price with animation-friendly digit separation
-  const formatPrice = (price: number) => {
-    return price.toLocaleString('en-IN').split('');
+  const formatPrice = (priceInUSD: number) => {
+    const convertedPrice = convertPrice(priceInUSD);
+    const formatted = currency === 'INR'
+      ? Math.round(convertedPrice).toLocaleString('en-IN')
+      : convertedPrice.toFixed(2);
+    return formatted.split('');
   };
 
   const currentPrice = goldPrices[currentKarat];
   const priceDigits = formatPrice(currentPrice.price);
+  const currencySymbol = currency === 'INR' ? '₹' : '$';
 
   return (
-    <div className="gold-price-container relative inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-lg shadow-md border border-amber-200 hover:shadow-lg transition-all duration-300">
+    <div className="gold-price-container relative inline-flex items-center gap-1.5 px-2 py-1.5 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-lg shadow-md border border-amber-200 hover:shadow-lg transition-all duration-300">
       {/* Gold Price Label */}
-      <span className="text-xs font-bold text-amber-900 tracking-wide">
+      <span className="text-[10px] font-bold text-amber-900 tracking-wide">
         GOLD
       </span>
 
       {/* Karat Display with Rotation Animation */}
       <div className="relative">
-        <div className="gold-circle w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center shadow-md relative">
-          <div className="carat-wrapper overflow-hidden h-5 flex items-center justify-center">
+        <div className="gold-circle w-6 h-6 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center shadow-md relative">
+          <div className="carat-wrapper overflow-hidden h-3 flex items-center justify-center w-full">
             <div
               className="carat-track flex flex-col items-center transition-transform duration-600 ease-in-out"
               style={{
-                transform: `translateY(-${currentKarat * 20}px)`,
+                transform: `translateY(-${currentKarat * 12}px)`,
               }}
             >
               {goldPrices.map((item) => (
                 <div
                   key={item.karat}
-                  className="digit h-5 flex items-center justify-center text-white font-bold text-sm"
+                  className="digit h-3 flex items-center justify-center text-white font-bold text-[10px]"
                 >
-                  {item.karat}
+                  {item.karat}K
                 </div>
               ))}
             </div>
           </div>
-          <span className="absolute bottom-0 right-0.5 text-white text-[10px] font-bold z-10 drop-shadow-md">
-            K
-          </span>
         </div>
       </div>
 
-      {/* Rupee Symbol */}
-      <span className="text-lg font-bold text-amber-900">₹</span>
+      {/* Currency Symbol */}
+      <span className="text-sm font-bold text-amber-900">{currencySymbol}</span>
 
       {/* Animated Price Display */}
-      <div className="goldsoverflow relative h-5 flex items-center">
+      <div className="goldsoverflow relative h-4 flex items-center">
         <div className="gold-value flex items-center gap-0.5">
           {priceDigits.map((char, index) => {
-            if (char === ',') {
+            if (char === ',' || char === '.') {
               return (
-                <span key={`comma-${index}`} className="comma text-lg font-bold text-amber-900">
-                  ,
+                <span key={`separator-${index}`} className="comma text-sm font-bold text-amber-900">
+                  {char}
                 </span>
               );
             }
             return (
-              <div key={index} className="digit-wrapper overflow-hidden h-5 w-3">
+              <div key={index} className="digit-wrapper overflow-hidden h-4 w-2">
                 <div
-                  className="digit h-5 flex items-center justify-center text-lg font-bold text-amber-900 transition-transform duration-300"
+                  className="digit h-4 flex items-center justify-center text-sm font-bold text-amber-900 transition-transform duration-300"
                   style={{ transform: 'translateY(0px)' }}
                 >
                   {char}
@@ -112,25 +113,25 @@ const GoldPriceWidget = () => {
       </div>
 
       {/* Per Gram Indicator */}
-      <span className="text-[10px] text-amber-700 font-medium">/g</span>
+      <span className="text-[8px] text-amber-700 font-medium">/g</span>
 
       {/* Refresh Button */}
       <button
         onClick={handleRefresh}
         disabled={isRefreshing}
-        className="p-1 bg-amber-100 hover:bg-amber-200 rounded-full transition-colors disabled:opacity-50"
+        className="p-0.5 bg-amber-100 hover:bg-amber-200 rounded-full transition-colors disabled:opacity-50"
         aria-label="Refresh prices"
         title="Refresh gold prices"
       >
         <RefreshCw
-          className={`w-3 h-3 text-amber-700 ${isRefreshing ? 'animate-spin' : ''}`}
+          className={`w-2.5 h-2.5 text-amber-700 ${isRefreshing ? 'animate-spin' : ''}`}
         />
       </button>
 
       {/* Trend Indicator */}
       <div className="flex items-center gap-0.5">
-        <TrendingUp className="w-3 h-3 text-green-600" />
-        <span className="text-[10px] text-green-600 font-semibold">+0.5%</span>
+        <TrendingUp className="w-2.5 h-2.5 text-green-600" />
+        <span className="text-[8px] text-green-600 font-semibold">+0.5%</span>
       </div>
     </div>
   );

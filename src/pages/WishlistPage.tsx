@@ -9,12 +9,13 @@ import { useCart } from '@/contexts/CartContext';
 import { formatPrice } from '@/lib/utils';
 import Header from '@/components/ui/Header';
 import Loader from '@/components/ui/Loader';
+import { Product } from '@/types/database.types';
 
 export default function WishlistPage() {
   const { wishlistItems, removeFromWishlist, isLoading } = useWishlist();
   const { addToCart } = useCart();
 
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product: Product) => {
     addToCart(product);
   };
 

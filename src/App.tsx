@@ -7,11 +7,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { CartProvider } from '@/contexts/CartContext';
 import { WishlistProvider } from '@/contexts/WishlistContext';
+import { CurrencyProvider } from '@/contexts/CurrencyContext';
 
 // Eagerly loaded components
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import BackToTopButton from '@/components/ui/BackToTopButton';
 import Loader from '@/components/ui/Loader';
+import { PromoBanner } from '@/components/ui/PromoBanner';
 
 // Lazy loaded pages for better code splitting
 const HomePage = lazy(() => import('@/pages/HomePage'));
@@ -28,28 +30,32 @@ const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
 const CheckoutPage = lazy(() => import('@/pages/CheckoutPage'));
 const WeddingPage = lazy(() => import('@/pages/WeddingPage'));
-const DigitalGoldPage = lazy(() => import('@/pages/DigitalGoldPage'));
+// Moved to src/digital-gold - const DigitalGoldPage = lazy(() => import('@/digital-gold/DigitalGoldPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const SignupPage = lazy(() => import('@/pages/SignupPage'));
 const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
-const AdminDashboard = lazy(() => import('@/pages/AdminDashboard'));
-const AdminProductsPage = lazy(() => import('@/pages/AdminProductsPage'));
-const AdminProductFormPage = lazy(() => import('@/pages/AdminProductFormPage'));
+// Moved to src/admin - const AdminDashboard = lazy(() => import('@/admin/AdminDashboard'));
+// Moved to src/admin - const AdminProductsPage = lazy(() => import('@/admin/AdminProductsPage'));
+// Moved to src/admin - const AdminProductFormPage = lazy(() => import('@/admin/AdminProductFormPage'));
 const ComingSoonPage = lazy(() => import('@/pages/ComingSoonPage'));
 
 function App() {
   return (
-    <CartProvider>
-      <WishlistProvider>
-        <BrowserRouter>
-          <div className="min-h-screen bg-gray-50">
-            <Suspense fallback={
-              <div className="flex items-center justify-center min-h-screen">
-                <Loader />
-              </div>
-            }>
-            <Routes>
+    <CurrencyProvider>
+      <CartProvider>
+        <WishlistProvider>
+          <BrowserRouter>
+            <div className="min-h-screen bg-gray-50">
+              {/* Promotional Banner */}
+              <PromoBanner />
+
+              <Suspense fallback={
+                <div className="flex items-center justify-center min-h-screen">
+                  <Loader />
+                </div>
+              }>
+              <Routes>
               {/* Public Routes */}
               <Route path="/" element={<HomePage />} />
               <Route path="/products" element={<ProductsPage />} />
@@ -67,8 +73,8 @@ function App() {
               <Route path="/festivals" element={<FestivalsPage />} />
               <Route path="/wedding" element={<WeddingPage />} />
 
-              {/* Digital Gold Route */}
-              <Route path="/digital-gold" element={<DigitalGoldPage />} />
+              {/* Digital Gold Route - REMOVED (files moved to src/digital-gold) */}
+              {/* <Route path="/digital-gold" element={<DigitalGoldPage />} /> */}
 
               {/* Category Routes - Material & Type Specific */}
               <Route path="/categories/:categorySlug" element={<CategoryPage />} />
@@ -90,7 +96,8 @@ function App() {
               }
             />
 
-            {/* Admin Routes - Temporarily Unprotected */}
+            {/* Admin Routes - COMMENTED OUT (files moved to src/admin) */}
+            {/*
             <Route
               path="/admin"
               element={<AdminDashboard />}
@@ -107,6 +114,7 @@ function App() {
               path="/admin/products/edit/:id"
               element={<AdminProductFormPage />}
             />
+            */}
 
             {/* Catch all - 404 */}
             <Route
@@ -132,12 +140,13 @@ function App() {
           {/* Back to Top Button */}
           <BackToTopButton />
 
-          {/* Toast Notifications */}
-          <Toaster position="top-right" richColors />
+              {/* Toast Notifications */}
+              <Toaster position="top-right" richColors />
             </div>
           </BrowserRouter>
         </WishlistProvider>
       </CartProvider>
+    </CurrencyProvider>
   );
 }
 

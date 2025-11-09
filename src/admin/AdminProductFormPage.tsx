@@ -9,6 +9,7 @@ import Header from '@/components/ui/Header';
 import { useProduct, useCreateProduct, useUpdateProduct } from '@/hooks/useProducts';
 import { supabase } from '@/lib/supabase';
 import { toast } from 'sonner';
+import { Category } from '@/types/database.types';
 
 export default function AdminProductFormPage() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function AdminProductFormPage() {
     image_url: '',
   });
 
-  const [categories, setCategories] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -133,10 +134,10 @@ export default function AdminProductFormPage() {
       }
 
       navigate('/admin/products');
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error saving product:', error);
-      console.error('Error details:', error.message, error.code);
-      toast.error(`Failed to save product: ${error.message || 'Unknown error'}`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      toast.error(`Failed to save product: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
     }

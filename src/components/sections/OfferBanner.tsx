@@ -1,8 +1,9 @@
 /**
  * @component OfferBanner
- * @description CaratLane Treasure Chest offer banner
+ * @description Installment offer banner
  */
 import { Gift, ArrowRight } from 'lucide-react';
+import { InstallmentBanner } from '../ui/InstallmentBanner';
 
 const OfferBanner = () => {
   return (
@@ -10,14 +11,9 @@ const OfferBanner = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            {/* Image */}
+            {/* Installment Banner */}
             <div className="order-2 md:order-1">
-              <img
-                className="w-full h-auto rounded-2xl shadow-xl hover:shadow-2xl transition-shadow animated fadeIn"
-                src="https://cdn.caratlane.com/media/static/images/V4/2025/CL/09_SEP/Banner/TreasureChest/02/Square_Desktop.jpg"
-                alt="Treasure Chest Offer"
-                loading="lazy"
-              />
+              <InstallmentBanner />
             </div>
 
             {/* Content */}

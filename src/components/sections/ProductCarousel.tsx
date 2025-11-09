@@ -5,6 +5,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
+import { useCurrency } from '../../contexts/CurrencyContext';
 
 interface Product {
   id: string | number;
@@ -25,6 +26,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
   title = "Trending Now",
   subtitle = "Discover our most popular pieces"
 }) => {
+  const { formatPrice } = useCurrency();
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -108,11 +110,11 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
               <Link
                 key={product.id}
                 to={`/products/${product.id}`}
-                className="flex-shrink-0 w-[180px] bg-white rounded-xl overflow-hidden shadow-md hover:-translate-y-3 hover:shadow-xl transition-all duration-300 group"
+                className="flex-shrink-0 w-[140px] bg-white rounded-xl overflow-hidden shadow-md hover:-translate-y-3 hover:shadow-xl transition-all duration-300 group"
                 draggable={false}
               >
                 {/* Product Image */}
-                <div className="relative overflow-hidden h-[180px]">
+                <div className="relative overflow-hidden h-[140px]">
                   <img
                     src={product.imageUrl}
                     alt={product.name}
@@ -133,15 +135,15 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({
                 </div>
 
                 {/* Product Info */}
-                <div className="p-4">
-                  <h4 className="font-semibold text-sm mb-1 text-charcoal truncate">
+                <div className="p-3">
+                  <h4 className="font-semibold text-xs mb-1 text-charcoal truncate">
                     {product.name}
                   </h4>
-                  <p className="text-rose-gold-dark font-bold">
-                    ₹{product.price.toLocaleString('en-IN')}
+                  <p className="text-rose-gold-dark font-bold text-sm">
+                    {formatPrice(product.price)}
                   </p>
                   {product.category && (
-                    <p className="text-xs text-gray-500 mt-1 capitalize">
+                    <p className="text-[10px] text-gray-500 mt-1 capitalize">
                       {product.category}
                     </p>
                   )}

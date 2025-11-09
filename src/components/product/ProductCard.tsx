@@ -16,9 +16,9 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, ShoppingCart } from 'lucide-react';
 import { Product } from '@/types/database.types';
-import { formatPrice } from '@/lib/utils';
 import ProductImage from '@/components/images/ProductImage';
 import { useWishlist } from '@/contexts/WishlistContext';
+import { useCurrency } from '@/contexts/CurrencyContext';
 import { useCallback } from 'react';
 
 interface ProductCardProps {
@@ -28,6 +28,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
+  const { formatPrice } = useCurrency();
   const inWishlist = isInWishlist(product.id);
 
   const handleWishlistClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {

@@ -21,6 +21,7 @@ import GoldPriceWidget from '@/components/ui/GoldPriceWidget';
 import OfferBanner from '@/components/sections/OfferBanner';
 import VideoCallScheduler from '@/components/sections/VideoCallScheduler';
 import CaratLaneExpressions from '@/components/sections/CaratLaneExpressions';
+import { StyleGrid } from '@/components/sections/StyleGrid';
 
 const HomePage = () => {
   const { data: featuredProducts, isLoading } = useFeaturedProducts();
@@ -77,21 +78,6 @@ const HomePage = () => {
             {/* Glass Toggle for Gold/Silver */}
             <div className="mb-10 animate-fade-in-up" style={{animationDelay: '0.25s'}}>
               <GlassToggle defaultSelection="silver" mode="navigation" />
-            </div>
-
-            <div className="flex gap-4 justify-center flex-wrap animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-              <Link
-                to="/collections/gold"
-                className="btn bg-gradient-to-r from-amber-600 to-yellow-600 text-white hover:shadow-xl text-lg px-10 py-4 shadow-lg"
-              >
-                ✨ Shop Gold Jewelry
-              </Link>
-              <Link
-                to="/collections/silver"
-                className="btn bg-gradient-to-r from-slate-600 to-gray-600 text-white hover:shadow-xl text-lg px-10 py-4 shadow-lg"
-              >
-                💎 Shop Silver Jewelry
-              </Link>
             </div>
           </div>
         </div>
@@ -182,6 +168,9 @@ const HomePage = () => {
           )}
         </div>
       </section>
+
+      {/* Style Grid Section */}
+      <StyleGrid />
 
       {/* Shop by Occasion */}
       <ShopByOccasion />

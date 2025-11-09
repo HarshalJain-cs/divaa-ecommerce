@@ -27,11 +27,6 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
 
-  // Load wishlist on mount and when user changes
-  useEffect(() => {
-    loadWishlist();
-  }, [user]);
-
   // Load wishlist from Supabase (if logged in) or localStorage (if guest)
   const loadWishlist = async () => {
     try {
@@ -50,8 +45,12 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
         if (error) throw error;
 
         const products = data
-          ?.map((item: any) => item.products)
-          .filter(Boolean) as Product[];
+          ?.map((item: { product_id: string; products: Product | Product[] | null }) => {
+            // Supabase returns products as an array when using products (*)
+            const product = Array.isArray(item.products) ? item.products[0] : item.products;
+            return product;
+          })
+          .filter((p): p is Product => p !== null && p !== undefined) as Product[];
 
         setWishlistItems(products || []);
       } else {
@@ -78,6 +77,12 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
       setIsLoading(false);
     }
   };
+
+  // Load wishlist on mount and when user changes
+  useEffect(() => {
+    loadWishlist();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   // Add to wishlist
   const addToWishlist = async (product: Product) => {
@@ -182,6 +187,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
 }
 
 // Custom hook to use wishlist context
+// eslint-disable-next-line react-refresh/only-export-components
 export function useWishlist() {
   const context = useContext(WishlistContext);
   if (context === undefined) {

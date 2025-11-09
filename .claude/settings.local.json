@@ -8,7 +8,10 @@
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
       "Bash(cmd //c:*)",
-      "Bash(npm run type-check:*)"
+      "Bash(npm run type-check:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

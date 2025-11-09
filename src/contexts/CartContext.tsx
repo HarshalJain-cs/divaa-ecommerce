@@ -167,6 +167,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 }
 
 // Custom hook to use cart context
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCart() {
   const context = useContext(CartContext);
   if (context === undefined) {
