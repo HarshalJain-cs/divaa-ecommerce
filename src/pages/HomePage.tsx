@@ -17,7 +17,6 @@ import GiftingGuide from '@/components/sections/GiftingGuide';
 import ProductCarousel from '@/components/sections/ProductCarousel';
 import ShopByRecipient from '@/components/sections/ShopByRecipient';
 import GlassToggle from '@/components/ui/GlassToggle';
-import GoldPriceWidget from '@/components/ui/GoldPriceWidget';
 import OfferBanner from '@/components/sections/OfferBanner';
 import VideoCallScheduler from '@/components/sections/VideoCallScheduler';
 import CaratLaneExpressions from '@/components/sections/CaratLaneExpressions';
@@ -105,15 +104,6 @@ const HomePage = () => {
               <p className="font-semibold text-sm text-charcoal">25+ Years Legacy</p>
               <p className="text-xs text-gray-600">Since 1998</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Gold Price Widget Section */}
-      <section className="py-8 bg-white">
-        <div className="container-custom">
-          <div className="flex justify-center">
-            <GoldPriceWidget />
           </div>
         </div>
       </section>

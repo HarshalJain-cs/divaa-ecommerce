@@ -11,7 +11,9 @@
       "Bash(npm run type-check:*)",
       "Bash(mkdir:*)",
       "Bash(mv:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

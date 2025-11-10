@@ -2,13 +2,22 @@
  * @page WeddingPage
  * @description Wedding jewelry collection page with golden & blue theme
  */
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
 import Header from '@/components/ui/Header';
 
 const WeddingPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   // Wedding collection slides - inspired by Novel Jewels
   const weddingCollections = [
@@ -72,11 +81,39 @@ const WeddingPage = () => {
       <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #1F2B8F 0%, #D5B038 100%)' }}>
         {/* Hero Section */}
         <section className="relative py-20 overflow-hidden">
+          {/* Video Background */}
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="https://cdn.shopify.com/videos/c/o/v/8fce3ce1e77d429d96ad5e0a5b0ec3c6.mp4" type="video/mp4" />
+          </video>
+
+          {/* Dark Overlay for better text visibility */}
+          <div className="absolute inset-0 bg-black/40"></div>
+
           {/* Decorative Elements */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           </div>
+
+          {/* Mute/Unmute Button */}
+          <button
+            onClick={toggleMute}
+            className="absolute bottom-4 right-4 z-20 p-3 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg transition-all hover:scale-110"
+            aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+          >
+            {isMuted ? (
+              <VolumeX className="w-5 h-5" style={{ color: '#1F2B8F' }} />
+            ) : (
+              <Volume2 className="w-5 h-5" style={{ color: '#1F2B8F' }} />
+            )}
+          </button>
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12">

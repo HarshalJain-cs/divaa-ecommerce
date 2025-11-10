@@ -7,7 +7,8 @@ import { TrendingUp, RefreshCw } from 'lucide-react';
 import { useCurrency } from '../../contexts/CurrencyContext';
 
 interface GoldPrice {
-  karat: number;
+  karat?: number;
+  type?: string;
   price: number;
 }
 
@@ -16,13 +17,14 @@ const GoldPriceWidget = () => {
   const [currentKarat, setCurrentKarat] = useState(0); // Index for rotating display
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Gold prices per gram in USD (these would come from an API in production)
+  // Gold and silver prices per gram in USD (these would come from an API in production)
   const goldPrices: GoldPrice[] = [
     { karat: 9, price: 48.30 },   // ~4250 INR / 88
     { karat: 14, price: 74.77 },  // ~6580 INR / 88
     { karat: 18, price: 96.02 },  // ~8450 INR / 88
     { karat: 22, price: 117.27 }, // ~10320 INR / 88
     { karat: 24, price: 127.84 }, // ~11250 INR / 88
+    { type: 'S925', price: 1.85 }, // ~164 INR / 88 (Silver 925)
   ];
 
   // Auto-rotate through karats
@@ -55,7 +57,7 @@ const GoldPriceWidget = () => {
   const currencySymbol = currency === 'INR' ? '₹' : '$';
 
   return (
-    <div className="gold-price-container relative inline-flex items-center gap-1.5 px-2 py-1.5 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-lg shadow-md border border-amber-200 hover:shadow-lg transition-all duration-300">
+    <div className="gold-price-container relative inline-flex items-center gap-1.5 px-2 py-1.5 bg-gradient-to-r from-pink-50 to-pink-100 rounded-lg shadow-md border border-pink-200 hover:shadow-lg transition-all duration-300">
       {/* Gold Price Label */}
       <span className="text-[10px] font-bold text-amber-900 tracking-wide">
         GOLD
@@ -63,7 +65,7 @@ const GoldPriceWidget = () => {
 
       {/* Karat Display with Rotation Animation */}
       <div className="relative">
-        <div className="gold-circle w-6 h-6 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center shadow-md relative">
+        <div className="gold-circle w-6 h-6 bg-gradient-to-br from-pink-200 to-pink-400 rounded-full flex items-center justify-center shadow-md relative">
           <div className="carat-wrapper overflow-hidden h-3 flex items-center justify-center w-full">
             <div
               className="carat-track flex flex-col items-center transition-transform duration-600 ease-in-out"
@@ -71,12 +73,12 @@ const GoldPriceWidget = () => {
                 transform: `translateY(-${currentKarat * 12}px)`,
               }}
             >
-              {goldPrices.map((item) => (
+              {goldPrices.map((item, index) => (
                 <div
-                  key={item.karat}
-                  className="digit h-3 flex items-center justify-center text-white font-bold text-[10px]"
+                  key={item.karat || item.type || index}
+                  className="digit h-3 flex items-center justify-center text-amber-900 font-bold text-[10px]"
                 >
-                  {item.karat}K
+                  {item.type || `${item.karat}K`}
                 </div>
               ))}
             </div>
@@ -119,7 +121,7 @@ const GoldPriceWidget = () => {
       <button
         onClick={handleRefresh}
         disabled={isRefreshing}
-        className="p-0.5 bg-amber-100 hover:bg-amber-200 rounded-full transition-colors disabled:opacity-50"
+        className="p-0.5 bg-pink-100 hover:bg-pink-200 rounded-full transition-colors disabled:opacity-50"
         aria-label="Refresh prices"
         title="Refresh gold prices"
       >

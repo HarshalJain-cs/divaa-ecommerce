@@ -17,16 +17,16 @@ export function PromoBanner() {
   }, []);
 
   return (
-    <div className="w-full bg-gradient-to-r from-pink-50 to-pink-100 overflow-hidden">
-      <div className="relative h-8 flex items-center justify-center">
+    <div className="w-full bg-gradient-to-r from-pink-50 to-pink-100">
+      <div className="relative h-8 overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="absolute inset-0 flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {PROMO_MESSAGES.map((message, index) => (
             <div
               key={index}
-              className="min-w-full flex items-center justify-center"
+              className="w-full flex-shrink-0 flex items-center justify-center"
             >
               <p className="text-sm font-semibold text-rose-gold-dark tracking-wide">
                 {message}
