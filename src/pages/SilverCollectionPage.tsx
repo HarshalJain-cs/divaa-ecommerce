@@ -32,21 +32,21 @@ const SilverCollectionPage = () => {
       title: '0% Making Charge',
       description: 'On all silver jewelry',
       gradient: 'bg-gradient-to-r from-slate-600 via-gray-500 to-slate-600',
-      icon: '✨'
+      backgroundImage: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&h=400&fit=crop'
     },
     {
       id: 2,
       title: 'New Arrivals',
       description: 'Fresh designs every week',
       gradient: 'bg-gradient-to-r from-gray-700 via-slate-600 to-gray-700',
-      icon: '🆕'
+      backgroundImage: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1200&h=400&fit=crop'
     },
     {
       id: 3,
       title: 'Free Shipping',
       description: '& 30 Days Return',
       gradient: 'bg-gradient-to-r from-slate-700 via-gray-600 to-slate-700',
-      icon: '🚚'
+      backgroundImage: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1200&h=400&fit=crop'
     }
   ];
 
@@ -160,19 +160,21 @@ const SilverCollectionPage = () => {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {[
-                { name: 'Silver Rings', icon: '💍' },
-                { name: 'Silver Earrings', icon: '💎' },
-                { name: 'Silver Necklaces', icon: '📿' },
-                { name: 'Silver Bracelets', icon: '⌚' },
-                { name: 'Silver Pendants', icon: '🔸' },
-                { name: 'Silver Sets', icon: '✨' },
+                { name: 'Silver Rings', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/rings%20/Itzamna%20Ring%20by%20Coronet%20Solitaire.jpeg' },
+                { name: 'Silver Earrings', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/earrings%20/ANAPNOE%20JEWELS%20-%20Eva%20Zania.jpeg' },
+                { name: 'Silver Necklaces', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/necklace/download%20(2).jpeg' },
+                { name: 'Silver Bracelets', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/bracelets/Heart%20Shaped%20Diamonds.jpeg' },
+                { name: 'Silver Pendants', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop' },
+                { name: 'Silver Sets', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/sets/download%20(5).jpeg' },
               ].map((category) => (
                 <Link
                   key={category.name}
                   to={`/categories/${category.name.toLowerCase().replace(/ /g, '-')}`}
-                  className="flex flex-col items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 hover:border-slate-300"
+                  className="group flex flex-col items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100 hover:border-slate-300 overflow-hidden"
                 >
-                  <span className="text-4xl mb-2">{category.icon}</span>
+                  <div className="w-16 h-16 mb-3 rounded-full overflow-hidden ring-2 ring-slate-200 group-hover:ring-slate-400 transition-all">
+                    <img src={category.image} alt={category.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                  </div>
                   <span className="text-sm font-medium text-slate-900 text-center">{category.name}</span>
                 </Link>
               ))}

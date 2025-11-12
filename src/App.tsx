@@ -30,6 +30,12 @@ const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
 const CheckoutPage = lazy(() => import('@/pages/CheckoutPage'));
 const WeddingPage = lazy(() => import('@/pages/WeddingPage'));
+const PolkiBridePage = lazy(() => import('@/pages/wedding/PolkiBridePage'));
+const GoldBridePage = lazy(() => import('@/pages/wedding/GoldBridePage'));
+const SangeetCollectionPage = lazy(() => import('@/pages/wedding/SangeetCollectionPage'));
+const ReceptionCollectionPage = lazy(() => import('@/pages/wedding/ReceptionCollectionPage'));
+const HaldiCollectionPage = lazy(() => import('@/pages/wedding/HaldiCollectionPage'));
+const MehandiCollectionPage = lazy(() => import('@/pages/wedding/MehandiCollectionPage'));
 // Moved to src/digital-gold - const DigitalGoldPage = lazy(() => import('@/digital-gold/DigitalGoldPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
@@ -72,6 +78,16 @@ function App() {
               <Route path="/occasions" element={<OccasionsPage />} />
               <Route path="/festivals" element={<FestivalsPage />} />
               <Route path="/wedding" element={<WeddingPage />} />
+
+              {/* Wedding Collection Routes */}
+              <Route path="/wedding/polki-bride" element={<PolkiBridePage />} />
+              <Route path="/wedding/gold-bride" element={<GoldBridePage />} />
+              <Route path="/wedding/sangeet-collection" element={<SangeetCollectionPage />} />
+              <Route path="/wedding/sangeet-look" element={<SangeetCollectionPage />} />
+              <Route path="/wedding/reception-collection" element={<ReceptionCollectionPage />} />
+              <Route path="/wedding/reception-look" element={<ReceptionCollectionPage />} />
+              <Route path="/wedding/haldi-collection" element={<HaldiCollectionPage />} />
+              <Route path="/wedding/mehandi-collection" element={<MehandiCollectionPage />} />
 
               {/* Digital Gold Route - REMOVED (files moved to src/digital-gold) */}
               {/* <Route path="/digital-gold" element={<DigitalGoldPage />} /> */}

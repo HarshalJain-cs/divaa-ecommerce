@@ -32,21 +32,21 @@ const GoldCollectionPage = () => {
       title: '0% Making Charge',
       description: 'On all gold jewelry',
       gradient: 'bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600',
-      icon: '✨'
+      backgroundImage: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200&h=400&fit=crop'
     },
     {
       id: 2,
       title: 'New Arrivals',
       description: 'Exclusive gold collections',
       gradient: 'bg-gradient-to-r from-yellow-600 via-amber-500 to-yellow-600',
-      icon: '🆕'
+      backgroundImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1200&h=400&fit=crop'
     },
     {
       id: 3,
       title: 'Free Shipping',
       description: '& 30 Days Return',
       gradient: 'bg-gradient-to-r from-amber-700 via-yellow-600 to-amber-700',
-      icon: '🚚'
+      backgroundImage: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1200&h=400&fit=crop'
     }
   ];
 
@@ -160,19 +160,21 @@ const GoldCollectionPage = () => {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {[
-                { name: 'Gold Rings', icon: '💍' },
-                { name: 'Gold Earrings', icon: '💎' },
-                { name: 'Gold Necklaces', icon: '📿' },
-                { name: 'Gold Bracelets', icon: '⌚' },
-                { name: 'Gold Pendants', icon: '🔸' },
-                { name: 'Gold Sets', icon: '✨' },
+                { name: 'Gold Rings', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/rings%20/diamond%20ring,%20dazzling%20and%20charming_.jpeg' },
+                { name: 'Gold Earrings', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/earrings%20/Jewelry%20Photo%20Editing%20and%20Retouching%20Services.jpeg' },
+                { name: 'Gold Necklaces', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/necklace/Necklace%20Ai.jpeg' },
+                { name: 'Gold Bracelets', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/bracelets/download%20(11).jpeg' },
+                { name: 'Gold Pendants', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/pendants/download%20(12).jpeg' },
+                { name: 'Gold Sets', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/product-images/sets/Radiant%20Bridal%20Halo%20Jewelry%20Set.jpeg' },
               ].map((category) => (
                 <Link
                   key={category.name}
                   to={`/categories/${category.name.toLowerCase().replace(/ /g, '-')}`}
-                  className="flex flex-col items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-amber-100 hover:border-amber-300"
+                  className="group flex flex-col items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-amber-100 hover:border-amber-300 overflow-hidden"
                 >
-                  <span className="text-4xl mb-2">{category.icon}</span>
+                  <div className="w-16 h-16 mb-3 rounded-full overflow-hidden ring-2 ring-amber-200 group-hover:ring-amber-400 transition-all">
+                    <img src={category.image} alt={category.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                  </div>
                   <span className="text-sm font-medium text-amber-900 text-center">{category.name}</span>
                 </Link>
               ))}

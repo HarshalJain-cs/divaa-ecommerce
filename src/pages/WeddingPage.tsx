@@ -2,7 +2,7 @@
  * @page WeddingPage
  * @description Wedding jewelry collection page with golden & blue theme
  */
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Sparkles, Volume2, VolumeX } from 'lucide-react';
 import Header from '@/components/ui/Header';
@@ -18,6 +18,15 @@ const WeddingPage = () => {
       setIsMuted(!isMuted);
     }
   };
+
+  // Auto-advance carousel every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % weddingCollections.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Wedding collection slides - inspired by Novel Jewels
   const weddingCollections = [
@@ -57,12 +66,12 @@ const WeddingPage = () => {
 
   // Wedding categories
   const weddingCategories = [
-    { name: 'Polki Bride', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/BridalPolki' },
-    { name: 'Gold Bride', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Red' },
-    { name: 'Sangeet Collection', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Sangeet' },
-    { name: 'Reception Collection', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Reception' },
-    { name: 'Haldi Collection', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop' },
-    { name: 'Mehandi Collection', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=400&fit=crop' },
+    { name: 'Polki Bride', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/BridalPolki', link: '/wedding/polki-bride' },
+    { name: 'Gold Bride', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Red', link: '/wedding/gold-bride' },
+    { name: 'Sangeet Collection', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Sangeet', link: '/wedding/sangeet-collection' },
+    { name: 'Reception Collection', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Reception', link: '/wedding/reception-collection' },
+    { name: 'Haldi Collection', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop', link: '/wedding/haldi-collection' },
+    { name: 'Mehandi Collection', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=400&fit=crop', link: '/wedding/mehandi-collection' },
   ];
 
   const nextSlide = () => {
@@ -88,16 +97,16 @@ const WeddingPage = () => {
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover z-0"
           >
             <source src="https://cdn.shopify.com/videos/c/o/v/8fce3ce1e77d429d96ad5e0a5b0ec3c6.mp4" type="video/mp4" />
           </video>
 
           {/* Dark Overlay for better text visibility */}
-          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-black/40 z-10"></div>
 
           {/* Decorative Elements */}
-          <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 opacity-10 z-10">
             <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
           </div>
@@ -105,7 +114,7 @@ const WeddingPage = () => {
           {/* Mute/Unmute Button */}
           <button
             onClick={toggleMute}
-            className="absolute bottom-4 right-4 z-20 p-3 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg transition-all hover:scale-110"
+            className="absolute bottom-4 right-4 z-30 p-3 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg transition-all hover:scale-110"
             aria-label={isMuted ? 'Unmute video' : 'Mute video'}
           >
             {isMuted ? (
@@ -115,7 +124,7 @@ const WeddingPage = () => {
             )}
           </button>
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4 relative z-20">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-white mb-6">
                 <Sparkles className="w-4 h-4" />
@@ -174,15 +183,16 @@ const WeddingPage = () => {
                           <p className="text-lg mb-6 text-white/90">
                             {collection.description}
                           </p>
-                          <button
-                            className="px-8 py-3 rounded-lg font-medium transition-all"
+                          <Link
+                            to={collection.link}
+                            className="inline-block px-8 py-3 rounded-lg font-medium transition-all hover:opacity-90"
                             style={{
                               background: 'linear-gradient(135deg, #1F2B8F, #D5B038)',
                               color: 'white'
                             }}
                           >
                             Explore
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -239,7 +249,7 @@ const WeddingPage = () => {
               {weddingCategories.map((category, index) => (
                 <Link
                   key={index}
-                  to={`/wedding/${category.name.toLowerCase().replace(/ /g, '-')}`}
+                  to={category.link}
                   className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
                   style={{ aspectRatio: '1/1' }}
                 >

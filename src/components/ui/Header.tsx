@@ -139,7 +139,7 @@ export default function HeaderNew() {
               to="/wedding"
               className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium flex items-center gap-1"
             >
-              💍 Wedding
+              Wedding
             </Link>
 
             {/* Collections Dropdown */}
@@ -491,7 +491,7 @@ export default function HeaderNew() {
                 className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
                 onClick={closeMobileMenu}
               >
-                💍 Wedding
+                Wedding
               </Link>
               <Link
                 to="/collections/gold"

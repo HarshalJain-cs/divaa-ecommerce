@@ -55,13 +55,27 @@ const GoldPriceWidget = () => {
   const currentPrice = goldPrices[currentKarat];
   const priceDigits = formatPrice(currentPrice.price);
   const currencySymbol = currency === 'INR' ? '₹' : '$';
+  const isSilver = currentPrice.type === 'S925';
 
   return (
     <div className="gold-price-container relative inline-flex items-center gap-1.5 px-2 py-1.5 bg-gradient-to-r from-pink-50 to-pink-100 rounded-lg shadow-md border border-pink-200 hover:shadow-lg transition-all duration-300">
-      {/* Gold Price Label */}
-      <span className="text-[10px] font-bold text-amber-900 tracking-wide">
-        GOLD
-      </span>
+      {/* Gold/Silver Price Label with Animation */}
+      <div className="relative w-8 h-3 overflow-hidden">
+        <span
+          className={`absolute text-[10px] font-bold text-amber-900 tracking-wide transition-all duration-500 ${
+            isSilver ? 'opacity-0 -translate-y-3' : 'opacity-100 translate-y-0'
+          }`}
+        >
+          GOLD
+        </span>
+        <span
+          className={`absolute text-[10px] font-bold text-amber-900 tracking-wide transition-all duration-500 ${
+            isSilver ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          }`}
+        >
+          SILVER
+        </span>
+      </div>
 
       {/* Karat Display with Rotation Animation */}
       <div className="relative">
@@ -76,7 +90,7 @@ const GoldPriceWidget = () => {
               {goldPrices.map((item, index) => (
                 <div
                   key={item.karat || item.type || index}
-                  className="digit h-3 flex items-center justify-center text-amber-900 font-bold text-[10px]"
+                  className="digit h-3 flex items-center justify-center text-white font-bold text-[10px]"
                 >
                   {item.type || `${item.karat}K`}
                 </div>
