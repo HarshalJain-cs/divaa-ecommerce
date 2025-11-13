@@ -238,6 +238,151 @@ export function useAuth() {
   };
 
   /**
+   * Send OTP to phone number
+   */
+  const sendPhoneOTP = async (phoneNumber: string) => {
+    try {
+      setState(prev => ({ ...prev, isLoading: true, error: null }));
+
+      const { data, error } = await supabase.auth.signInWithOtp({
+        phone: phoneNumber,
+      });
+
+      if (error) throw error;
+
+      setState(prev => ({ ...prev, isLoading: false }));
+      return { data, error: null };
+    } catch (error) {
+      const authError = error as AuthError;
+      setState(prev => ({
+        ...prev,
+        error: authError,
+        isLoading: false,
+      }));
+      return { data: null, error: authError };
+    }
+  };
+
+  /**
+   * Verify phone OTP
+   */
+  const verifyPhoneOTP = async (phoneNumber: string, token: string) => {
+    try {
+      setState(prev => ({ ...prev, isLoading: true, error: null }));
+
+      const { data, error } = await supabase.auth.verifyOtp({
+        phone: phoneNumber,
+        token,
+        type: 'sms',
+      });
+
+      if (error) throw error;
+
+      setState(prev => ({
+        ...prev,
+        user: data.user,
+        isLoading: false,
+      }));
+
+      // Fetch profile if user exists
+      if (data.user) {
+        await fetchProfile(data.user.id);
+      }
+
+      return { data, error: null };
+    } catch (error) {
+      const authError = error as AuthError;
+      setState(prev => ({
+        ...prev,
+        error: authError,
+        isLoading: false,
+      }));
+      return { data: null, error: authError };
+    }
+  };
+
+  /**
+   * Check if phone number exists in profiles
+   */
+  const checkPhoneExists = async (phoneNumber: string): Promise<boolean> => {
+    try {
+      // Parse phone number to extract country code and number
+      const phoneMatch = phoneNumber.match(/^\+(\d{1,3})(\d+)$/);
+      if (!phoneMatch) return false;
+
+      const countryCode = `+${phoneMatch[1]}`;
+      const phone = phoneMatch[2];
+
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('country_code', countryCode)
+        .eq('phone', phone)
+        .single();
+
+      if (error && error.code !== 'PGRST116') {
+        // PGRST116 is "no rows found" - not an actual error
+        console.error('Error checking phone:', error);
+      }
+
+      return !!data;
+    } catch (error) {
+      console.error('Error checking phone exists:', error);
+      return false;
+    }
+  };
+
+  /**
+   * Sign in with phone (login flow)
+   */
+  const signInWithPhone = async (phoneNumber: string, token: string) => {
+    try {
+      // Verify the OTP and sign in
+      const result = await verifyPhoneOTP(phoneNumber, token);
+      return result;
+    } catch (error) {
+      const authError = error as AuthError;
+      return { data: null, error: authError };
+    }
+  };
+
+  /**
+   * Sign up with phone (signup flow)
+   */
+  const signUpWithPhone = async (
+    phoneNumber: string,
+    token: string,
+    profileData?: { full_name?: string; email?: string }
+  ) => {
+    try {
+      // First verify the OTP
+      const result = await verifyPhoneOTP(phoneNumber, token);
+
+      if (result.error || !result.data?.user) {
+        return result;
+      }
+
+      // Update profile with phone number and additional data
+      const phoneMatch = phoneNumber.match(/^\+(\d{1,3})(\d+)$/);
+      if (phoneMatch) {
+        const countryCode = `+${phoneMatch[1]}`;
+        const phone = phoneMatch[2];
+
+        await updateProfile({
+          country_code: countryCode,
+          phone: phone,
+          ...profileData,
+        });
+      }
+
+      return result;
+    } catch (error) {
+      const authError = error as AuthError;
+      return { data: null, error: authError };
+    }
+  };
+
+  /**
    * Check if user is admin
    */
   const isAdmin = state.profile?.role === 'admin';
@@ -253,5 +398,11 @@ export function useAuth() {
     signOut,
     updateProfile,
     refetchProfile: () => state.user && fetchProfile(state.user.id),
+    // Phone authentication
+    sendPhoneOTP,
+    verifyPhoneOTP,
+    checkPhoneExists,
+    signInWithPhone,
+    signUpWithPhone,
   };
 }

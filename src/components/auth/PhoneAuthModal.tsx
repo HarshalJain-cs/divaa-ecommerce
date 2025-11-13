@@ -10,8 +10,12 @@ import CountryCodeSelect from './CountryCodeSelect';
 import { CountryCodeOption, ALL_COUNTRIES, PhoneAuthModalProps } from '../../types/auth';
 import { validatePhoneNumber } from '../../utils/phoneValidation';
 import { formatForSMS } from '../../utils/phoneFormatter';
+import { useAuth } from '../../hooks/useAuth';
 
 const PhoneAuthModal = ({ isOpen, onClose, mode, onSuccess, onError }: PhoneAuthModalProps) => {
+  // Auth hook
+  const { sendPhoneOTP, checkPhoneExists, signInWithPhone, signUpWithPhone } = useAuth();
+
   // Step management
   const [step, setStep] = useState<'phone' | 'otp'>('phone');
 
@@ -109,22 +113,14 @@ const PhoneAuthModal = ({ isOpen, onClose, mode, onSuccess, onError }: PhoneAuth
     try {
       const fullNumber = formatForSMS(selectedCountry.dialCode, phoneNumber);
 
-      // TODO: Replace with actual Supabase phone auth using fullNumber
-      // await supabase.auth.signInWithOtp({ phone: fullNumber })
-      // For now, simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log('Sending OTP to:', fullNumber); // Remove when implementing actual auth
-
       // Check if phone exists (for login) or doesn't exist (for signup)
-      // This is a placeholder - implement actual check with Supabase
-      const phoneExists = false; // Replace with actual check
+      const phoneExists = await checkPhoneExists(fullNumber);
 
       if (mode === 'signup' && phoneExists) {
         setPhoneError('Phone number already registered. Please login instead.');
         onError('Phone number already exists');
         setTimeout(() => {
           handleClose();
-          // Redirect to login would happen in parent component
         }, 2000);
         return;
       }
@@ -134,9 +130,15 @@ const PhoneAuthModal = ({ isOpen, onClose, mode, onSuccess, onError }: PhoneAuth
         onError('Phone number not found');
         setTimeout(() => {
           handleClose();
-          // Redirect to signup would happen in parent component
         }, 2000);
         return;
+      }
+
+      // Send OTP via Supabase
+      const { error } = await sendPhoneOTP(fullNumber);
+
+      if (error) {
+        throw new Error(error.message);
       }
 
       // OTP sent successfully
@@ -221,16 +223,16 @@ const PhoneAuthModal = ({ isOpen, onClose, mode, onSuccess, onError }: PhoneAuth
     try {
       const fullNumber = formatForSMS(selectedCountry.dialCode, phoneNumber);
 
-      // TODO: Replace with actual Supabase OTP verification using fullNumber and otpCode
-      // await supabase.auth.verifyOtp({ phone: fullNumber, token: otpCode, type: 'sms' })
-      // For now, simulate verification
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log('Verifying OTP for:', fullNumber); // Remove when implementing actual auth
+      // Verify OTP with Supabase
+      let result;
+      if (mode === 'login') {
+        result = await signInWithPhone(fullNumber, otpCode);
+      } else {
+        result = await signUpWithPhone(fullNumber, otpCode);
+      }
 
-      // Simulate success/failure
-      const isValid = otpCode === '123456'; // Replace with actual verification
-
-      if (!isValid) {
+      if (result.error) {
+        // OTP verification failed
         setOtpAttempts((prev) => prev + 1);
         const remaining = 5 - (otpAttempts + 1);
 
@@ -279,10 +281,15 @@ const PhoneAuthModal = ({ isOpen, onClose, mode, onSuccess, onError }: PhoneAuth
     setOtpError('');
 
     try {
-      // TODO: Implement actual resend OTP logic
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      // Show success message
-    } catch (error) {
+      const fullNumber = formatForSMS(selectedCountry.dialCode, phoneNumber);
+      const { error } = await sendPhoneOTP(fullNumber);
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      // OTP resent successfully - countdown will restart automatically
+    } catch (error: any) {
       setOtpError('Failed to resend OTP. Please try again.');
       setCanResend(true);
     }

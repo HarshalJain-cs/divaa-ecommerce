@@ -12,6 +12,7 @@ export interface Profile {
   email: string
   full_name?: string
   avatar_url?: string
+  country_code?: string
   phone?: string
   role: 'customer' | 'admin'
   created_at: string
