@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Heart, ShoppingCart, Trash2, ArrowLeft } from 'lucide-react';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { useCart } from '@/contexts/CartContext';
-import { formatPrice } from '@/lib/utils';
+import { useCurrency } from '@/contexts/CurrencyContext';
 import Header from '@/components/ui/Header';
 import Loader from '@/components/ui/Loader';
 import { Product } from '@/types/database.types';
@@ -14,6 +14,7 @@ import { Product } from '@/types/database.types';
 export default function WishlistPage() {
   const { wishlistItems, removeFromWishlist, isLoading } = useWishlist();
   const { addToCart } = useCart();
+  const { formatPrice } = useCurrency();
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);

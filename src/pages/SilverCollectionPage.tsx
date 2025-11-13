@@ -171,12 +171,12 @@ const SilverCollectionPage = () => {
                 <Link
                   key={category.name}
                   to={`/categories/${category.name.toLowerCase().replace(/ /g, '-')}`}
-                  className="group flex flex-col items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100 hover:border-slate-300 overflow-hidden"
+                  className="group flex flex-col items-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-slate-100 hover:border-slate-300 overflow-hidden"
                 >
-                  <div className="w-16 h-16 mb-3 rounded-full overflow-hidden ring-2 ring-slate-200 group-hover:ring-slate-400 transition-all">
+                  <div className="w-24 h-24 mb-4 rounded-full overflow-hidden ring-2 ring-slate-200 group-hover:ring-slate-400 transition-all">
                     <img src={category.image} alt={category.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <span className="text-sm font-medium text-slate-900 text-center">{category.name}</span>
+                  <span className="text-base font-medium text-slate-900 text-center">{category.name}</span>
                 </Link>
               ))}
             </div>

@@ -5,12 +5,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Trash2, Plus, Minus, ArrowLeft } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
-import { formatPrice } from '@/lib/utils';
+import { useCurrency } from '@/contexts/CurrencyContext';
 import Header from '@/components/ui/Header';
 
 export default function CartPage() {
   const navigate = useNavigate();
   const { items, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
+  const { formatPrice } = useCurrency();
 
   // Empty cart state
   if (items.length === 0) {
