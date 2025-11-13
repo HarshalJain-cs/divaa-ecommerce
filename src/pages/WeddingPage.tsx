@@ -19,15 +19,6 @@ const WeddingPage = () => {
     }
   };
 
-  // Auto-advance carousel every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % weddingCollections.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   // Wedding collection slides - inspired by Novel Jewels
   const weddingCollections = [
     {
@@ -63,6 +54,15 @@ const WeddingPage = () => {
       link: '/wedding/reception-look',
     },
   ];
+
+  // Auto-advance carousel every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % weddingCollections.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [weddingCollections.length]);
 
   // Wedding categories
   const weddingCategories = [

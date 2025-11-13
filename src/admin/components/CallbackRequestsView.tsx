@@ -61,7 +61,11 @@ export default function CallbackRequestsView() {
     notes?: string
   ) => {
     try {
-      const updateData: any = {
+      const updateData: {
+        status: string;
+        called_at: string | null;
+        notes?: string;
+      } = {
         status,
         called_at: status === 'called' ? new Date().toISOString() : null,
       };
@@ -113,6 +117,7 @@ export default function CallbackRequestsView() {
 
   useEffect(() => {
     fetchRequests();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
   return (

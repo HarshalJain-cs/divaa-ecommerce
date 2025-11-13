@@ -145,9 +145,10 @@ const PhoneAuthModal = ({ isOpen, onClose, mode, onSuccess, onError }: PhoneAuth
       setStep('otp');
       setResendCountdown(30);
       setCanResend(false);
-    } catch (error: any) {
-      setPhoneError(error.message || 'Failed to send OTP. Please try again.');
-      onError(error.message || 'Failed to send OTP');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to send OTP. Please try again.';
+      setPhoneError(errorMessage);
+      onError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -261,8 +262,9 @@ const PhoneAuthModal = ({ isOpen, onClose, mode, onSuccess, onError }: PhoneAuth
       });
 
       handleClose();
-    } catch (error: any) {
-      setOtpError(error.message || 'Verification failed. Please try again.');
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Verification failed. Please try again.';
+      setOtpError(errorMessage);
       setOtp(['', '', '', '', '', '']);
       otpInputRefs.current[0]?.focus();
     } finally {
@@ -289,7 +291,7 @@ const PhoneAuthModal = ({ isOpen, onClose, mode, onSuccess, onError }: PhoneAuth
       }
 
       // OTP resent successfully - countdown will restart automatically
-    } catch (error: any) {
+    } catch (error: unknown) {
       setOtpError('Failed to resend OTP. Please try again.');
       setCanResend(true);
     }

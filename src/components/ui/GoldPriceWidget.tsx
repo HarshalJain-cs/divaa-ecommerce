@@ -33,7 +33,7 @@ const GoldPriceWidget = () => {
       setCurrentKarat((prev) => (prev + 1) % goldPrices.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [goldPrices.length]);
 
   // Simulate price refresh (in production, this would call an API)
   const handleRefresh = async () => {

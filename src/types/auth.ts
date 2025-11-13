@@ -179,7 +179,7 @@ export enum PhoneAuthErrorCode {
 export interface PhoneAuthError {
   code: PhoneAuthErrorCode;
   message: string;
-  details?: any;
+  details?: unknown;
 }
 
 // Country code data
