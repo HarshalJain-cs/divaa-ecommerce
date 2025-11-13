@@ -251,6 +251,7 @@ export function useAuth() {
       if (error) throw error;
 
       setState(prev => ({ ...prev, isLoading: false }));
+
       return { data, error: null };
     } catch (error) {
       const authError = error as AuthError;
@@ -284,7 +285,6 @@ export function useAuth() {
         isLoading: false,
       }));
 
-      // Fetch profile if user exists
       if (data.user) {
         await fetchProfile(data.user.id);
       }
@@ -302,89 +302,87 @@ export function useAuth() {
   };
 
   /**
-   * Check if phone number exists in profiles
-   */
-  const checkPhoneExists = async (phoneNumber: string): Promise<boolean> => {
-    try {
-      // Parse phone number to extract country code and number
-      const phoneMatch = phoneNumber.match(/^\+(\d{1,3})(\d+)$/);
-      if (!phoneMatch) return false;
-
-      const countryCode = `+${phoneMatch[1]}`;
-      const phone = phoneMatch[2];
-
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('id')
-        .eq('country_code', countryCode)
-        .eq('phone', phone)
-        .single();
-
-      if (error && error.code !== 'PGRST116') {
-        // PGRST116 is "no rows found" - not an actual error
-        console.error('Error checking phone:', error);
-      }
-
-      return !!data;
-    } catch (error) {
-      console.error('Error checking phone exists:', error);
-      return false;
-    }
-  };
-
-  /**
-   * Sign in with phone (login flow)
+   * Sign in with phone number
    */
   const signInWithPhone = async (phoneNumber: string, token: string) => {
-    try {
-      // Verify the OTP and sign in
-      const result = await verifyPhoneOTP(phoneNumber, token);
-      return result;
-    } catch (error) {
-      const authError = error as AuthError;
-      return { data: null, error: authError };
-    }
+    return verifyPhoneOTP(phoneNumber, token);
   };
 
   /**
-   * Sign up with phone (signup flow)
+   * Sign up with phone number
    */
   const signUpWithPhone = async (
     phoneNumber: string,
     token: string,
-    profileData?: { full_name?: string; email?: string }
+    profileData?: {
+      full_name?: string;
+      email?: string;
+      country_code?: string;
+      phone?: string;
+    }
   ) => {
     try {
-      // First verify the OTP
-      const result = await verifyPhoneOTP(phoneNumber, token);
+      setState(prev => ({ ...prev, isLoading: true, error: null }));
 
-      if (result.error || !result.data?.user) {
-        return result;
+      const { data: authData, error: authError } = await supabase.auth.verifyOtp({
+        phone: phoneNumber,
+        token,
+        type: 'sms',
+      });
+
+      if (authError) throw authError;
+
+      if (authData.user && profileData) {
+        await supabase
+          .from('profiles')
+          .update({
+            ...profileData,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', authData.user.id);
       }
 
-      // Update profile with phone number and additional data
-      const phoneMatch = phoneNumber.match(/^\+(\d{1,3})(\d+)$/);
-      if (phoneMatch) {
-        const countryCode = `+${phoneMatch[1]}`;
-        const phone = phoneMatch[2];
+      setState(prev => ({
+        ...prev,
+        user: authData.user,
+        isLoading: false,
+      }));
 
-        await updateProfile({
-          country_code: countryCode,
-          phone: phone,
-          ...profileData,
-        });
+      if (authData.user) {
+        await fetchProfile(authData.user.id);
       }
 
-      return result;
+      return { data: authData, error: null };
     } catch (error) {
       const authError = error as AuthError;
+      setState(prev => ({
+        ...prev,
+        error: authError,
+        isLoading: false,
+      }));
       return { data: null, error: authError };
     }
   };
 
   /**
-   * Check if user is admin
+   * Check if phone number exists
    */
+  const checkPhoneExists = async (phoneNumber: string): Promise<boolean> => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('phone', phoneNumber)
+        .limit(1);
+
+      if (error) throw error;
+
+      return data && data.length > 0;
+    } catch (error) {
+      return false;
+    }
+  };
+
   const isAdmin = state.profile?.role === 'admin';
 
   return {
@@ -397,12 +395,11 @@ export function useAuth() {
     signIn,
     signOut,
     updateProfile,
-    refetchProfile: () => state.user && fetchProfile(state.user.id),
-    // Phone authentication
-    sendPhoneOTP,
-    verifyPhoneOTP,
-    checkPhoneExists,
-    signInWithPhone,
-    signUpWithPhone,
+    refetchProfile: () => state.user ? fetchProfile(state.user.id) : undefined,
+    sendPhoneOTP,           // Add this
+    verifyPhoneOTP,         // Add this
+    signInWithPhone,        // Add this
+    signUpWithPhone,        // Add this
+    checkPhoneExists,       // Add this
   };
 }

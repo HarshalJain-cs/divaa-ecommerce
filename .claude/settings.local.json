@@ -13,7 +13,12 @@
       "Bash(mv:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(powershell -Command \"(Get-Content ''c:\\Users\\Admin\\Downloads\\harry\\diva.final.cursor\\divaa-ecommerce\\src\\components\\ui\\GoldPriceWidget.tsx'') -replace ''bg-gradient-to-br from-pink-200 to-pink-400'', ''bg-[#FAF9F6]'' | Set-Content ''c:\\Users\\Admin\\Downloads\\harry\\diva.final.cursor\\divaa-ecommerce\\src\\components\\ui\\GoldPriceWidget.tsx''\")",
+      "Bash(powershell -Command:*)",
+      "Bash(git reset:*)",
+      "Bash(\"c:\\Users\\Admin\\Downloads\\harry\\diva.final.cursor\\divaa-ecommerce\\.gitignore\")",
+      "Bash(tasklist:*)"
     ],
     "deny": [],
     "ask": []

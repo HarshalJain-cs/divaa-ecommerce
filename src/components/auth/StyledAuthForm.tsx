@@ -1,13 +1,10 @@
-/**
- * @component StyledAuthForm
- * @description Modern authentication form with styled-components
- */
-import { useState } from 'react';
+import { FormEvent, useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'sonner';
 import { Phone } from 'lucide-react';
+
+import { useAuth } from '@/hooks/useAuth';
 import PhoneAuthModal from './PhoneAuthModal';
 import { PhoneAuthSuccessData } from '@/types/auth';
 
@@ -21,91 +18,128 @@ const StyledAuthForm = ({ mode }: StyledAuthFormProps) => {
   const [fullName, setFullName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPhoneModal, setShowPhoneModal] = useState(false);
+
   const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const heading = useMemo(
+    () => (mode === 'login' ? 'Welcome back' : 'Create account'),
+    [mode]
+  );
 
-    if (!email) {
+  const subheading = useMemo(
+    () => (mode === 'login' ? 'Sign in to continue' : 'Sign up to get started'),
+    [mode]
+  );
+
+  const passwordPlaceholder = useMemo(
+    () => (mode === 'signup' ? 'Password (min 6 characters)' : 'Password'),
+    [mode]
+  );
+
+  const handleEmailSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const normalizedEmail = email.trim().toLowerCase();
+    const normalizedFullName = fullName.trim();
+    const normalizedPassword = password.trim();
+
+    setEmail(normalizedEmail);
+    setFullName(normalizedFullName);
+    setPassword(normalizedPassword);
+
+    if (!normalizedEmail) {
       toast.error('Please enter your email');
       return;
     }
 
-    if (mode === 'signup' && !fullName) {
-      toast.error('Please enter your full name');
-      return;
-    }
-
-    if (!password) {
+    if (!normalizedPassword) {
       toast.error('Please enter your password');
       return;
     }
 
-    if (password.length < 6) {
-      toast.error('Password must be at least 6 characters');
-      return;
+    if (mode === 'signup') {
+      if (!normalizedFullName) {
+        toast.error('Please enter your full name');
+        return;
+      }
+
+      if (normalizedPassword.length < 6) {
+        toast.error('Password must be at least 6 characters');
+        return;
+      }
     }
 
     setIsLoading(true);
 
     try {
       if (mode === 'login') {
-        const { error } = await signIn({ email, password });
+        const { error } = await signIn({ email: normalizedEmail, password: normalizedPassword });
 
         if (error) {
           toast.error(error.message || 'Failed to sign in');
-        } else {
-          toast.success('Welcome back!');
-          navigate('/');
+          return;
         }
+
+        toast.success('Welcome back!');
+        navigate('/');
       } else {
-        const { error } = await signUp({ email, password, full_name: fullName });
+        const { error } = await signUp({
+          email: normalizedEmail,
+          password: normalizedPassword,
+          full_name: normalizedFullName,
+        });
 
         if (error) {
           toast.error(error.message || 'Failed to sign up');
-        } else {
-          toast.success('Account created successfully! Please check your email to verify.');
-          navigate('/');
+          return;
         }
+
+        toast.success('Account created successfully! Please check your email to verify.');
+        navigate('/');
       }
     } catch (error) {
-      toast.error('An unexpected error occurred');
+      console.error('Email authentication error:', error);
+      toast.error('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleGoogleLogin = () => {
-    toast.info('Google OAuth coming soon!');
-  };
-
-  const handlePhoneSuccess = async (data: PhoneAuthSuccessData) => {
-    if (mode === 'signup' && data.needsProfile) {
-      toast.success('Phone verified! Please complete your profile.');
+  const handlePhoneSuccess = useCallback(
+    (data: PhoneAuthSuccessData) => {
       setShowPhoneModal(false);
-      // Pre-fill phone data if available
-      // The user will then fill name, email, password in the form
-    } else {
-      toast.success('Welcome back!');
-      navigate('/');
-    }
-  };
 
-  const handlePhoneError = (error: string) => {
-    toast.error(error);
-  };
+      if (data.verified) {
+        const successMessage =
+          mode === 'login'
+            ? 'Signed in successfully with phone number!'
+            : 'Phone number verified! Your account has been created.';
+
+        toast.success(successMessage);
+        navigate('/');
+      } else {
+        toast.info('Phone verification pending. Please complete the verification flow.');
+      }
+    },
+    [mode, navigate]
+  );
+
+  const handlePhoneError = useCallback((message: string) => {
+    setShowPhoneModal(false);
+    toast.error(message || 'Phone authentication failed. Please try again.');
+  }, []);
 
   return (
     <StyledWrapper>
       <form onSubmit={handleEmailSubmit} className="form">
         <p>
-          {mode === 'login' ? 'Welcome back' : 'Create account'}
-          <span>{mode === 'login' ? 'Sign in to continue' : 'Sign up to get started'}</span>
+          {heading}
+          <span>{subheading}</span>
         </p>
 
-        <button type="button" className="oauthButton" onClick={handleGoogleLogin}>
-          <svg className="icon" viewBox="0 0 24 24">
+        <button type="button" className="oauthButton" onClick={() => toast.info('Google OAuth coming soon!')}>
+          <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
             <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
@@ -116,8 +150,15 @@ const StyledAuthForm = ({ mode }: StyledAuthFormProps) => {
         </button>
 
         <button type="button" className="oauthButton" onClick={() => setShowPhoneModal(true)}>
-          <Phone className="icon" />
+          <Phone className="icon" aria-hidden="true" />
           Continue with Phone
+        </button>
+
+        <button type="button" className="oauthButton" onClick={() => toast.info('GitHub OAuth coming soon!')}>
+          <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+          </svg>
+          Continue with GitHub
         </button>
 
         <div className="separator">
@@ -132,8 +173,9 @@ const StyledAuthForm = ({ mode }: StyledAuthFormProps) => {
             placeholder="Full Name"
             name="fullName"
             value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            onChange={(event) => setFullName(event.target.value)}
             disabled={isLoading}
+            autoComplete="name"
           />
         )}
 
@@ -142,36 +184,37 @@ const StyledAuthForm = ({ mode }: StyledAuthFormProps) => {
           placeholder="Email"
           name="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(event) => setEmail(event.target.value)}
           disabled={isLoading}
+          autoComplete="email"
         />
 
-        {mode === 'signup' && (
-          <input
-            type="password"
-            placeholder="Password (min 6 characters)"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={isLoading}
-          />
-        )}
+        <input
+          type="password"
+          placeholder={passwordPlaceholder}
+          name="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          disabled={isLoading}
+          autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+        />
 
-        {mode === 'login' && (
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={isLoading}
-          />
-        )}
-
-        <button type="submit" className="oauthButton" disabled={isLoading}>
-          {isLoading ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Create Account'}
+        <button type="submit" className="submitButton" disabled={isLoading}>
+          {isLoading ? 'Please wait…' : mode === 'login' ? 'Sign In' : 'Create Account'}
           {!isLoading && (
-            <svg className="icon" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              className="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width={24}
+              height={24}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <path d="m6 17 5-5-5-5" />
               <path d="m13 17 5-5-5-5" />
             </svg>
@@ -191,7 +234,6 @@ const StyledAuthForm = ({ mode }: StyledAuthFormProps) => {
 };
 
 const StyledWrapper = styled.div`
-  /* DEOXY Was Here */
   .form {
     --background: #d3d3d3;
     --input-focus: #2d8cf0;
@@ -199,17 +241,15 @@ const StyledWrapper = styled.div`
     --font-color-sub: #666;
     --bg-color: #fff;
     --main-color: #323232;
-    padding: 20px;
-    background: var(--background);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
     gap: 20px;
-    border-radius: 5px;
+    padding: 24px;
+    background: var(--background);
+    border-radius: 12px;
     border: 2px solid var(--main-color);
-    box-shadow: 4px 4px var(--main-color);
-    max-width: 350px;
+    box-shadow: 4px 4px 0 0 var(--main-color);
+    max-width: 360px;
     width: 100%;
   }
 
@@ -218,16 +258,17 @@ const StyledWrapper = styled.div`
     color: var(--font-color);
     font-weight: 700;
     font-size: 20px;
-    margin-bottom: 15px;
+    margin: 0;
     display: flex;
     flex-direction: column;
+    gap: 4px;
   }
 
   .form > p > span {
     font-family: system-ui, -apple-system, sans-serif;
     color: var(--font-color-sub);
     font-weight: 600;
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .separator {
@@ -235,13 +276,13 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 8px;
   }
 
   .separator > div {
     flex: 1;
-    height: 3px;
-    border-radius: 5px;
+    height: 2px;
+    border-radius: 999px;
     background-color: var(--font-color-sub);
   }
 
@@ -249,83 +290,100 @@ const StyledWrapper = styled.div`
     color: var(--font-color);
     font-family: system-ui, -apple-system, sans-serif;
     font-weight: 600;
+    font-size: 14px;
   }
 
-  .oauthButton {
+  .oauthButton,
+  .submitButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    padding: auto 15px 15px auto;
+    gap: 8px;
+    padding: 0 16px;
     width: 100%;
-    height: 40px;
-    border-radius: 5px;
+    height: 44px;
+    border-radius: 8px;
     border: 2px solid var(--main-color);
     background-color: var(--bg-color);
-    box-shadow: 4px 4px var(--main-color);
+    box-shadow: 4px 4px 0 0 var(--main-color);
     font-size: 16px;
     font-weight: 600;
     color: var(--font-color);
     cursor: pointer;
-    transition: all 250ms;
+    transition: transform 150ms ease, box-shadow 150ms ease, color 150ms ease;
     position: relative;
     overflow: hidden;
-    z-index: 1;
   }
 
-  .oauthButton:disabled {
+  .oauthButton:disabled,
+  .submitButton:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+    box-shadow: 2px 2px 0 0 var(--main-color);
   }
 
-  .oauthButton::before {
-    content: "";
+  .oauthButton::before,
+  .submitButton::before {
+    content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
+    inset: 0;
     background-color: #212121;
-    z-index: -1;
-    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-    transition: all 250ms;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms ease;
+    z-index: 0;
   }
 
-  .oauthButton:hover:not(:disabled) {
-    color: #e8e8e8;
+  .oauthButton:hover:not(:disabled),
+  .submitButton:hover:not(:disabled) {
+    color: #f5f5f5;
+    box-shadow: 6px 6px 0 0 var(--main-color);
+    transform: translate(-2px, -2px);
   }
 
-  .oauthButton:hover:not(:disabled)::before {
-    width: 100%;
+  .oauthButton:hover:not(:disabled)::before,
+  .submitButton:hover:not(:disabled)::before {
+    transform: scaleX(1);
+  }
+
+  .oauthButton .icon,
+  .submitButton .icon {
+    position: relative;
+    z-index: 1;
   }
 
   .form > input {
     width: 100%;
-    height: 40px;
-    border-radius: 5px;
+    height: 44px;
+    border-radius: 8px;
     border: 2px solid var(--main-color);
     background-color: var(--bg-color);
-    box-shadow: 4px 4px var(--main-color);
+    box-shadow: 4px 4px 0 0 var(--main-color);
     font-size: 15px;
     font-weight: 600;
     color: var(--font-color);
-    padding: 5px 10px;
+    padding: 8px 12px;
     outline: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
   }
 
   .form > input:focus {
     border-color: var(--input-focus);
+    box-shadow: 4px 4px 0 0 var(--input-focus);
   }
 
   .form > input:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+    box-shadow: 2px 2px 0 0 var(--main-color);
   }
 
   .icon {
     width: 1.5rem;
     height: 1.5rem;
+    flex-shrink: 0;
   }
 `;
 
 export default StyledAuthForm;
+ 
