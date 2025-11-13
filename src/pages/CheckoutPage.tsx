@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Package, Truck, CreditCard, CheckCircle2, MapPin, Phone, Mail, User } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
-import { formatPrice } from '@/lib/utils';
+import { useCurrency } from '@/contexts/CurrencyContext';
 import Header from '@/components/ui/Header';
 import { toast } from 'sonner';
 
@@ -27,6 +27,7 @@ type CheckoutStep = 'address' | 'payment' | 'confirmation';
 export default function CheckoutPage() {
   const navigate = useNavigate();
   const { items, cartTotal, clearCart } = useCart();
+  const { formatPrice } = useCurrency();
   const [currentStep, setCurrentStep] = useState<CheckoutStep>('address');
   const [addressForm, setAddressForm] = useState<AddressForm>({
     fullName: '',
