@@ -36,6 +36,28 @@ const SangeetCollectionPage = lazy(() => import('@/pages/wedding/SangeetCollecti
 const ReceptionCollectionPage = lazy(() => import('@/pages/wedding/ReceptionCollectionPage'));
 const HaldiCollectionPage = lazy(() => import('@/pages/wedding/HaldiCollectionPage'));
 const MehandiCollectionPage = lazy(() => import('@/pages/wedding/MehandiCollectionPage'));
+// Collections Pages
+const TimelessPearlsPage = lazy(() => import('@/pages/collections/TimelessPearlsPage'));
+const FreshDropsPage = lazy(() => import('@/pages/collections/FreshDropsPage'));
+const StackableCollectionPage = lazy(() => import('@/pages/collections/StackableCollectionPage'));
+// Gifting Pages
+const GiftsForWifePage = lazy(() => import('@/pages/gifting/GiftsForWifePage'));
+const GiftsForHusbandPage = lazy(() => import('@/pages/gifting/GiftsForHusbandPage'));
+const GiftsForMotherPage = lazy(() => import('@/pages/gifting/GiftsForMotherPage'));
+const GiftsForBrotherPage = lazy(() => import('@/pages/gifting/GiftsForBrotherPage'));
+const GiftsForSisterPage = lazy(() => import('@/pages/gifting/GiftsForSisterPage'));
+const GiftsForFriendsPage = lazy(() => import('@/pages/gifting/GiftsForFriendsPage'));
+// Men's Jewelry Pages
+const MensRingsPage = lazy(() => import('@/pages/mens/MensRingsPage'));
+const MensPendantsPage = lazy(() => import('@/pages/mens/MensPendantsPage'));
+const MensEarringsPage = lazy(() => import('@/pages/mens/MensEarringsPage'));
+const MensBraceletsPage = lazy(() => import('@/pages/mens/MensBraceletsPage'));
+const MensChainsPage = lazy(() => import('@/pages/mens/MensChainsPage'));
+const MensSetsPage = lazy(() => import('@/pages/mens/MensSetsPage'));
+// Occasions Pages
+const AnniversaryGiftsPage = lazy(() => import('@/pages/occasions/AnniversaryGiftsPage'));
+const MostGiftedPage = lazy(() => import('@/pages/occasions/MostGiftedPage'));
+const BirthdayGiftsPage = lazy(() => import('@/pages/occasions/BirthdayGiftsPage'));
 // Moved to src/digital-gold - const DigitalGoldPage = lazy(() => import('@/digital-gold/DigitalGoldPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
@@ -72,6 +94,33 @@ function App() {
               <Route path="/collections/gold" element={<GoldCollectionPage />} />
               <Route path="/collections/silver" element={<SilverCollectionPage />} />
               <Route path="/collections/diamond" element={<DiamondCollectionPage />} />
+
+              {/* Silver Collections Routes */}
+              <Route path="/collections/timeless-pearls" element={<TimelessPearlsPage />} />
+              <Route path="/collections/fresh-drops" element={<FreshDropsPage />} />
+              <Route path="/collections/stackable" element={<StackableCollectionPage />} />
+
+              {/* Gifting Routes */}
+              <Route path="/gifting/wife" element={<GiftsForWifePage />} />
+              <Route path="/gifting/husband" element={<GiftsForHusbandPage />} />
+              <Route path="/gifting/mother" element={<GiftsForMotherPage />} />
+              <Route path="/gifting/brother" element={<GiftsForBrotherPage />} />
+              <Route path="/gifting/sister" element={<GiftsForSisterPage />} />
+              <Route path="/gifting/friends" element={<GiftsForFriendsPage />} />
+
+              {/* Men's Jewelry Routes */}
+              <Route path="/mens/rings" element={<MensRingsPage />} />
+              <Route path="/mens/pendants" element={<MensPendantsPage />} />
+              <Route path="/mens/earrings" element={<MensEarringsPage />} />
+              <Route path="/mens/bracelets" element={<MensBraceletsPage />} />
+              <Route path="/mens/chains" element={<MensChainsPage />} />
+              <Route path="/mens/sets" element={<MensSetsPage />} />
+
+              {/* Occasions Routes */}
+              <Route path="/occasions/anniversary" element={<AnniversaryGiftsPage />} />
+              <Route path="/occasions/most-gifted" element={<MostGiftedPage />} />
+              <Route path="/occasions/birthday" element={<BirthdayGiftsPage />} />
+
               <Route path="/collections/:collectionId" element={<CollectionPage />} />
 
               {/* Occasion & Festival Routes */}

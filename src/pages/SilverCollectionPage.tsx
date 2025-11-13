@@ -182,6 +182,155 @@ const SilverCollectionPage = () => {
           </div>
         </section>
 
+        {/* Collections Grid Section */}
+        <section className="py-16 bg-gradient-to-b from-white to-slate-50/30">
+          <div className="container-custom">
+            <h2 className="text-3xl font-serif font-bold text-center mb-12 text-slate-900">
+              Explore Our Collections
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {[
+                { name: 'Timeless Pearls', image: 'https://www.giva.co/cdn/shop/files/Timeless_Pearls.webp?v=1759933094&width=750', route: '/collections/timeless-pearls' },
+                { name: 'Fresh Drops', image: 'https://www.giva.co/cdn/shop/files/FreshDrop1.webp?v=1759933094&width=750', route: '/collections/fresh-drops' },
+                { name: 'Stackable Collection', image: 'https://www.giva.co/cdn/shop/files/Stackable_Collection.webp?v=1759933105&width=750', route: '/collections/stackable' },
+              ].map((collection) => (
+                <Link
+                  key={collection.name}
+                  to={collection.route}
+                  className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                >
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={collection.image}
+                      alt={collection.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="text-xl font-bold mb-2">{collection.name}</h3>
+                    <p className="text-sm text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                      Explore Collection →
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Gifting Guide Section */}
+        <section className="py-16 bg-white">
+          <div className="container-custom">
+            <h2 className="text-3xl font-serif font-bold text-center mb-12 text-slate-900">
+              Perfect Gifts for Everyone
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
+              {[
+                { name: 'Wife', image: 'https://www.giva.co/cdn/shop/files/Wife.webp?v=1761650231&width=750', route: '/gifting/wife' },
+                { name: 'Husband', image: 'https://www.giva.co/cdn/shop/files/Husband_3_187cd795-8819-4d77-b53a-1e368f233d35.webp?v=1762947363&width=750', route: '/gifting/husband' },
+                { name: 'Mother', image: 'https://www.giva.co/cdn/shop/files/Ma.webp?v=1758887354&width=750', route: '/gifting/mother' },
+                { name: 'Brother', image: 'https://www.giva.co/cdn/shop/files/Brother_1.webp?v=1762947362&width=750', route: '/gifting/brother' },
+                { name: 'Sister', image: 'https://www.giva.co/cdn/shop/files/Sister_2e1f458e-b7fc-4954-84a1-a18cd22158d7.webp?v=1761650412&width=750', route: '/gifting/sister' },
+                { name: 'Friends', image: 'https://www.giva.co/cdn/shop/files/Friends.webp?v=1761650231&width=750', route: '/gifting/friends' },
+              ].map((gift) => (
+                <Link
+                  key={gift.name}
+                  to={gift.route}
+                  className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="aspect-[3/4] overflow-hidden">
+                    <img
+                      src={gift.image}
+                      alt={`Gifts for ${gift.name}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-4">
+                    <h3 className="text-white font-semibold text-center">{gift.name}</h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Men's Jewelry Section */}
+        <section className="py-16 bg-gradient-to-b from-slate-50/30 to-white">
+          <div className="container-custom">
+            <h2 className="text-3xl font-serif font-bold text-center mb-4 text-slate-900">
+              Men's Jewelry
+            </h2>
+            <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+              Discover sophisticated silver jewelry designed for the modern man
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
+              {[
+                { name: 'Rings', image: 'https://www.giva.co/cdn/shop/files/2_14_1.webp?v=1762950054&width=900', route: '/mens/rings' },
+                { name: 'Pendants', image: 'https://www.giva.co/cdn/shop/files/3_8.webp?v=1762950054&width=900', route: '/mens/pendants' },
+                { name: 'Earrings', image: 'https://www.giva.co/cdn/shop/files/4_8.webp?v=1762950054&width=900', route: '/mens/earrings' },
+                { name: 'Bracelets', image: 'https://www.giva.co/cdn/shop/files/6_9_1.webp?v=1762950054&width=900', route: '/mens/bracelets' },
+                { name: 'Chains', image: 'https://www.giva.co/cdn/shop/files/7_4_1.webp?v=1762950054&width=900', route: '/mens/chains' },
+                { name: 'Sets', image: 'https://www.giva.co/cdn/shop/files/8_3_1.webp?v=1762950054&width=900', route: '/mens/sets' },
+              ].map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.route}
+                  className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white"
+                >
+                  <div className="aspect-square overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={`Men's ${item.name}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-4 text-center bg-white">
+                    <h3 className="text-slate-900 font-semibold">{item.name}</h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Occasions Section */}
+        <section className="py-16 bg-white">
+          <div className="container-custom">
+            <h2 className="text-3xl font-serif font-bold text-center mb-12 text-slate-900">
+              Shop by Occasion
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {[
+                { name: 'Anniversary Gifts', image: 'https://www.giva.co/cdn/shop/files/Anniversary_Gifts_1.webp?v=1761650230&width=750', route: '/occasions/anniversary' },
+                { name: 'Most Gifted', image: 'https://www.giva.co/cdn/shop/files/Most_Gifted_1.webp?v=1761650230&width=750', route: '/occasions/most-gifted' },
+                { name: 'Birthday Gifts', image: 'https://www.giva.co/cdn/shop/files/Birthday_Gifts_1.webp?v=1761650231&width=750', route: '/occasions/birthday' },
+              ].map((occasion) => (
+                <Link
+                  key={occasion.name}
+                  to={occasion.route}
+                  className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                >
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={occasion.image}
+                      alt={occasion.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="text-xl font-bold mb-2">{occasion.name}</h3>
+                    <p className="text-sm text-slate-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                      Explore Gifts →
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Banner Slideshow */}
         <section className="py-12 bg-white">
           <div className="container-custom">
