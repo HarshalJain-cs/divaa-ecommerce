@@ -79,7 +79,7 @@ const GoldPriceWidget = () => {
 
       {/* Karat Display with Rotation Animation */}
       <div className="relative">
-        <div className="gold-circle w-6 h-6 bg-gradient-to-br from-pink-200 to-pink-400 rounded-full flex items-center justify-center shadow-md relative">
+        <div className="gold-circle w-6 h-6 bg-[#FAF9F6] rounded-full flex items-center justify-center shadow-md relative">
           <div className="carat-wrapper overflow-hidden h-3 flex items-center justify-center w-full">
             <div
               className="carat-track flex flex-col items-center transition-transform duration-600 ease-in-out"
@@ -90,7 +90,7 @@ const GoldPriceWidget = () => {
               {goldPrices.map((item, index) => (
                 <div
                   key={item.karat || item.type || index}
-                  className="digit h-3 flex items-center justify-center text-white font-bold text-[10px]"
+                  className="digit h-3 flex items-center justify-center text-[#E0BFB8] font-bold text-[10px]"
                 >
                   {item.type || `${item.karat}K`}
                 </div>
