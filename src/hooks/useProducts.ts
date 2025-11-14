@@ -130,6 +130,17 @@ async function fetchProducts(filters?: ProductFilters): Promise<Product[]> {
       throw error;
     }
 
+    // Log product image URLs for debugging
+    if (data && data.length > 0) {
+      console.log('🖼️ Product images fetched:', data.length, 'products');
+      data.slice(0, 5).forEach((product: any) => {
+        console.log(`  - ${product.name}: ${product.image_url || 'NO IMAGE URL'}`);
+      });
+      if (data.length > 5) {
+        console.log(`  ... and ${data.length - 5} more products`);
+      }
+    }
+
     if (!data || data.length === 0) {
       console.log('No products found, checking database setup...');
       

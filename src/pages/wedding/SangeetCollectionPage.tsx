@@ -16,7 +16,7 @@ const SangeetCollectionPage = () => {
           {/* Hero Image */}
           <div className="relative h-[60vh] md:h-[70vh]">
             <img
-              src="https://s7ap1.scene7.com/is/image/noveljewelsprod/Sangeetmain"
+              src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/pretty-jewelry-trends-for-fashion.jpeg"
               alt="Sangeet Collection"
               className="w-full h-full object-cover"
             />
@@ -32,10 +32,6 @@ const SangeetCollectionPage = () => {
                   <ArrowLeft className="w-5 h-5" />
                   Back to Wedding Collections
                 </Link>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-white mb-4">
-                  <Sparkles className="w-4 h-4" />
-                  Wedding Collection
-                </div>
                 <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-4 drop-shadow-2xl">
                   Sangeet Collection
                 </h1>

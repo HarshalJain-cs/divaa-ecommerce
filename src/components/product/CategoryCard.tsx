@@ -14,6 +14,7 @@
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import ProductImage from '@/components/images/ProductImage';
 
 interface Category {
   id: string;
@@ -32,6 +33,9 @@ const CategoryCard = ({ category, onClick }: CategoryCardProps) => {
     onClick?.(category);
   };
 
+  // Debug logging for image URLs
+  console.log(`📷 Category "${category.name}" image URL:`, category.image_url || 'Using fallback');
+
   return (
     <Link
       to={`/products?category=${category.id}`}
@@ -40,11 +44,10 @@ const CategoryCard = ({ category, onClick }: CategoryCardProps) => {
     >
       {/* Category Image */}
       <div className="absolute inset-0">
-        <img
+        <ProductImage
           src={category.image_url || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop&q=80'}
           alt={category.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          loading="lazy"
         />
       </div>
 

@@ -16,7 +16,7 @@ const HaldiCollectionPage = () => {
           {/* Hero Image */}
           <div className="relative h-[60vh] md:h-[70vh]">
             <img
-              src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1200&h=800&fit=crop"
+              src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(14).jpeg"
               alt="Haldi Collection"
               className="w-full h-full object-cover"
             />
@@ -32,10 +32,6 @@ const HaldiCollectionPage = () => {
                   <ArrowLeft className="w-5 h-5" />
                   Back to Wedding Collections
                 </Link>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-white mb-4">
-                  <Sparkles className="w-4 h-4" />
-                  Wedding Collection
-                </div>
                 <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-4 drop-shadow-2xl">
                   Haldi Collection
                 </h1>

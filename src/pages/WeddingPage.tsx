@@ -25,7 +25,7 @@ const WeddingPage = () => {
       id: 1,
       title: 'The Polki Bride',
       description: 'Where deep magenta meets timeless polki',
-      mainImage: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Polkimain',
+      mainImage: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/https___youtu_be_oBY5AMXsEE4_si=U3Jm094GcTx5hQSr.jpeg',
       secondaryImage: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/BridalPolki',
       link: '/wedding/polki-bride',
     },
@@ -33,7 +33,7 @@ const WeddingPage = () => {
       id: 2,
       title: 'The Gold Bride',
       description: 'Featuring intricately layered gold silhouettes perfect for a regal look',
-      mainImage: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Redmain',
+      mainImage: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/Bridal%20Kundan%20set.jpeg',
       secondaryImage: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Red',
       link: '/wedding/gold-bride',
     },
@@ -41,7 +41,7 @@ const WeddingPage = () => {
       id: 3,
       title: 'Sangeet Look',
       description: 'A captivating blend of polki, diamond, and created Russian emerald stone',
-      mainImage: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Sangeetmain',
+      mainImage: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(13).jpeg',
       secondaryImage: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Sangeet',
       link: '/wedding/sangeet-look',
     },
@@ -49,7 +49,7 @@ const WeddingPage = () => {
       id: 4,
       title: 'Reception Look',
       description: 'A celebration of diamonds and beautiful gemstones in a Victorian-style design',
-      mainImage: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Reception-main',
+      mainImage: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/pretty-jewelry-trends-for-fashion.jpeg',
       secondaryImage: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Reception',
       link: '/wedding/reception-look',
     },
@@ -66,12 +66,12 @@ const WeddingPage = () => {
 
   // Wedding categories
   const weddingCategories = [
-    { name: 'Polki Bride', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/BridalPolki', link: '/wedding/polki-bride' },
-    { name: 'Gold Bride', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Red', link: '/wedding/gold-bride' },
-    { name: 'Sangeet Collection', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Sangeet', link: '/wedding/sangeet-collection' },
-    { name: 'Reception Collection', image: 'https://s7ap1.scene7.com/is/image/noveljewelsprod/Reception', link: '/wedding/reception-collection' },
-    { name: 'Haldi Collection', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop', link: '/wedding/haldi-collection' },
-    { name: 'Mehandi Collection', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=400&fit=crop', link: '/wedding/mehandi-collection' },
+    { name: 'Polki Bride', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/Polki%20diamond%20bridal%20set%20(1).jpeg', link: '/wedding/polki-bride' },
+    { name: 'Gold Bride', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/Gold%20Jewellery.jpeg', link: '/wedding/gold-bride' },
+    { name: 'Sangeet Collection', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/pretty-jewelry-trends-for-fashion.jpeg', link: '/wedding/sangeet-collection' },
+    { name: 'Reception Collection', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/blue%20set.jpeg', link: '/wedding/reception-collection' },
+    { name: 'Haldi Collection', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(14).jpeg', link: '/wedding/haldi-collection' },
+    { name: 'Mehandi Collection', image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(15).jpeg', link: '/wedding/mehandi-collection' },
   ];
 
   const nextSlide = () => {
@@ -89,7 +89,7 @@ const WeddingPage = () => {
       <Header />
       <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #1F2B8F 0%, #D5B038 100%)' }}>
         {/* Hero Section */}
-        <section className="relative py-20 overflow-hidden">
+        <section className="relative py-20 overflow-hidden min-h-screen">
           {/* Video Background */}
           <video
             ref={videoRef}
@@ -97,13 +97,11 @@ const WeddingPage = () => {
             loop
             muted
             playsInline
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover z-0"
           >
-            <source src="https://cdn.shopify.com/videos/c/o/v/8fce3ce1e77d429d96ad5e0a5b0ec3c6.mp4" type="video/mp4" />
+            <source src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/videos/16eb696e671d2c9624ea34d7b5fda8cc.mp4" type="video/mp4" />
           </video>
-
-          {/* Dark Overlay for better text visibility */}
-          <div className="absolute inset-0 bg-black/40 z-10"></div>
 
           {/* Decorative Elements */}
           <div className="absolute inset-0 opacity-10 z-10">
@@ -114,7 +112,7 @@ const WeddingPage = () => {
           {/* Mute/Unmute Button */}
           <button
             onClick={toggleMute}
-            className="absolute bottom-4 right-4 z-30 p-3 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg transition-all hover:scale-110"
+            className="absolute bottom-4 right-4 z-30"
             aria-label={isMuted ? 'Unmute video' : 'Mute video'}
           >
             {isMuted ? (
@@ -124,8 +122,8 @@ const WeddingPage = () => {
             )}
           </button>
 
-          <div className="container mx-auto px-4 relative z-20">
-            <div className="text-center mb-12">
+          <div className="container mx-auto px-4 relative z-20 flex items-center justify-center min-h-screen">
+            <div className="text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full shadow-md text-sm font-medium text-white mb-6">
                 <Sparkles className="w-4 h-4" />
                 Exclusive Wedding Collection
@@ -141,7 +139,7 @@ const WeddingPage = () => {
         </section>
 
         {/* Carousel Section */}
-        <section className="py-16 bg-white/10 backdrop-blur-sm">
+        <section className="py-16" style={{ background: '#1E3A8A' }}>
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-center mb-12 text-white">
               Explore Our Wedding Looks
@@ -174,10 +172,7 @@ const WeddingPage = () => {
                       {/* Content Overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
                         <div className="max-w-2xl">
-                          <span className="text-6xl font-serif font-bold mb-2 block">
-                            {String(collection.id).padStart(2, '0')}
-                          </span>
-                          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                          <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                             {collection.title}
                           </h3>
                           <p className="text-lg mb-6 text-white/90">
@@ -187,7 +182,7 @@ const WeddingPage = () => {
                             to={collection.link}
                             className="inline-block px-8 py-3 rounded-lg font-medium transition-all hover:opacity-90"
                             style={{
-                              background: 'linear-gradient(135deg, #1F2B8F, #D5B038)',
+                              background: 'linear-gradient(135deg, #8B5CF6, #DC2626)',
                               color: 'white'
                             }}
                           >
@@ -250,31 +245,25 @@ const WeddingPage = () => {
                 <Link
                   key={index}
                   to={category.link}
-                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                  style={{ aspectRatio: '1/1' }}
+                  className="group flex flex-col transition-all duration-300 hover:-translate-y-2"
                 >
-                  {/* Category Image */}
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  {/* Image Container */}
+                  <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300" style={{ aspectRatio: '1/1' }}>
+                    {/* Category Image */}
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
 
-                  {/* Gradient Overlay */}
-                  <div
-                    className="absolute inset-0 opacity-60 group-hover:opacity-70 transition-opacity"
-                    style={{ background: 'linear-gradient(135deg, rgba(31, 43, 143, 0.6), rgba(213, 176, 56, 0.6))' }}
-                  ></div>
-
-                  {/* Category Name */}
-                  <div className="absolute inset-0 flex items-center justify-center p-4">
-                    <h3 className="text-white font-bold text-center text-sm md:text-base drop-shadow-lg">
-                      {category.name}
-                    </h3>
+                    {/* Border Effect */}
+                    <div className="absolute inset-2 border-2 border-white/30 rounded-xl"></div>
                   </div>
 
-                  {/* Circular Border Effect */}
-                  <div className="absolute inset-2 border-2 border-white/30 rounded-xl"></div>
+                  {/* Category Name Below Image */}
+                  <h3 className="text-gray-800 font-bold text-center text-sm md:text-base mt-2">
+                    {category.name}
+                  </h3>
                 </Link>
               ))}
             </div>
@@ -282,7 +271,7 @@ const WeddingPage = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20" style={{ background: 'linear-gradient(135deg, #1F2B8F 0%, #D5B038 100%)' }}>
+        <section className="py-20" style={{ background: '#1E3A8A' }}>
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
               Make Your Special Day Memorable
@@ -293,7 +282,7 @@ const WeddingPage = () => {
             <Link
               to="/coming-soon"
               className="inline-block px-10 py-4 bg-white rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
-              style={{ color: '#1F2B8F' }}
+              style={{ color: '#1E3A8A' }}
             >
               Book Consultation
             </Link>
@@ -304,7 +293,7 @@ const WeddingPage = () => {
         </section>
 
         {/* Footer Note */}
-        <section className="py-12 bg-white/10 backdrop-blur-sm">
+        <section className="py-12" style={{ background: '#1E3A8A' }}>
           <div className="container mx-auto px-4 text-center">
             <p className="text-white/90 text-lg mb-4">
               Stay tuned for our exclusive bridal jewelry collection

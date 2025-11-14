@@ -31,7 +31,7 @@ const GoldPriceWidget = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentKarat((prev) => (prev + 1) % goldPrices.length);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [goldPrices.length]);
 
@@ -58,19 +58,19 @@ const GoldPriceWidget = () => {
   const isSilver = currentPrice.type === 'S925';
 
   return (
-    <div className="gold-price-container relative inline-flex items-center gap-1.5 px-2 py-1.5 bg-gradient-to-r from-pink-50 to-pink-100 rounded-lg shadow-md border border-pink-200 hover:shadow-lg transition-all duration-300">
+    <div className="gold-price-container relative inline-flex items-center gap-1 px-2 py-1.5 bg-gradient-to-r from-pink-50 to-pink-100 rounded-lg shadow-md border border-pink-200 hover:shadow-lg transition-all duration-300">
       {/* Gold/Silver Price Label with Animation */}
-      <div className="relative w-8 h-3 overflow-hidden">
+      <div className="relative w-14 h-4 overflow-hidden">
         <span
-          className={`absolute text-[10px] font-bold text-amber-900 tracking-wide transition-all duration-500 ${
-            isSilver ? 'opacity-0 -translate-y-3' : 'opacity-100 translate-y-0'
+          className={`absolute text-sm font-bold text-amber-900 tracking-wide transition-all duration-2000 ${
+            isSilver ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'
           }`}
         >
           GOLD
         </span>
         <span
-          className={`absolute text-[10px] font-bold text-amber-900 tracking-wide transition-all duration-500 ${
-            isSilver ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          className={`absolute text-sm font-bold text-amber-900 tracking-wide transition-all duration-2000 ${
+            isSilver ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           SILVER
@@ -78,25 +78,18 @@ const GoldPriceWidget = () => {
       </div>
 
       {/* Karat Display with Rotation Animation */}
-      <div className="relative">
-        <div className="gold-circle w-6 h-6 bg-[#FAF9F6] rounded-full flex items-center justify-center shadow-md relative">
-          <div className="carat-wrapper overflow-hidden h-3 flex items-center justify-center w-full">
+      <div className="relative flex items-center">
+        <div className="carat-wrapper h-8 px-4 py-2 rounded-md flex items-center justify-center min-w-[3rem]">
+          {goldPrices.map((item, index) => (
             <div
-              className="carat-track flex flex-col items-center transition-transform duration-600 ease-in-out"
-              style={{
-                transform: `translateY(-${currentKarat * 12}px)`,
-              }}
+              key={item.karat || item.type || index}
+              className={`absolute h-8 flex items-center justify-center text-pink-700 font-black text-base transition-opacity duration-2000 ${
+                index === currentKarat ? 'opacity-100' : 'opacity-0'
+              }`}
             >
-              {goldPrices.map((item, index) => (
-                <div
-                  key={item.karat || item.type || index}
-                  className="digit h-3 flex items-center justify-center text-[#E0BFB8] font-bold text-[10px]"
-                >
-                  {item.type || `${item.karat}K`}
-                </div>
-              ))}
+              {item.type || `${item.karat}K`}
             </div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -117,7 +110,7 @@ const GoldPriceWidget = () => {
             return (
               <div key={index} className="digit-wrapper overflow-hidden h-4 w-2">
                 <div
-                  className="digit h-4 flex items-center justify-center text-sm font-bold text-amber-900 transition-transform duration-300"
+                  className="digit h-4 flex items-center justify-center text-sm font-bold text-amber-900 transition-transform duration-2000"
                   style={{ transform: 'translateY(0px)' }}
                 >
                   {char}

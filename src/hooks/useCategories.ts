@@ -28,12 +28,33 @@ export interface Category {
  * @description Fetch all categories from database
  */
 async function fetchCategories(): Promise<Category[]> {
+  console.log('🔍 Fetching categories from Supabase...');
+
   const { data, error } = await supabase
     .from('categories')
     .select('*')
     .order('name', { ascending: true });
 
-  if (error) throw error;
+  console.log('📊 Categories query result:', {
+    success: !error,
+    count: data?.length || 0,
+    error: error?.message
+  });
+
+  if (error) {
+    console.error('❌ Error fetching categories:', error);
+    throw error;
+  }
+
+  console.log('✅ Categories fetched successfully:', data?.length || 0, 'items');
+
+  // Log image URLs for debugging
+  if (data && data.length > 0) {
+    console.log('📸 Category image URLs:');
+    data.forEach((cat: Category) => {
+      console.log(`  - ${cat.name}: ${cat.image_url || 'NO IMAGE URL'}`);
+    });
+  }
 
   return data as Category[];
 }
