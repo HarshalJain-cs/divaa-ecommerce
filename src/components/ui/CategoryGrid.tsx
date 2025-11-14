@@ -15,7 +15,7 @@ const categories = [
   {
     id: 2,
     name: 'Rings',
-    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/andy-holmes-bRnzmMF7GCM-unsplash.jpg',
+    image: 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/download.jpg',
     itemCount: 125,
     slug: 'rings',
   },

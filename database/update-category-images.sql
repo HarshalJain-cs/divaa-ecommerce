@@ -11,7 +11,7 @@ WHERE name = 'Anklets';
 
 -- Update Rings category image
 UPDATE categories
-SET image_url = 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/andy-holmes-bRnzmMF7GCM-unsplash.jpg'
+SET image_url = 'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/download.jpg'
 WHERE name = 'Rings';
 
 -- Update Necklaces category image

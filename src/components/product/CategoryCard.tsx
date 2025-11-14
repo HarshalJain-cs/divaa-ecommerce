@@ -13,7 +13,6 @@
  */
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import ProductImage from '@/components/images/ProductImage';
 
 interface Category {
@@ -57,21 +56,9 @@ const CategoryCard = ({ category, onClick }: CategoryCardProps) => {
       {/* Category Content */}
       <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 text-white">
         <div className="transform transition-transform duration-300 group-hover:translate-y-[-8px]">
-          <h3 className="text-2xl font-bold mb-2 font-serif">
+          <h3 className="text-2xl font-bold font-serif">
             {category.name}
           </h3>
-
-          {category.description && (
-            <p className="text-sm text-gray-200 mb-4 line-clamp-2 opacity-90">
-              {category.description}
-            </p>
-          )}
-
-          {/* Shop Now Button */}
-          <div className="flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all">
-            <span>Shop Now</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </div>
         </div>
       </div>
 

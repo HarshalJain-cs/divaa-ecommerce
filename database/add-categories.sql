@@ -11,7 +11,7 @@ INSERT INTO categories (name, description, image_url, created_at) VALUES
   (
     'Rings',
     'Elegant rings for every occasion - from daily wear to special celebrations',
-    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/andy-holmes-bRnzmMF7GCM-unsplash.jpg',
+    'https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/category-images/download.jpg',
     NOW()
   ),
   (
