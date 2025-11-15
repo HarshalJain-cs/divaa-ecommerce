@@ -78,11 +78,7 @@
 
   /* Category Card */
   .category-card-container {
-    @apply relative overflow-hidden rounded-2xl cursor-pointer h-80;
-  }
-
-  .category-overlay {
-    @apply absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 transition-opacity duration-300;
+    @apply flex flex-col overflow-hidden rounded-2xl cursor-pointer h-[342px] transition-shadow duration-300 hover:shadow-xl;
   }
 
   /* Input Styles */

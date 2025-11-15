@@ -39,31 +39,26 @@ const CategoryCard = ({ category, onClick }: CategoryCardProps) => {
     <Link
       to={`/products?category=${category.id}`}
       onClick={handleClick}
-      className="category-card-container group"
+      className="category-card-container group gap-0.5"
     >
-      {/* Category Image */}
-      <div className="absolute inset-0">
+      {/* Category Image Container - 300px */}
+      <div className="relative h-[300px] overflow-hidden rounded-t-2xl">
         <ProductImage
           src={category.image_url || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop&q=80'}
           alt={category.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
+
+        {/* Shine Effect on Hover - Only on Image */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full group-hover:translate-x-full z-10" />
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="category-overlay group-hover:opacity-80" />
-
-      {/* Category Content */}
-      <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 text-white">
-        <div className="transform transition-transform duration-300 group-hover:translate-y-[-8px]">
-          <h3 className="text-2xl font-bold font-serif">
-            {category.name}
-          </h3>
-        </div>
+      {/* Category Name Box - 40px */}
+      <div className="h-[40px] bg-[#E5D4B5] flex items-center justify-center rounded-b-2xl">
+        <h3 className="text-lg font-bold font-serif text-white">
+          {category.name}
+        </h3>
       </div>
-
-      {/* Shine Effect on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full group-hover:translate-x-full z-10" />
     </Link>
   );
 };
