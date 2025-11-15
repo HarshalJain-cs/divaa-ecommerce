@@ -39,14 +39,14 @@ const CategoryCard = ({ category, onClick }: CategoryCardProps) => {
     <Link
       to={`/products?category=${category.id}`}
       onClick={handleClick}
-      className="category-card-container group gap-0.5"
+      className="category-card-container group gap-0"
     >
-      {/* Category Image Container - 300px */}
-      <div className="relative h-[300px] overflow-hidden rounded-t-2xl">
+      {/* Category Image */}
+      <div className="relative overflow-hidden rounded-t-2xl">
         <ProductImage
           src={category.image_url || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop&q=80'}
           alt={category.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
         />
 
         {/* Shine Effect on Hover - Only on Image */}
