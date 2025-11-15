@@ -18,7 +18,8 @@
       "Bash(powershell -Command:*)",
       "Bash(git reset:*)",
       "Bash(\"c:\\Users\\Admin\\Downloads\\harry\\diva.final.cursor\\divaa-ecommerce\\.gitignore\")",
-      "Bash(tasklist:*)"
+      "Bash(tasklist:*)",
+      "Bash(timeout /t 3)"
     ],
     "deny": [],
     "ask": []

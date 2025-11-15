@@ -7,6 +7,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useCategories } from '@/hooks/useCategories';
 import CategoryCard from '@/components/product/CategoryCard';
 import Header from '@/components/ui/Header';
+import SocialMediaIcons from '@/components/ui/SocialMediaIcons';
 
 const CategoriesPage = () => {
   const { data: categories, isLoading } = useCategories();
@@ -148,8 +149,9 @@ const CategoriesPage = () => {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold mb-4">Connect</h4>
+                <h4 className="font-semibold mb-4 text-white">Connect</h4>
                 <p className="text-gray-400 mb-4">Follow us on social media for the latest updates</p>
+                <SocialMediaIcons />
               </div>
             </div>
             <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">

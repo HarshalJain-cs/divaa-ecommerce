@@ -63,6 +63,12 @@ const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
 const SignupPage = lazy(() => import('@/pages/SignupPage'));
 const ProfilePage = lazy(() => import('@/pages/ProfilePage'));
+const FAQPage = lazy(() => import('@/pages/FAQPage'));
+const ShippingPage = lazy(() => import('@/pages/ShippingPage'));
+const ReturnsPage = lazy(() => import('@/pages/ReturnsPage'));
+const TermsOfServicePage = lazy(() => import('@/pages/TermsOfServicePage'));
+const AboutPage = lazy(() => import('@/pages/AboutPage'));
+const ContactPage = lazy(() => import('@/pages/ContactPage'));
 // Moved to src/admin - const AdminDashboard = lazy(() => import('@/admin/AdminDashboard'));
 // Moved to src/admin - const AdminProductsPage = lazy(() => import('@/admin/AdminProductsPage'));
 // Moved to src/admin - const AdminProductFormPage = lazy(() => import('@/admin/AdminProductFormPage'));
@@ -149,6 +155,12 @@ function App() {
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/shipping" element={<ShippingPage />} />
+              <Route path="/returns" element={<ReturnsPage />} />
+              <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
               <Route path="/coming-soon" element={<ComingSoonPage />} />
 
             {/* Protected Routes */}
