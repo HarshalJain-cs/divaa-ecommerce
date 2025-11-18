@@ -384,6 +384,8 @@ export const BULK_ORDER_CONFIG = {
   ALLOWED_FILE_TYPES: ['.csv'],
   MAX_FILE_SIZE_MB: 5,
   WHOLESALE_DISCOUNT_PERCENT: 10,
+  MIN_AMOUNT: GIFT_CARD_MIN_AMOUNT,
+  MAX_AMOUNT: GIFT_CARD_MAX_AMOUNT,
   CSV_COLUMNS: [
     'recipient_name',
     'recipient_email',

@@ -166,6 +166,7 @@ export interface BulkOrderCSVError {
 
 export interface PromoCodeValidation {
   valid: boolean;
+  code?: string;
   promo_code?: PromoCode;
   discount_amount?: number;
   error?: string;
