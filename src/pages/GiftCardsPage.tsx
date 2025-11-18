@@ -134,6 +134,7 @@ export default function GiftCardsPage() {
     recipient_phone: recipientPhone,
     personal_message: personalMessage,
     card_type: selectedCardType,
+    delivery_method: deliveryMethod,
   };
 
   // Step indicator
@@ -341,7 +342,7 @@ export default function GiftCardsPage() {
                 senderName={senderName}
                 personalMessage={personalMessage}
                 uploadedImage={uploadedImage}
-                imagePreviewUrl={imagePreviewUrl}
+                imagePreviewUrl={imagePreviewUrl || undefined}
               />
             </div>
           </div>
