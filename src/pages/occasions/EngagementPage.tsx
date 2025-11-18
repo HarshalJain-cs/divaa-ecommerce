@@ -4,7 +4,6 @@
  */
 
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
 
 export default function EngagementPage() {
   return (
@@ -78,8 +77,6 @@ export default function EngagementPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

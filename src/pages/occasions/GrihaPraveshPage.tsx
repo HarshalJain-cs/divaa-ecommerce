@@ -4,7 +4,6 @@
  */
 
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
 
 export default function GrihaPraveshPage() {
   return (
@@ -78,8 +77,6 @@ export default function GrihaPraveshPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }
