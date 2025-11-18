@@ -30,7 +30,7 @@ export const RELATIONS: CollectionItem[] = [
 export const OCCASIONS: CollectionItem[] = [
   { id: 'engagement', label: 'Engagement', path: '/occasions/engagement' },
   { id: 'birthday', label: 'Birthday', path: '/occasions/birthday' },
-  { id: 'wedding', label: 'Wedding', path: '/occasions/wedding' },
+  { id: 'wedding', label: 'Wedding', path: '/wedding' },
   { id: 'anniversary', label: 'Anniversary', path: '/occasions/anniversary' },
   { id: 'baby-shower', label: 'Baby Shower', path: '/occasions/baby-shower' },
   { id: 'baby-naming', label: 'Baby Naming', path: '/occasions/baby-naming' },

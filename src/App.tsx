@@ -65,6 +65,9 @@ const MensSetsPage = lazy(() => import('@/pages/mens/MensSetsPage'));
 const AnniversaryGiftsPage = lazy(() => import('@/pages/occasions/AnniversaryGiftsPage'));
 const MostGiftedPage = lazy(() => import('@/pages/occasions/MostGiftedPage'));
 const BirthdayGiftsPage = lazy(() => import('@/pages/occasions/BirthdayGiftsPage'));
+const EngagementPage = lazy(() => import('@/pages/occasions/EngagementPage'));
+const BabyShowerPage = lazy(() => import('@/pages/occasions/BabyShowerPage'));
+const GrihaPraveshPage = lazy(() => import('@/pages/occasions/GrihaPraveshPage'));
 // Moved to src/digital-gold - const DigitalGoldPage = lazy(() => import('@/digital-gold/DigitalGoldPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
@@ -143,9 +146,12 @@ function App() {
               <Route path="/mens/sets" element={<MensSetsPage />} />
 
               {/* Occasions Routes */}
+              <Route path="/occasions/engagement" element={<EngagementPage />} />
+              <Route path="/occasions/birthday" element={<BirthdayGiftsPage />} />
+              <Route path="/occasions/baby-shower" element={<BabyShowerPage />} />
+              <Route path="/occasions/griha-pravesh" element={<GrihaPraveshPage />} />
               <Route path="/occasions/anniversary" element={<AnniversaryGiftsPage />} />
               <Route path="/occasions/most-gifted" element={<MostGiftedPage />} />
-              <Route path="/occasions/birthday" element={<BirthdayGiftsPage />} />
 
               <Route path="/collections/:collectionId" element={<CollectionPage />} />
 
