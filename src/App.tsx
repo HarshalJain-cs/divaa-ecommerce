@@ -76,8 +76,11 @@ const ReturnsPage = lazy(() => import('@/pages/ReturnsPage'));
 const TermsOfServicePage = lazy(() => import('@/pages/TermsOfServicePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
-// Gift Cards Page
+// Gift Cards Pages
 const GiftCardsPage = lazy(() => import('@/pages/GiftCardsPage'));
+const GiftCardBulkPage = lazy(() => import('@/pages/GiftCardBulkPage'));
+const GiftCardBalancePage = lazy(() => import('@/pages/GiftCardBalancePage'));
+const AdminPage = lazy(() => import('@/pages/AdminPage'));
 // Moved to src/admin - const AdminDashboard = lazy(() => import('@/admin/AdminDashboard'));
 // Moved to src/admin - const AdminProductsPage = lazy(() => import('@/admin/AdminProductsPage'));
 // Moved to src/admin - const AdminProductFormPage = lazy(() => import('@/admin/AdminProductFormPage'));
@@ -178,7 +181,13 @@ function App() {
               <Route path="/terms-of-service" element={<TermsOfServicePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
+
+              {/* Gift Cards Routes */}
               <Route path="/gift-cards" element={<GiftCardsPage />} />
+              <Route path="/gift-cards/bulk" element={<GiftCardBulkPage />} />
+              <Route path="/gift-cards/balance" element={<GiftCardBalancePage />} />
+              <Route path="/admin" element={<AdminPage />} />
+
               <Route path="/coming-soon" element={<ComingSoonPage />} />
 
             {/* Protected Routes */}
