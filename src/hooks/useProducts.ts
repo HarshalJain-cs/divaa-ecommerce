@@ -16,6 +16,7 @@ interface ProductFilters {
   category?: string;
   gender?: 'men' | 'women' | 'unisex';
   metal_type?: string;
+  style_type?: 'everyday' | 'traditional' | 'party' | 'office' | 'casual' | 'twinning';
   minPrice?: number;
   maxPrice?: number;
   search?: string;
@@ -95,6 +96,10 @@ async function fetchProducts(filters?: ProductFilters): Promise<Product[]> {
 
     if (filters?.metal_type) {
       query = query.eq('metal_type', filters.metal_type);
+    }
+
+    if (filters?.style_type) {
+      query = query.eq('style_type', filters.style_type);
     }
 
     if (filters?.featured !== undefined) {

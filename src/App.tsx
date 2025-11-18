@@ -40,6 +40,13 @@ const MehandiCollectionPage = lazy(() => import('@/pages/wedding/MehandiCollecti
 const TimelessPearlsPage = lazy(() => import('@/pages/collections/TimelessPearlsPage'));
 const FreshDropsPage = lazy(() => import('@/pages/collections/FreshDropsPage'));
 const StackableCollectionPage = lazy(() => import('@/pages/collections/StackableCollectionPage'));
+// Style Collections Pages
+const EverydayStylePage = lazy(() => import('@/pages/collections/EverydayStylePage'));
+const TraditionalStylePage = lazy(() => import('@/pages/collections/TraditionalStylePage'));
+const PartyStylePage = lazy(() => import('@/pages/collections/PartyStylePage'));
+const CasualStylePage = lazy(() => import('@/pages/collections/CasualStylePage'));
+const OfficeStylePage = lazy(() => import('@/pages/collections/OfficeStylePage'));
+const TwinningStylePage = lazy(() => import('@/pages/collections/TwinningStylePage'));
 // Gifting Pages
 const GiftsForWifePage = lazy(() => import('@/pages/gifting/GiftsForWifePage'));
 const GiftsForHusbandPage = lazy(() => import('@/pages/gifting/GiftsForHusbandPage'));
@@ -69,6 +76,8 @@ const ReturnsPage = lazy(() => import('@/pages/ReturnsPage'));
 const TermsOfServicePage = lazy(() => import('@/pages/TermsOfServicePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
+// Gift Cards Page
+const GiftCardsPage = lazy(() => import('@/pages/GiftCardsPage'));
 // Moved to src/admin - const AdminDashboard = lazy(() => import('@/admin/AdminDashboard'));
 // Moved to src/admin - const AdminProductsPage = lazy(() => import('@/admin/AdminProductsPage'));
 // Moved to src/admin - const AdminProductFormPage = lazy(() => import('@/admin/AdminProductFormPage'));
@@ -105,6 +114,14 @@ function App() {
               <Route path="/collections/timeless-pearls" element={<TimelessPearlsPage />} />
               <Route path="/collections/fresh-drops" element={<FreshDropsPage />} />
               <Route path="/collections/stackable" element={<StackableCollectionPage />} />
+
+              {/* Style Collections Routes */}
+              <Route path="/collections/style-everyday" element={<EverydayStylePage />} />
+              <Route path="/collections/style-traditional" element={<TraditionalStylePage />} />
+              <Route path="/collections/style-party" element={<PartyStylePage />} />
+              <Route path="/collections/casual" element={<CasualStylePage />} />
+              <Route path="/collections/style-office" element={<OfficeStylePage />} />
+              <Route path="/collections/gifts-for-friends" element={<TwinningStylePage />} />
 
               {/* Gifting Routes */}
               <Route path="/gifting/wife" element={<GiftsForWifePage />} />
@@ -161,6 +178,7 @@ function App() {
               <Route path="/terms-of-service" element={<TermsOfServicePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/gift-cards" element={<GiftCardsPage />} />
               <Route path="/coming-soon" element={<ComingSoonPage />} />
 
             {/* Protected Routes */}

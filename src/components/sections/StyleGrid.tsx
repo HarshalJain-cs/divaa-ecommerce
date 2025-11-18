@@ -35,12 +35,12 @@ export function StyleGrid() {
             </a>
           </div>
 
-          {/* Column 3 - Casual & Office */}
+          {/* Column 3 - Gift Cards & Office */}
           <div className="grid grid-rows-2 gap-4 md:gap-6">
-            <a href="/collections/casual" className="block overflow-hidden rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <a href="/gift-cards" className="block overflow-hidden rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img
                 src="//www.giva.co/cdn/shop/files/5_7.webp?v=1758903272&width=900"
-                alt="Casual Style"
+                alt="Gift Cards"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />

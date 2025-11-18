@@ -13,9 +13,6 @@ const queryClient = new QueryClient({
       retry: 1,
       networkMode: 'online', // Changed from 'offlineFirst' to fix infinite loading state
       refetchOnWindowFocus: false,
-      onError: (error) => {
-        console.error('React Query Error:', error);
-      },
     },
   },
 })

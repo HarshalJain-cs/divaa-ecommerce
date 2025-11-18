@@ -53,6 +53,7 @@ export interface Product {
   is_featured: boolean
   occasions?: string[]
   relations?: string[]
+  style_type?: 'everyday' | 'traditional' | 'party' | 'office' | 'casual' | 'twinning'
   created_at: string
   updated_at: string
   // Joined data
@@ -97,6 +98,10 @@ export interface Order {
   id: string
   user_id?: string
   total_amount: number
+  gift_card_discount?: number
+  balance_used?: number
+  final_amount?: number
+  gift_card_code?: string
   status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled'
   shipping_address: ShippingAddress
   payment_method?: string
@@ -144,4 +149,103 @@ export interface CartItemWithProduct extends CartItem {
  */
 export interface OrderWithItems extends Order {
   order_items: OrderItem[]
+}
+
+/**
+ * @interface GiftCard
+ * @description Gift card entity
+ */
+export interface GiftCard {
+  id: string
+  code: string
+  amount: number
+  balance: number
+  recipient_email?: string
+  recipient_name?: string
+  sender_name?: string
+  personal_message?: string
+  design_theme: 'birthday' | 'wedding' | 'anniversary' | 'thankyou' | 'general'
+  status: 'active' | 'partially_used' | 'fully_redeemed' | 'expired' | 'cancelled'
+  purchased_by?: string
+  purchased_at: string
+  expires_at: string
+  created_at: string
+  updated_at: string
+}
+
+/**
+ * @interface UserBalance
+ * @description User account balance from redeemed gift cards
+ */
+export interface UserBalance {
+  id: string
+  user_id: string
+  balance: number
+  last_updated: string
+  created_at: string
+}
+
+/**
+ * @interface GiftCardTransaction
+ * @description Gift card transaction record
+ */
+export interface GiftCardTransaction {
+  id: string
+  gift_card_id: string
+  transaction_type: 'purchase' | 'redemption_to_balance' | 'checkout_usage' | 'refund' | 'expiry' | 'cancellation'
+  amount: number
+  balance_before?: number
+  balance_after?: number
+  user_id?: string
+  order_id?: string
+  notes?: string
+  created_at: string
+}
+
+/**
+ * @interface GiftCardRedemption
+ * @description Tracks gift card usage in orders
+ */
+export interface GiftCardRedemption {
+  id: string
+  order_id: string
+  gift_card_id?: string
+  amount_used: number
+  created_at: string
+}
+
+/**
+ * @interface UserBalanceTransaction
+ * @description User balance transaction record
+ */
+export interface UserBalanceTransaction {
+  id: string
+  user_balance_id: string
+  transaction_type: 'redemption' | 'checkout_usage' | 'expiry' | 'adjustment'
+  amount: number
+  balance_before?: number
+  balance_after?: number
+  gift_card_id?: string
+  order_id?: string
+  expires_at?: string
+  notes?: string
+  created_at: string
+}
+
+/**
+ * @interface GiftCardWithTransactions
+ * @description Gift card with transaction history
+ */
+export interface GiftCardWithTransactions extends GiftCard {
+  transactions: GiftCardTransaction[]
+  redemptions: GiftCardRedemption[]
+}
+
+/**
+ * @interface OrderWithGiftCardInfo
+ * @description Order with gift card information
+ */
+export interface OrderWithGiftCardInfo extends Order {
+  gift_card_details?: GiftCard
+  balance_transactions?: UserBalanceTransaction[]
 }
