@@ -142,6 +142,13 @@ export default function HeaderNew() {
               Wedding
             </Link>
 
+            <Link
+              to="/gift-cards"
+              className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium flex items-center gap-1"
+            >
+              🎁 Gift Cards
+            </Link>
+
             {/* Collections Dropdown */}
             {!isOnCollectionPage && (
               <div
@@ -492,6 +499,13 @@ export default function HeaderNew() {
                 onClick={closeMobileMenu}
               >
                 Wedding
+              </Link>
+              <Link
+                to="/gift-cards"
+                className="text-gray-700 hover:text-rose-gold-dark transition-colors font-medium py-2"
+                onClick={closeMobileMenu}
+              >
+                🎁 Gift Cards
               </Link>
               <Link
                 to="/collections/gold"
