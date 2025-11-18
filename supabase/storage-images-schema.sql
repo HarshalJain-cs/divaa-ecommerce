@@ -418,7 +418,7 @@ FROM storage_quotas sq
 JOIN profiles p ON sq.user_id = p.id
 ORDER BY sq.current_storage_bytes DESC;
 
-COMMENT ON VIEW user_storage_usage AS 'Shows storage usage statistics per user';
+COMMENT ON VIEW user_storage_usage IS 'Shows storage usage statistics per user';
 
 -- View: Large files
 CREATE OR REPLACE VIEW large_files AS
