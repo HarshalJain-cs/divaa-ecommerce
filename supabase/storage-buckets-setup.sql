@@ -278,7 +278,7 @@ ORDER BY created_at;
 SELECT
   bucket_id,
   COUNT(*) as file_count,
-  pg_size_pretty(SUM(metadata->>'size')::bigint) as total_size
+  pg_size_pretty(SUM((metadata->>'size')::bigint)) as total_size
 FROM storage.objects
 WHERE bucket_id IN ('collection-images', 'product-images', 'user-uploads', 'temp-uploads')
 GROUP BY bucket_id;
