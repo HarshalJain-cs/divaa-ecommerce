@@ -1,6 +1,6 @@
 /**
  * @page CheckoutPage
- * @description Checkout page with address collection, payment, and invoice
+ * @description Checkout page with address collection, payment, gift card redemption, and invoice
  */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,8 @@ import { Package, Truck, CreditCard, CheckCircle2, MapPin, Phone, Mail, User } f
 import { useCart } from '@/contexts/CartContext';
 import { useCurrency } from '@/contexts/CurrencyContext';
 import Header from '@/components/ui/Header';
+import GiftCardRedemption from '@/components/giftcards/GiftCardRedemption';
+import type { GiftCard } from '@/types/giftcard.types';
 import { toast } from 'sonner';
 
 interface AddressForm {
@@ -41,11 +43,17 @@ export default function CheckoutPage() {
     landmark: '',
   });
 
+  // Gift card state
+  const [appliedGiftCard, setAppliedGiftCard] = useState<GiftCard | null>(null);
+  const [giftCardAmount, setGiftCardAmount] = useState(0);
+
   // Calculate totals
   const subtotal = cartTotal;
   const gst = subtotal * 0.03; // 3% GST
   const shipping = subtotal > 5000 ? 0 : 100; // Free shipping above ₹5000
-  const total = subtotal + gst + shipping;
+  const totalBeforeGiftCard = subtotal + gst + shipping;
+  const giftCardDiscount = giftCardAmount;
+  const total = Math.max(0, totalBeforeGiftCard - giftCardDiscount);
 
   // Generate order ID
   const orderId = `DIVA${Date.now()}`;
@@ -94,6 +102,18 @@ export default function CheckoutPage() {
     if (validateAddressForm()) {
       setCurrentStep('payment');
     }
+  };
+
+  // Handle gift card application
+  const handleGiftCardApplied = (card: GiftCard, amountToUse: number) => {
+    setAppliedGiftCard(card);
+    setGiftCardAmount(amountToUse);
+  };
+
+  // Handle gift card removal
+  const handleGiftCardRemoved = () => {
+    setAppliedGiftCard(null);
+    setGiftCardAmount(0);
   };
 
   // Handle payment completion (simulated)
@@ -198,11 +218,22 @@ export default function CheckoutPage() {
             {shipping === 0 ? 'FREE' : formatPrice(shipping)}
           </span>
         </div>
+        {giftCardDiscount > 0 && (
+          <div className="flex justify-between text-green-600 font-semibold">
+            <span>Gift Card</span>
+            <span>-{formatPrice(giftCardDiscount)}</span>
+          </div>
+        )}
         <hr />
         <div className="flex justify-between text-lg font-bold text-gray-800">
           <span>Total</span>
           <span className="text-rose-gold-dark">{formatPrice(total)}</span>
         </div>
+        {total === 0 && giftCardDiscount > 0 && (
+          <p className="text-xs text-green-600 text-center font-semibold">
+            🎉 Fully paid with gift card!
+          </p>
+        )}
       </div>
 
       {shipping === 0 && (
@@ -425,9 +456,21 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  {/* Payment Section */}
+                  {/* Gift Card Redemption */}
                   <div className="bg-white rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-bold text-gray-800 mb-4">Payment</h3>
+                    <GiftCardRedemption
+                      orderAmount={totalBeforeGiftCard}
+                      onGiftCardApplied={handleGiftCardApplied}
+                      onGiftCardRemoved={handleGiftCardRemoved}
+                      appliedCard={appliedGiftCard}
+                      appliedAmount={giftCardAmount}
+                    />
+                  </div>
+
+                  {/* Payment Section */}
+                  {total > 0 && (
+                    <div className="bg-white rounded-lg shadow-md p-6">
+                      <h3 className="text-lg font-bold text-gray-800 mb-4">Payment</h3>
                     <div className="text-center py-8">
                       <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-8 rounded-xl inline-block mb-6">
                         <div className="bg-white p-6 rounded-lg">
@@ -463,7 +506,31 @@ export default function CheckoutPage() {
                         (For demonstration purposes only)
                       </p>
                     </div>
-                  </div>
+                    </div>
+                  )}
+
+                  {/* Order fully paid with gift card */}
+                  {total === 0 && (
+                    <div className="bg-white rounded-lg shadow-md p-6">
+                      <div className="text-center py-8">
+                        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                          <CheckCircle2 className="w-12 h-12 text-green-600" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                          Order Fully Paid!
+                        </h3>
+                        <p className="text-gray-600 mb-6">
+                          Your order is fully covered by the gift card. Click below to confirm your order.
+                        </p>
+                        <button
+                          onClick={handlePaymentComplete}
+                          className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+                        >
+                          Confirm Order
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 
