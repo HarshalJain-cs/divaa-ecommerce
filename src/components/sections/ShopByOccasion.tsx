@@ -11,20 +11,20 @@ const ShopByOccasion: React.FC = () => {
     {
       id: 1,
       title: "Engagement",
-      imageUrl: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&h=400&fit=crop",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/Alishbah%20Anjum.jpg",
       path: "/occasions/engagement"
     },
     {
       id: 2,
       title: "Birthday",
-      imageUrl: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&h=400&fit=crop",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/woman%20birthday%20girl%20cake%2021%20stylish%20faceless%20aesthetic%20fashion%20influencer%20story%20luxury.jpg",
       path: "/occasions/birthday"
     },
     {
       id: 3,
       title: "Wedding",
-      imageUrl: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500&h=400&fit=crop",
-      path: "/occasions/wedding"
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(3).jpg",
+      path: "/wedding"
     }
   ];
 
@@ -37,11 +37,11 @@ const ShopByOccasion: React.FC = () => {
         </button>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] bg-gradient-to-br from-cream to-rose-gold/20 rounded-3xl overflow-hidden shadow-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] rounded-3xl overflow-hidden shadow-xl" style={{ backgroundColor: '#D4C5B9' }}>
           {/* Left: Lifestyle Image */}
           <div className="relative h-[400px] lg:h-auto overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&h=800&fit=crop"
+              src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(2).jpg"
               alt="Woman with jewelry"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
