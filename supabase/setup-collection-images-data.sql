@@ -46,14 +46,30 @@ INSERT INTO collections (name, slug, display_name, description, category, is_fea
 
 ('gold-bride', 'wedding/gold-bride', 'Gold Bride', 'Exquisite gold bridal jewelry for your special day.', 'wedding', true, 31, '#B76E79', '#E0BFB8', '#B76E79', '#E0BFB8', 'Gold Bridal Jewelry - Divaa', 'Exquisite gold bridal jewelry for your special wedding day.')
 
-ON CONFLICT (slug) DO UPDATE SET
+ON CONFLICT (name) DO UPDATE SET
+  slug = EXCLUDED.slug,
   display_name = EXCLUDED.display_name,
   description = EXCLUDED.description,
+  category = EXCLUDED.category,
+  is_featured = EXCLUDED.is_featured,
+  display_order = EXCLUDED.display_order,
+  primary_color = EXCLUDED.primary_color,
+  secondary_color = EXCLUDED.secondary_color,
+  gradient_from = EXCLUDED.gradient_from,
+  gradient_to = EXCLUDED.gradient_to,
+  meta_title = EXCLUDED.meta_title,
+  meta_description = EXCLUDED.meta_description,
   updated_at = NOW();
 
 -- =============================================
 -- INSERT COLLECTION IMAGES
 -- =============================================
+-- Note: First delete existing images for these collections to avoid duplicates
+DELETE FROM collection_images WHERE collection_id IN (
+  SELECT id FROM collections WHERE slug IN (
+    'style-everyday', 'style-traditional', 'style-party', 'gift-cards', 'style-office', 'gifts-for-friends'
+  )
+);
 
 -- Everyday Wear Images
 INSERT INTO collection_images (collection_id, image_url, image_type, alt_text, title, is_primary, display_order, width, height, file_format, is_external)
@@ -160,6 +176,12 @@ WHERE c.slug = 'gifts-for-friends';
 -- =============================================
 -- INSERT COLLECTION BANNERS (Hero Images)
 -- =============================================
+-- Note: First delete existing banners for these collections to avoid duplicates
+DELETE FROM collection_banners WHERE collection_id IN (
+  SELECT id FROM collections WHERE slug IN (
+    'style-everyday', 'style-traditional', 'style-party', 'gift-cards'
+  )
+);
 
 -- Everyday Wear Banner
 INSERT INTO collection_banners (collection_id, banner_type, title, subtitle, cta_text, cta_link, desktop_image_url, desktop_width, desktop_height, is_active, display_order)
