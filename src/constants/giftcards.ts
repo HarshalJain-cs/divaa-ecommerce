@@ -21,9 +21,8 @@ export const GIFT_CARD_MIN_AMOUNT = 500;
 
 /**
  * Maximum gift card amount (in INR)
- * Set to null for no maximum
  */
-export const GIFT_CARD_MAX_AMOUNT: number | null = null;
+export const GIFT_CARD_MAX_AMOUNT = 50000;
 
 // ============================================
 // EXPIRY CONFIGURATION
@@ -52,60 +51,49 @@ export const EXPIRY_WARNING_DAYS = 30;
  * Gift card code format configuration
  */
 export const GIFT_CARD_CODE_CONFIG = {
-  prefix: 'DIVA',
-  segments: 4,
+  prefix: 'DIVAA',
+  segments: 3, // 3 segments of 4 digits each
   segmentLength: 4,
   separator: '-',
-  characters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+  characters: '0123456789', // Numeric only for simplicity
 } as const;
 
 /**
- * Example format: DIVA-A1B2-C3D4-E5F6
+ * Example format: DIVAA-1234-5678-9012
  */
-export const GIFT_CARD_CODE_FORMAT = 'DIVA-XXXX-XXXX-XXXX';
+export const GIFT_CARD_CODE_FORMAT = 'DIVAA-XXXX-XXXX-XXXX';
 
 /**
  * Regular expression to validate gift card code format
  */
-export const GIFT_CARD_CODE_REGEX = /^DIVA-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
+export const GIFT_CARD_CODE_REGEX = /^DIVAA-\d{4}-\d{4}-\d{4}$/;
 
 // ============================================
 // DESIGN THEMES
 // ============================================
 
 /**
- * Gift card theme configurations with images and gradients
+ * Gift card theme configurations with gradients (Phase 1: Birthday, Diwali, General)
+ * Note: Using brand colors from theme.css (--rose-gold, --blush-pink, etc.)
  */
 export const GIFT_CARD_THEMES: Record<GiftCardTheme, GiftCardThemeConfig> = {
   birthday: {
     name: 'Birthday',
-    image: 'https://via.placeholder.com/400x250/E0BFB8/FFFFFF?text=Happy+Birthday',
-    gradient: 'from-pink-400 via-purple-400 to-purple-500',
-    description: 'Perfect for birthday celebrations',
+    image: '/gift-card-placeholders/birthday.svg',
+    gradient: 'from-[#E0BFB8] to-[#DE5D83]', // Rose gold to blush pink
+    description: 'Celebrate special birthdays with joy',
   },
-  wedding: {
-    name: 'Wedding',
-    image: 'https://via.placeholder.com/400x250/DCA1A1/FFFFFF?text=Wedding+Wishes',
-    gradient: 'from-rose-300 via-pink-300 to-pink-400',
-    description: 'Ideal for wedding gifts',
-  },
-  anniversary: {
-    name: 'Anniversary',
-    image: 'https://via.placeholder.com/400x250/DE5D83/FFFFFF?text=Happy+Anniversary',
-    gradient: 'from-red-400 via-pink-400 to-pink-500',
-    description: 'Celebrate love and milestones',
-  },
-  thankyou: {
-    name: 'Thank You',
-    image: 'https://via.placeholder.com/400x250/C37F7A/FFFFFF?text=Thank+You',
-    gradient: 'from-amber-300 via-orange-300 to-orange-400',
-    description: 'Show your appreciation',
+  diwali: {
+    name: 'Diwali',
+    image: '/gift-card-placeholders/diwali.svg',
+    gradient: 'from-[#B76E79] to-[#E0BFB8]', // Rose gold dark to rose gold
+    description: 'Festival of lights celebration',
   },
   general: {
     name: 'General',
-    image: 'https://via.placeholder.com/400x250/B76E79/FFFFFF?text=Gift+Card',
-    gradient: 'from-rose-gold via-rose-gold-light to-rose-gold-dark',
-    description: 'For any occasion',
+    image: '/gift-card-placeholders/general.svg',
+    gradient: 'from-[#E0BFB8] to-[#B76E79]', // Rose gold to rose gold dark
+    description: 'Perfect for any occasion',
   },
 } as const;
 
@@ -374,4 +362,163 @@ export const ANALYTICS_EVENTS = {
   REDEMPTION_COMPLETED: 'gift_card_redemption_completed',
   BALANCE_APPLIED: 'account_balance_applied',
   CODE_VALIDATED: 'gift_card_code_validated',
+} as const;
+
+// ============================================
+// PHASE 1: NEW CONSTANTS
+// ============================================
+
+/**
+ * Card PIN configuration
+ */
+export const CARD_PIN_CONFIG = {
+  length: 6, // 6-digit PIN
+  characters: '0123456789',
+} as const;
+
+/**
+ * Bulk order configuration
+ */
+export const BULK_ORDER_CONFIG = {
+  MAX_ROWS: 100,
+  ALLOWED_FILE_TYPES: ['.csv'],
+  MAX_FILE_SIZE_MB: 5,
+  WHOLESALE_DISCOUNT_PERCENT: 10,
+  CSV_COLUMNS: [
+    'recipient_name',
+    'recipient_email',
+    'recipient_phone',
+    'amount',
+    'custom_message',
+    'design_theme',
+  ],
+} as const;
+
+/**
+ * Cart limits for gift cards
+ */
+export const CART_LIMITS = {
+  MAX_GIFT_CARDS: 5,
+  MAX_ORDER_VALUE: 50000,
+  MIN_ORDER_VALUE: 500,
+} as const;
+
+/**
+ * OTP configuration
+ */
+export const OTP_CONFIG = {
+  LENGTH: 6,
+  EXPIRY_MINUTES: 10,
+  MAX_ATTEMPTS: 5,
+  RESEND_COOLDOWN_SECONDS: 30,
+} as const;
+
+/**
+ * Promo code: GIFT5 configuration
+ */
+export const DEFAULT_PROMO_CODE = {
+  CODE: 'GIFT5',
+  DISCOUNT_PERCENT: 5,
+  MIN_PURCHASE: 1000,
+  MAX_USES: 100,
+  VALID_DAYS: 30,
+} as const;
+
+/**
+ * QR Code configuration
+ */
+export const QR_CODE_CONFIG = {
+  SIZE: 200,
+  ERROR_CORRECTION: 'M', // L, M, Q, H
+  MARGIN: 4,
+} as const;
+
+/**
+ * Email configuration for Resend
+ */
+export const EMAIL_SENDER = {
+  FROM_NAME: 'Divaa Jewels',
+  FROM_EMAIL: 'noreply@divaa.com',
+  SUPPORT_EMAIL: 'saj.query@gmail.com',
+} as const;
+
+/**
+ * SMS configuration (dummy for Phase 1)
+ */
+export const SMS_CONFIG = {
+  ENABLED: false, // Dummy for Phase 1
+  FROM_NUMBER: '+1234567890',
+} as const;
+
+/**
+ * Card type configuration
+ */
+export const CARD_TYPE_CONFIG = {
+  regular: {
+    label: 'Regular Gift Card',
+    description: 'One-time use gift card',
+    badge: null,
+  },
+  reloadable: {
+    label: 'Reloadable Gift Card',
+    description: 'Can be reloaded multiple times',
+    badge: '🔄 Reloadable',
+    min_reload: 2000,
+    max_reload: 10000,
+  },
+} as const;
+
+/**
+ * Admin configuration
+ */
+export const ADMIN_CREDENTIALS = {
+  USERNAME: import.meta.env.VITE_ADMIN_USERNAME || 'harry',
+  PASSWORD_HASH: import.meta.env.VITE_ADMIN_PASSWORD_HASH || 'diva.saj',
+} as const;
+
+/**
+ * Low balance alert threshold
+ */
+export const LOW_BALANCE_THRESHOLD = 500;
+
+/**
+ * Velocity limits (fraud prevention)
+ */
+export const VELOCITY_LIMITS = {
+  MAX_CARDS_PER_MONTH: 5,
+  MAX_ORDERS_PER_MONTH: 5,
+  MAX_AMOUNT_PER_CARD: 50000,
+} as const;
+
+/**
+ * Gift card view page URL pattern
+ */
+export const GIFT_CARD_VIEW_URL = (cardNumber: string) => `/gift-cards/view/${cardNumber}`;
+
+/**
+ * Redemption instructions
+ */
+export const REDEMPTION_INSTRUCTIONS = {
+  title: 'How to Redeem Your Gift Card',
+  steps: [
+    'Visit divaa.com and browse our collection',
+    'Add items to your cart',
+    'At checkout, enter your gift card number and PIN',
+    'Your gift card balance will be applied to your order',
+    'Any remaining balance stays on your card for future use',
+  ],
+} as const;
+
+/**
+ * Terms and conditions URL
+ */
+export const GIFT_CARD_TERMS_URL = '/terms#gift-cards';
+
+/**
+ * Contact support info
+ */
+export const SUPPORT_INFO = {
+  EMAIL: 'saj.query@gmail.com',
+  PHONE: '+91 1234567890',
+  HOURS: 'Mon-Sat, 9 AM - 6 PM IST',
 } as const;
