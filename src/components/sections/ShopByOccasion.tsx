@@ -16,15 +16,33 @@ const ShopByOccasion: React.FC = () => {
     },
     {
       id: 2,
-      title: "Birthday",
-      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/woman%20birthday%20girl%20cake%2021%20stylish%20faceless%20aesthetic%20fashion%20influencer%20story%20luxury.jpg",
-      path: "/occasions/birthday"
+      title: "Griha Pravesh",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(4).jpg",
+      path: "/occasions/griha-pravesh"
     },
     {
       id: 3,
       title: "Wedding",
       imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(3).jpg",
       path: "/wedding"
+    },
+    {
+      id: 4,
+      title: "Baby Shower",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/Mother%20of%20the%20Ocean_%20A%20Radiant%20Moment%20in%20a%20Seashell.jpg",
+      path: "/occasions/baby-shower"
+    },
+    {
+      id: 5,
+      title: "Birthday",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/woman%20birthday%20girl%20cake%2021%20stylish%20faceless%20aesthetic%20fashion%20influencer%20story%20luxury.jpg",
+      path: "/occasions/birthday"
+    },
+    {
+      id: 6,
+      title: "Most Gifted",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/download%20(5).jpg",
+      path: "/occasions/most-gifted"
     }
   ];
 
@@ -70,7 +88,7 @@ const ShopByOccasion: React.FC = () => {
             </Link>
 
             {/* Category Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {categories.map((category) => (
                 <Link
                   key={category.id}
