@@ -11,20 +11,38 @@ const ShopByFestival: React.FC = () => {
     {
       id: 1,
       title: "Diwali",
-      imageUrl: "https://images.unsplash.com/photo-1605979399068-33e219df5d5f?w=500&h=400&fit=crop",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/diwali.jpg",
       path: "/festivals/diwali"
     },
     {
       id: 2,
       title: "Akshaya Tritiya",
-      imageUrl: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=500&h=400&fit=crop",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/akshay.jpg",
       path: "/festivals/akshaya-tritiya"
     },
     {
       id: 3,
       title: "Raksha Bandhan",
-      imageUrl: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&h=400&fit=crop",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/Screenshot%202025-11-20%20103148.png",
       path: "/festivals/raksha-bandhan"
+    },
+    {
+      id: 4,
+      title: "Valentine's Day",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/valentine.jpg",
+      path: "/festivals/valentine-day"
+    },
+    {
+      id: 5,
+      title: "Navratri",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/navrathri.jpg",
+      path: "/festivals/navratri"
+    },
+    {
+      id: 6,
+      title: "Mother's Day",
+      imageUrl: "https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/mothers%20day.jpg",
+      path: "/festivals/mothers-day"
     }
   ];
 
@@ -32,11 +50,11 @@ const ShopByFestival: React.FC = () => {
     <section className="py-20 bg-gradient-to-br from-cream to-off-white">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] bg-gradient-to-br from-rose-gold/20 to-cream rounded-3xl overflow-hidden shadow-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] rounded-3xl overflow-hidden shadow-xl" style={{ backgroundColor: '#D4C5B9' }}>
           {/* Left: Lifestyle Image */}
           <div className="relative h-[400px] lg:h-auto overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1605979399068-33e219df5d5f?w=800&h=800&fit=crop"
+              src="https://ceytiwiuidapmlzghlzo.supabase.co/storage/v1/object/public/banner-images/banner.jpg"
               alt="Festival jewelry"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
@@ -65,7 +83,7 @@ const ShopByFestival: React.FC = () => {
             </Link>
 
             {/* Category Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {categories.map((category) => (
                 <Link
                   key={category.id}

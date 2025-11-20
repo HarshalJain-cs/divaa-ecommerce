@@ -68,6 +68,20 @@ const BirthdayGiftsPage = lazy(() => import('@/pages/occasions/BirthdayGiftsPage
 const EngagementPage = lazy(() => import('@/pages/occasions/EngagementPage'));
 const BabyShowerPage = lazy(() => import('@/pages/occasions/BabyShowerPage'));
 const GrihaPraveshPage = lazy(() => import('@/pages/occasions/GrihaPraveshPage'));
+// Festivals Pages
+const DiwaliPage = lazy(() => import('@/pages/festivals/DiwaliPage'));
+const AkshayaTritiyaPage = lazy(() => import('@/pages/festivals/AkshayaTritiyaPage'));
+const RakshaBandhanPage = lazy(() => import('@/pages/festivals/RakshaBandhanPage'));
+const ValentineDayPage = lazy(() => import('@/pages/festivals/ValentineDayPage'));
+const NavratriPage = lazy(() => import('@/pages/festivals/NavratriPage'));
+const MothersDayPage = lazy(() => import('@/pages/festivals/MothersDayPage'));
+const FathersDayPage = lazy(() => import('@/pages/festivals/FathersDayPage'));
+const FriendshipDayPage = lazy(() => import('@/pages/festivals/FriendshipDayPage'));
+const KarwaChauthPage = lazy(() => import('@/pages/festivals/KarwaChauthPage'));
+const BhaidoojPage = lazy(() => import('@/pages/festivals/BhaidoojPage'));
+const EidPage = lazy(() => import('@/pages/festivals/EidPage'));
+const DurgaPujaPage = lazy(() => import('@/pages/festivals/DurgaPujaPage'));
+const ChristmasPage = lazy(() => import('@/pages/festivals/ChristmasPage'));
 // Moved to src/digital-gold - const DigitalGoldPage = lazy(() => import('@/digital-gold/DigitalGoldPage'));
 const WishlistPage = lazy(() => import('@/pages/WishlistPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
@@ -158,6 +172,22 @@ function App() {
               {/* Occasion & Festival Routes */}
               <Route path="/occasions" element={<OccasionsPage />} />
               <Route path="/festivals" element={<FestivalsPage />} />
+
+              {/* Festival Pages */}
+              <Route path="/festivals/diwali" element={<DiwaliPage />} />
+              <Route path="/festivals/akshaya-tritiya" element={<AkshayaTritiyaPage />} />
+              <Route path="/festivals/raksha-bandhan" element={<RakshaBandhanPage />} />
+              <Route path="/festivals/valentine-day" element={<ValentineDayPage />} />
+              <Route path="/festivals/navratri" element={<NavratriPage />} />
+              <Route path="/festivals/mothers-day" element={<MothersDayPage />} />
+              <Route path="/festivals/fathers-day" element={<FathersDayPage />} />
+              <Route path="/festivals/friendship-day" element={<FriendshipDayPage />} />
+              <Route path="/festivals/karwa-chauth" element={<KarwaChauthPage />} />
+              <Route path="/festivals/bhaidooj" element={<BhaidoojPage />} />
+              <Route path="/festivals/eid" element={<EidPage />} />
+              <Route path="/festivals/durga-puja" element={<DurgaPujaPage />} />
+              <Route path="/festivals/christmas" element={<ChristmasPage />} />
+
               <Route path="/wedding" element={<WeddingPage />} />
 
               {/* Wedding Collection Routes */}
