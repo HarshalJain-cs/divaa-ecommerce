@@ -4,7 +4,6 @@
  */
 
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
 import { Gift, TrendingUp, Heart } from 'lucide-react';
 
 export default function MostGiftedPage() {
@@ -101,8 +100,6 @@ export default function MostGiftedPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

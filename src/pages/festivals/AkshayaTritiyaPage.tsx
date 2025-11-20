@@ -4,7 +4,6 @@
  */
 
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
 import { Sparkles, Gift, Star } from 'lucide-react';
 
 export default function AkshayaTritiyaPage() {
@@ -64,8 +63,6 @@ export default function AkshayaTritiyaPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

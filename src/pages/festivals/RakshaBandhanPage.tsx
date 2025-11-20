@@ -4,7 +4,6 @@
  */
 
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
 import { Sparkles, Gift, Heart } from 'lucide-react';
 
 export default function RakshaBandhanPage() {
@@ -65,7 +64,6 @@ export default function RakshaBandhanPage() {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 }

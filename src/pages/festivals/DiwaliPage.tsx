@@ -4,7 +4,6 @@
  */
 
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
 import { Sparkles, Gift, TrendingUp } from 'lucide-react';
 
 export default function DiwaliPage() {
@@ -84,8 +83,6 @@ export default function DiwaliPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

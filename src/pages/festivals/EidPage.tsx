@@ -4,7 +4,6 @@
  */
 
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
 import { Sparkles, Star, Gift } from 'lucide-react';
 
 export default function EidPage() {
@@ -65,7 +64,6 @@ export default function EidPage() {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 }

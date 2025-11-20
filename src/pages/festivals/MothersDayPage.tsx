@@ -4,7 +4,6 @@
  */
 
 import Header from '@/components/ui/Header';
-import Footer from '@/components/ui/Footer';
 import { Heart, Sparkles, Gift } from 'lucide-react';
 
 export default function MothersDayPage() {
@@ -65,7 +64,6 @@ export default function MothersDayPage() {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 }
